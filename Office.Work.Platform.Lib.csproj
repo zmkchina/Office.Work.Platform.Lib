@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>翟明科</Authors>
+    <Product>政工科信息化工作平台</Product>
+    <Description>此为政工科信息化工作平台平台公用Model类库</Description>
+    <Version>1.1.1.6</Version>
+    <AssemblyVersion>1.0.9.4</AssemblyVersion>
+    <FileVersion>1.0.9.4</FileVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>D:\我的项目\Office.Work.Platform.Lib\Office.Work.Platform.Lib.xml</DocumentationFile>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+
+</Project>
