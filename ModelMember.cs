@@ -38,6 +38,10 @@ namespace Office.Work.Platform.Lib
         private DateTime _JoinCPC;
         private string _PoliticalStatus;
         private string _Department;
+        private string _MobileCode;
+        private string _FixPhoneCode;
+        private string _EmployTitle;
+        private string _UnitName;
 
         /// <summary>
         /// 身份证号
@@ -56,6 +60,15 @@ namespace Office.Work.Platform.Lib
         /// 出生日期
         /// </summary>
         public DateTime Birthday { get { return _Birthday; } set { _Birthday = value; OnPropertyChanged("Birthday"); } }
+        /// <summary>
+        /// 固定电话
+        /// </summary>
+        public string FixPhoneCode { get { return _FixPhoneCode; } set { _FixPhoneCode = value; OnPropertyChanged("FixPhoneCode"); } }
+        /// <summary>
+        /// 移动电话
+        /// </summary>
+        public string MobileCode { get { return _MobileCode; } set { _MobileCode = value; OnPropertyChanged("MobileCode"); } }
+
         /// <summary>
         /// 参加工作时间
         /// </summary>
@@ -110,15 +123,26 @@ namespace Office.Work.Platform.Lib
         /// 最高学位
         /// </summary>
         public string DegreeTop { get { return _DegreeTop; } set { _DegreeTop = value; OnPropertyChanged("DegreeTop"); } }
+
         /// <summary>
         /// 技术职称
         /// </summary>
         public string TechnicalTitle { get { return _TechnicalTitle; } set { _TechnicalTitle = value; OnPropertyChanged("TechnicalTitle"); } }
 
         /// <summary>
+        /// 已聘技术职称
+        /// </summary>
+        public string EmployTitle { get { return _EmployTitle; } set { _EmployTitle = value; OnPropertyChanged("EmployTitle"); } }
+
+        /// <summary>
         /// 部门:综合科、信息科....
         /// </summary>
         public string Department { get { return _Department; } set { _Department = value; OnPropertyChanged("Department"); } }
+
+        /// <summary>
+        /// 单位名称：港航中心、大柳巷船闸、成子河船闸、古泊河船闸
+        /// </summary>
+        public string UnitName { get { return _UnitName; } set { _UnitName = value; OnPropertyChanged("UnitName"); } }
 
         /// <summary>
         /// 职务:办事员（所有技术岗人员均是办事员，双肩挑除外）、科员、副科长、科长、副处长、处长。
@@ -131,11 +155,6 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         public string Job { get { return _Job; } set { _Job = value; OnPropertyChanged("Job"); } }
 
-
-        /// <summary>
-        /// 岗位性质：专技岗、管理岗、工勤岗、双肩挑
-        /// </summary>
-        public string Job { get { return _Job; } set { _Job = value; OnPropertyChanged("Job"); } }
         /// <summary>
         /// 岗位级别：管理岗1-10级、专技岗1-13级、工勤岗1-5级及初级工
         /// </summary>
