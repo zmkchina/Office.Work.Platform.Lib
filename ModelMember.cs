@@ -42,6 +42,7 @@ namespace Office.Work.Platform.Lib
         private string _FixPhoneCode;
         private string _EmployTitle;
         private string _UnitName;
+        private string _PostInCPC;
 
         /// <summary>
         /// 身份证号
@@ -83,7 +84,7 @@ namespace Office.Work.Platform.Lib
         /// 进入本单位时间
         /// </summary>
         public DateTime EnterOrganization { get { return _EnterOrganization; } set { _EnterOrganization = value; OnPropertyChanged("EnterOrganization"); } }
-        
+
         /// <summary>
         /// 入党时间
         /// </summary>
@@ -98,42 +99,42 @@ namespace Office.Work.Platform.Lib
         /// 全日制学历
         /// </summary>
         public string EducationDays { get { return _EducationDays; } set { _EducationDays = value; OnPropertyChanged("EducationDays"); } }
-        
+
         /// <summary>
         /// 全日制学历毕业学校
         /// </summary>
         public string GraduationSchoolDays { get { return _GraduationSchoolDays; } set { _GraduationSchoolDays = value; OnPropertyChanged("GraduationSchoolDays"); } }
-        
+
         /// <summary>
         /// 全日制学历所学专业
         /// </summary>
         public string MajorDays { get { return _MajorDays; } set { _MajorDays = value; OnPropertyChanged("MajorDays"); } }
-        
+
         /// <summary>
         /// 全日制学历毕业时间
         /// </summary>
         public DateTime GraduationDateDays { get { return _GraduationDateDays; } set { _GraduationDateDays = value; OnPropertyChanged("GraduationDateDays"); } }
-        
+
         /// <summary>
         /// 最高学历
         /// </summary>
         public string EducationTop { get { return _EducationTop; } set { _EducationTop = value; OnPropertyChanged("EducationTop"); } }
-        
+
         /// <summary>
         /// 最高学历毕业学校
         /// </summary>
         public string GraduationSchoolTop { get { return _GraduationSchoolTop; } set { _GraduationSchoolTop = value; OnPropertyChanged("GraduationSchoolTop"); } }
-        
+
         /// <summary>
         /// 最高学历毕业时间
         /// </summary>
         public DateTime GraduationDateTop { get { return _GraduationDateTop; } set { _GraduationDateTop = value; OnPropertyChanged("GraduationDateTop"); } }
-        
+
         /// <summary>
         /// 最高学历所学专业
         /// </summary>
         public string MajorTop { get { return _MajorTop; } set { _MajorTop = value; OnPropertyChanged("MajorTop"); } }
-        
+
         /// <summary>
         /// 最高学位
         /// </summary>
@@ -165,6 +166,11 @@ namespace Office.Work.Platform.Lib
         public string Post { get { return _Post; } set { _Post = value; OnPropertyChanged("Post"); } }
 
         /// <summary>
+        /// 党内职务
+        ///</summary>
+        public string PostInCPC { get { return _PostInCPC; } set { _PostInCPC = value; OnPropertyChanged("PostInCPC"); } }
+
+        /// <summary>
         /// 岗位性质：专技岗、管理岗、工勤岗、双肩挑
         /// </summary>
         public string Job { get { return _Job; } set { _Job = value; OnPropertyChanged("Job"); } }
@@ -178,7 +184,7 @@ namespace Office.Work.Platform.Lib
         /// 个人简历
         /// </summary>
         public string Resume { get { return _Resume; } set { _Resume = value; OnPropertyChanged("Resume"); } }
-        
+
         /// <summary>
         /// 获奖情况
         /// </summary>
@@ -187,7 +193,7 @@ namespace Office.Work.Platform.Lib
             get { return _Prize; }
             set { _Prize = value; OnPropertyChanged("Prize"); }
         }
-        
+
         /// <summary>
         /// 受处罚情况
         /// </summary>
@@ -196,7 +202,7 @@ namespace Office.Work.Platform.Lib
             get { return _Punish; }
             set { _Punish = value; OnPropertyChanged("Punish"); }
         }
-        
+
         /// <summary>
         /// 备注
         /// </summary>

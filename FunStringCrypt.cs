@@ -7,7 +7,7 @@ namespace Office.Work.Platform.Lib
     /// <summary>
     /// 字符串加密类写法
     /// </summary>
-    public static class StringCrypt
+    public static class FunStringCrypt
     {
         private const string KEY_64 = "ChinabCd";
         private const string IV_64 = "ChinabCd";

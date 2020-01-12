@@ -130,7 +130,7 @@ namespace Office.Work.Platform.Lib
             set { _CurrectState = value; OnPropertyChanged(nameof(CurrectState)); }
         }
         /// <summary>
-        /// 文件读取权限
+        /// 计划读取权限
         /// </summary>
         public string ReadGrant
         {

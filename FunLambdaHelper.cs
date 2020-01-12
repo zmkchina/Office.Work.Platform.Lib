@@ -9,7 +9,7 @@ namespace Office.Work.Platform.Lib
     /// <summary>
     /// 表达式扩展类,动态拼接lambda表达式
     /// </summary>
-    public static class LambdaHelper
+    public static class FunLambdaHelper
     {
         /// <summary>
         /// Expression类的扩展方法。组合Lambda表达式
