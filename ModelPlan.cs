@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Office.Work.Platform.Lib
 {
@@ -23,6 +24,7 @@ namespace Office.Work.Platform.Lib
         private string _Caption;
         private string _Id;
         private string _Department;
+        private Uri _PlanStateImage;
 
         /// <summary>
         /// 计划ID号，格式yyyyMMddHHmmssfff
@@ -127,15 +129,24 @@ namespace Office.Work.Platform.Lib
         public string CurrectState
         {
             get { return _CurrectState; }
-            set { _CurrectState = value; OnPropertyChanged(nameof(CurrectState)); }
+            set { _CurrectState = value;PlanStateImage = GetPlanStateImage(CurrectState); OnPropertyChanged(nameof(CurrectState)); }
         }
         /// <summary>
-        /// 计划读取权限
+        /// 计划读取权限(此字段存储用户ID列表)
         /// </summary>
         public string ReadGrant
         {
             get { return _ReadGrant; }
             set { _ReadGrant = value; OnPropertyChanged(nameof(ReadGrant)); }
+        }
+        /// <summary>
+        /// 该计划状态图标URI，不映射到数据库
+        /// </summary>
+        [NotMapped]
+        public Uri PlanStateImage
+        {
+            get { return _PlanStateImage; }
+            set { _PlanStateImage = value; OnPropertyChanged(nameof(PlanStateImage)); }
         }
         #region 事件
         /// <summary>
@@ -148,6 +159,26 @@ namespace Office.Work.Platform.Lib
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private Uri GetPlanStateImage(string PlanState)
+        {
+            Uri V_DefaultDocImg = null;
+            switch (PlanState)
+            {
+                case "等待执行":
+                    V_DefaultDocImg = new Uri("/Office.Work.Platform;component/AppRes/Images/PlanNew.png", UriKind.Relative);
+                    break;
+                case "正在实施":
+                    V_DefaultDocImg = new Uri("/Office.Work.Platform;component/AppRes/Images/PlanHandle.png", UriKind.Relative);
+                    break;
+                case "已经完成":
+                    V_DefaultDocImg = new Uri("/Office.Work.Platform;component/AppRes/Images/PlanFinish.png", UriKind.Relative);
+                    break;
+                case "计划取消":
+                    V_DefaultDocImg = new Uri("/Office.Work.Platform;component/AppRes/Images/DocRar.png", UriKind.Relative);
+                    break;
+            }
+            return V_DefaultDocImg;
         }
         #endregion
     }

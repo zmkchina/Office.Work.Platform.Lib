@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace Office.Work.Platform.Lib
 {
@@ -21,6 +23,8 @@ namespace Office.Work.Platform.Lib
         private string _ExtendName;
         private string _ContentType;
         private string _OwnerType;
+        private float _DownIntProgress;
+        private Uri _FileTypeImageUri;
         #endregion
 
         #region 属性
@@ -47,7 +51,7 @@ namespace Office.Work.Platform.Lib
         public string ExtendName
         {
             get { return _ExtendName; }
-            set { _ExtendName = value; OnPropertyChanged(nameof(ExtendName)); }
+            set { _ExtendName = value; FileTypeImageUri = GetFileTypeImage(ExtendName); OnPropertyChanged(nameof(ExtendName)); }
         }
         /// <summary>
         /// 该文件所属的计划、备忘、员工记录的ID号
@@ -114,6 +118,24 @@ namespace Office.Work.Platform.Lib
             get { return _Describe; }
             set { _Describe = value; OnPropertyChanged(nameof(Describe)); }
         }
+        /// <summary>
+        /// 该文件的下载进度条，不映射到数据库
+        /// </summary>
+        [NotMapped]
+        public float DownIntProgress
+        {
+            get { return _DownIntProgress; }
+            set { _DownIntProgress = value; OnPropertyChanged(nameof(DownIntProgress)); }
+        }
+        /// <summary>
+        /// 该文件的图标URI，不映射到数据库
+        /// </summary>
+        [NotMapped]
+        public Uri FileTypeImageUri
+        {
+            get { return _FileTypeImageUri; }
+            set { _FileTypeImageUri = value; OnPropertyChanged(nameof(FileTypeImageUri)); }
+        }
         #endregion
 
         #region 事件
@@ -127,6 +149,39 @@ namespace Office.Work.Platform.Lib
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private Uri GetFileTypeImage(string FileExtentName)
+        {
+            Uri V_DefaultDocImg = new Uri("/Office.Work.Platform;component/AppRes/Images/DocImg.png", UriKind.Relative);
+            string[] imgExtNameArr = { ".bmp", ".jpg", ".gif", ".jpeg", ".png", ".jpe", ".jfif", ".ico", ".tif", ".tiff" };
+            if (imgExtNameArr.Contains(FileExtentName.ToLower()))
+            {
+                V_DefaultDocImg = new Uri("/Office.Work.Assistant;component/AppRes/Images/DefaultImg.png", UriKind.Relative);
+            }
+            else
+            {
+                if ((new string[] { ".xls", ".xlsx" }).Contains(FileExtentName.ToLower()))
+                {
+                    V_DefaultDocImg = new Uri("/Office.Work.Platform;component/AppRes/Images/DocExcel.png", UriKind.Relative);
+                }
+                if ((new string[] { ".doc", ".docx" }).Contains(FileExtentName.ToLower()))
+                {
+                    return new Uri("/Office.Work.Platform;component/AppRes/Images/DocWord.png", UriKind.Relative);
+                }
+                if ((new string[] { ".ppt", ".pptx" }).Contains(FileExtentName.ToLower()))
+                {
+                    V_DefaultDocImg = new Uri("/Office.Work.Platform;component/AppRes/Images/DocPpt.png", UriKind.Relative);
+                }
+                if ((new string[] { ".rar", ".zip" }).Contains(FileExtentName.ToLower()))
+                {
+                    V_DefaultDocImg = new Uri("/Office.Work.Platform;component/AppRes/Images/DocRar.png", UriKind.Relative);
+                }
+                if ((new string[] { ".pdf" }).Contains(FileExtentName.ToLower()))
+                {
+                    V_DefaultDocImg = new Uri("/Office.Work.Platform;component/AppRes/Images/DocPdf.png", UriKind.Relative);
+                }
+            }
+            return V_DefaultDocImg;
         }
         #endregion
     }

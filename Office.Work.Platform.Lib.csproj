@@ -3,12 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>翟明科</Authors>
+    <Authors>ZMK</Authors>
     <Product>政工科信息化工作平台</Product>
     <Description>此为政工科信息化工作平台平台公用Model类库</Description>
-    <Version>1.1.2.2</Version>
-    <AssemblyVersion>1.0.9.4</AssemblyVersion>
-    <FileVersion>1.0.9.4</FileVersion>
+    <Version>1.1.2.7</Version>
+    <AssemblyVersion>1.1.2.7</AssemblyVersion>
+    <FileVersion>1.1.2.7</FileVersion>
+    <Company>ZMK COMPANY</Company>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

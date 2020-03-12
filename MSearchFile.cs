@@ -1,11 +1,9 @@
 ﻿using System;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
-    /// 附件（文件）类
+    /// 附件（文件）查询条件类
     /// </summary>
     public class MSearchFile
     {
