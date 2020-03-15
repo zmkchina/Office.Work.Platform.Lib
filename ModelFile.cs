@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Office.Work.Platform.Lib
 {
@@ -35,7 +36,7 @@ namespace Office.Work.Platform.Lib
         public string Id
         {
             get { return _Id; }
-            set { _Id = value; OnPropertyChanged(nameof(Id)); }
+            set { _Id = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 文件名称。
@@ -43,7 +44,7 @@ namespace Office.Work.Platform.Lib
         public string Name
         {
             get { return _Name; }
-            set { _Name = value; OnPropertyChanged(nameof(Name)); }
+            set { _Name = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 文件的扩展名
@@ -51,7 +52,7 @@ namespace Office.Work.Platform.Lib
         public string ExtendName
         {
             get { return _ExtendName; }
-            set { _ExtendName = value; FileTypeImageUri = GetFileTypeImage(ExtendName); OnPropertyChanged(nameof(ExtendName)); }
+            set { _ExtendName = value; FileTypeImageUri = GetFileTypeImage(ExtendName); OnPropertyChanged(); }
         }
         /// <summary>
         /// 该文件所属的计划、备忘、员工记录的ID号
@@ -59,7 +60,7 @@ namespace Office.Work.Platform.Lib
         public string OwnerId
         {
             get { return _OwnerId; }
-            set { _OwnerId = value; OnPropertyChanged(nameof(OwnerId)); }
+            set { _OwnerId = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 文件类型：计划附件、备忘文件、个人文件、普通文件
@@ -67,7 +68,7 @@ namespace Office.Work.Platform.Lib
         public string OwnerType
         {
             get { return _OwnerType; }
-            set { _OwnerType = value; OnPropertyChanged(nameof(OwnerType)); }
+            set { _OwnerType = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 文件分类：纪检监察、新闻宣传、组织人事、劳动工资、党的建设、总支议事
@@ -75,7 +76,7 @@ namespace Office.Work.Platform.Lib
         public string ContentType
         {
             get { return _ContentType; }
-            set { _ContentType = value; OnPropertyChanged(nameof(ContentType)); }
+            set { _ContentType = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 文件长度
@@ -83,15 +84,15 @@ namespace Office.Work.Platform.Lib
         public long Length
         {
             get { return _Length; }
-            set { _Length = value; OnPropertyChanged(nameof(Length)); }
+            set { _Length = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// 文件读取权限
+        /// 援用文件读取权限的用户列表。
         /// </summary>
         public string ReadGrant
         {
             get { return _ReadGrant; }
-            set { _ReadGrant = value; OnPropertyChanged(nameof(ReadGrant)); }
+            set { _ReadGrant = value; OnPropertyChanged(); }
         }
 
         /// <summary>
@@ -100,7 +101,7 @@ namespace Office.Work.Platform.Lib
         public string UserId
         {
             get { return _UserId; }
-            set { _UserId = value; OnPropertyChanged(nameof(UserId)); }
+            set { _UserId = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 更新日期
@@ -108,7 +109,7 @@ namespace Office.Work.Platform.Lib
         public DateTime UpDateTime
         {
             get { return _UpDateTime; }
-            set { _UpDateTime = value; OnPropertyChanged(nameof(UpDateTime)); }
+            set { _UpDateTime = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 该文件信息的描述
@@ -116,7 +117,7 @@ namespace Office.Work.Platform.Lib
         public string Describe
         {
             get { return _Describe; }
-            set { _Describe = value; OnPropertyChanged(nameof(Describe)); }
+            set { _Describe = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 该文件的下载进度条，不映射到数据库
@@ -125,16 +126,24 @@ namespace Office.Work.Platform.Lib
         public float DownIntProgress
         {
             get { return _DownIntProgress; }
-            set { _DownIntProgress = value; OnPropertyChanged(nameof(DownIntProgress)); }
+            set { _DownIntProgress = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 该文件的图标URI，不映射到数据库
+        /// 因为不映射到数据库，故从数据表中查询数据时，此值总为空。
         /// </summary>
         [NotMapped]
         public Uri FileTypeImageUri
         {
             get { return _FileTypeImageUri; }
-            set { _FileTypeImageUri = value; OnPropertyChanged(nameof(FileTypeImageUri)); }
+            set
+            {
+                //判断一下：防止JsonConvert.DeserializeObject<T>过程中，此值被重新赋值为空
+                if (value != null)
+                {
+                    _FileTypeImageUri = value; OnPropertyChanged();
+                }
+            }
         }
         #endregion
 
@@ -146,7 +155,7 @@ namespace Office.Work.Platform.Lib
         #endregion
 
         #region 方法
-        private void OnPropertyChanged(string propertyName)
+        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Office.Work.Platform.Lib
@@ -37,7 +38,7 @@ namespace Office.Work.Platform.Lib
         public string PlanStateType
         {
             get { return _PlanStateType; }
-            set { _PlanStateType = value; OnPropertyChanged("PlanStateType"); }
+            set { _PlanStateType = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 工作内容（文件）的类型："纪检监察,新闻宣传,组织人事,劳动工资,党的建设,总支议事"
@@ -45,7 +46,7 @@ namespace Office.Work.Platform.Lib
         public string WorkContentType
         {
             get { return _WorkContentType; }
-            set { _WorkContentType = value; OnPropertyChanged("WorkContentType"); }
+            set { _WorkContentType = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 程序版本号
@@ -53,7 +54,7 @@ namespace Office.Work.Platform.Lib
         public string AppVersion
         {
             get { return _AppVersion; }
-            set { _AppVersion = value; OnPropertyChanged("AppVersion"); }
+            set { _AppVersion = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 使用本系统的所有部门:政工科、综合科、养护科等
@@ -61,7 +62,7 @@ namespace Office.Work.Platform.Lib
         public string Deparmentts
         {
             get { return _Deparmentts; }
-            set { _Deparmentts = value; OnPropertyChanged("Deparmentts"); }
+            set { _Deparmentts = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 计划、附件总数变化信息提示时间
@@ -69,7 +70,7 @@ namespace Office.Work.Platform.Lib
         public int IntervalOne
         {
             get { return _IntervalOne; }
-            set { _IntervalOne = value; OnPropertyChanged("IntervalOne"); }
+            set { _IntervalOne = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 快过期计划提示时间间隔
@@ -77,7 +78,7 @@ namespace Office.Work.Platform.Lib
         public int IntervalTwo
         {
             get { return _IntervalTwo; }
-            set { _IntervalTwo = value; OnPropertyChanged("IntervalTwo"); }
+            set { _IntervalTwo = value; OnPropertyChanged(); }
         }
         #endregion
 
@@ -90,7 +91,7 @@ namespace Office.Work.Platform.Lib
         }
         #endregion
         #region 方法
-        private void OnPropertyChanged(string propertyName)
+        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

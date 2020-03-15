@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Office.Work.Platform.Lib
 {
@@ -11,14 +12,23 @@ namespace Office.Work.Platform.Lib
         private bool _IsSelect;
 
         private T _Obj;
-
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="p_isSelect"></param>
+        /// <param name="p_Obj"></param>
+        public ModelSelectObj(bool p_isSelect,T p_Obj)
+        {
+            _IsSelect = p_isSelect;
+            _Obj = p_Obj;
+        }
         /// <summary>
         /// 布尔值，用于表是是否被选中
         /// </summary>
         public bool IsSelect
         {
             get { return _IsSelect; }
-            set { _IsSelect = value; OnPropertyChanged(nameof(IsSelect)); }
+            set { _IsSelect = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 已有的待选择对象
@@ -26,8 +36,9 @@ namespace Office.Work.Platform.Lib
         public T Obj
         {
             get { return _Obj; }
-            set { _Obj = value; OnPropertyChanged(nameof(Obj)); }
+            set { _Obj = value; OnPropertyChanged(); }
         }
+
         #region 事件
         /// <summary>
         /// 属性改变事件
@@ -36,7 +47,7 @@ namespace Office.Work.Platform.Lib
         #endregion
 
         #region 方法
-        private void OnPropertyChanged(string propertyName)
+        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

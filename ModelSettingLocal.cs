@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Office.Work.Platform.Lib
 {
@@ -26,7 +27,7 @@ namespace Office.Work.Platform.Lib
         public string LoginUserId
         {
             get { return _LoginUserId; }
-            set { _LoginUserId = value; OnPropertyChanged("LoginUserId"); }
+            set { _LoginUserId = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 该人员设定的休息时间间隔
@@ -34,7 +35,7 @@ namespace Office.Work.Platform.Lib
         public int RestInterval
         {
             get { return _RestInterval; }
-            set { _RestInterval = value; OnPropertyChanged("RestInterval"); }
+            set { _RestInterval = value; OnPropertyChanged(); }
         }
         #endregion
         #region 构造函数
@@ -48,7 +49,7 @@ namespace Office.Work.Platform.Lib
 
         #endregion
         #region 方法
-        private void OnPropertyChanged(string propertyName)
+        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

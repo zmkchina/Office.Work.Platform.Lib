@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.CompilerServices;
 
 namespace Office.Work.Platform.Lib
 {
@@ -33,7 +34,7 @@ namespace Office.Work.Platform.Lib
         public string Id
         {
             get { return _Id; }
-            set { _Id = value; OnPropertyChanged(nameof(Id)); }
+            set { _Id = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 标题。
@@ -41,7 +42,7 @@ namespace Office.Work.Platform.Lib
         public string Caption
         {
             get { return _Caption; }
-            set { _Caption = value; OnPropertyChanged(nameof(Caption)); }
+            set { _Caption = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 内容与要求
@@ -49,7 +50,7 @@ namespace Office.Work.Platform.Lib
         public string Content
         {
             get { return _Content; }
-            set { _Content = value; OnPropertyChanged(nameof(Content)); }
+            set { _Content = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 完成情况
@@ -57,7 +58,7 @@ namespace Office.Work.Platform.Lib
         public string FinishNote
         {
             get { return _FinishNote; }
-            set { _FinishNote = value; OnPropertyChanged(nameof(FinishNote)); }
+            set { _FinishNote = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 类型：纪检监察、新闻宣传、总支议题。
@@ -65,7 +66,7 @@ namespace Office.Work.Platform.Lib
         public string PlanType
         {
             get { return _PlanType; }
-            set { _PlanType = value; OnPropertyChanged(nameof(PlanType)); }
+            set { _PlanType = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 计划所属部门。
@@ -73,7 +74,7 @@ namespace Office.Work.Platform.Lib
         public string Department
         {
             get { return _Department; }
-            set { _Department = value; OnPropertyChanged(nameof(Department)); }
+            set { _Department = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 责任人员
@@ -81,7 +82,7 @@ namespace Office.Work.Platform.Lib
         public string ResponsiblePerson
         {
             get { return _ResponsiblePerson; }
-            set { _ResponsiblePerson = value; OnPropertyChanged(nameof(ResponsiblePerson)); }
+            set { _ResponsiblePerson = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 协助人员
@@ -89,7 +90,7 @@ namespace Office.Work.Platform.Lib
         public string Helpers
         {
             get { return _Helpers; }
-            set { _Helpers = value; OnPropertyChanged(nameof(Helpers)); }
+            set { _Helpers = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 开始日期
@@ -97,7 +98,7 @@ namespace Office.Work.Platform.Lib
         public DateTime BeginDate
         {
             get { return _BeginDate; }
-            set { _BeginDate = value; OnPropertyChanged(nameof(BeginDate)); }
+            set { _BeginDate = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 结束日期
@@ -105,7 +106,7 @@ namespace Office.Work.Platform.Lib
         public DateTime EndDate
         {
             get { return _EndDate; }
-            set { _EndDate = value; OnPropertyChanged(nameof(EndDate)); }
+            set { _EndDate = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 完成日期
@@ -113,7 +114,7 @@ namespace Office.Work.Platform.Lib
         public DateTime FinishDate
         {
             get { return _FinishDate; }
-            set { _FinishDate = value; OnPropertyChanged(nameof(FinishDate)); }
+            set { _FinishDate = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 创建人员
@@ -121,7 +122,7 @@ namespace Office.Work.Platform.Lib
         public string CreateUserId
         {
             get { return _CreateUserId; }
-            set { _CreateUserId = value; OnPropertyChanged(nameof(CreateUserId)); }
+            set { _CreateUserId = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 当前状态
@@ -129,7 +130,7 @@ namespace Office.Work.Platform.Lib
         public string CurrectState
         {
             get { return _CurrectState; }
-            set { _CurrectState = value;PlanStateImage = GetPlanStateImage(CurrectState); OnPropertyChanged(nameof(CurrectState)); }
+            set { _CurrectState = value; PlanStateImage = GetPlanStateImage(CurrectState); OnPropertyChanged(); }
         }
         /// <summary>
         /// 计划读取权限(此字段存储用户ID列表)
@@ -137,7 +138,7 @@ namespace Office.Work.Platform.Lib
         public string ReadGrant
         {
             get { return _ReadGrant; }
-            set { _ReadGrant = value; OnPropertyChanged(nameof(ReadGrant)); }
+            set { _ReadGrant = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 该计划状态图标URI，不映射到数据库
@@ -146,7 +147,15 @@ namespace Office.Work.Platform.Lib
         public Uri PlanStateImage
         {
             get { return _PlanStateImage; }
-            set { _PlanStateImage = value; OnPropertyChanged(nameof(PlanStateImage)); }
+            set
+            {
+                //判断一下：防止JsonConvert.DeserializeObject<T>过程中，此值被重新赋值为空
+                //因为不映射到数据库，故从数据表中查询数据时，此值总为空。
+                if (value != null)
+                {
+                    _PlanStateImage = value; OnPropertyChanged();
+                }
+            }
         }
         #region 事件
         /// <summary>
@@ -156,13 +165,13 @@ namespace Office.Work.Platform.Lib
         #endregion
 
         #region 方法        
-        private void OnPropertyChanged(string propertyName)
+        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         private Uri GetPlanStateImage(string PlanState)
         {
-            Uri V_DefaultDocImg = null;
+            Uri V_DefaultDocImg = new Uri("/Office.Work.Platform;component/AppRes/Images/PlanStateErr.png", UriKind.Relative);
             switch (PlanState)
             {
                 case "等待执行":

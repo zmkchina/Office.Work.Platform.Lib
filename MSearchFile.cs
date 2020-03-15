@@ -38,10 +38,11 @@ namespace Office.Work.Platform.Lib
         /// 文件长度
         /// </summary>
         public long Length { get; set; }
+
         /// <summary>
-        /// 文件读取权限
+        /// 拥有文件读取权限Id
         /// </summary>
-        public string ReadGrant { get; set; }
+        public string CanReadUserId { get; set; }
 
         /// <summary>
         /// 上传该文件的用户ID号

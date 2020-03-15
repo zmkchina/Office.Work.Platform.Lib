@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Office.Work.Platform.Lib
@@ -23,34 +24,34 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 姓名
         /// </summary>
-        public string Name { get { return _Name; } set { _Name = value; OnPropertyChanged("Name"); } }
+        public string Name { get { return _Name; } set { _Name = value; OnPropertyChanged(); } }
         /// <summary>
         /// 关系：父亲、母亲、配偶、儿子、女儿、弟弟、妹妹
         /// </summary>
-        public string Relation { get { return _Relation; } set { _Relation = value; OnPropertyChanged("Relation"); } }
+        public string Relation { get { return _Relation; } set { _Relation = value; OnPropertyChanged(); } }
         /// <summary>
         /// 出生日期
         /// </summary>
-        public DateTime Birthday { get { return _Birthday; } set { _Birthday = value; OnPropertyChanged("Birthday"); } }
+        public DateTime Birthday { get { return _Birthday; } set { _Birthday = value; OnPropertyChanged(); } }
         /// <summary>
         /// 工作单位
         /// </summary>
-        public string Organization { get { return _Organization; } set { _Organization = value; OnPropertyChanged("Organization"); } }
+        public string Organization { get { return _Organization; } set { _Organization = value; OnPropertyChanged(); } }
         /// <summary>
         /// 职务
         /// </summary>
-        public string Post { get { return _Post; } set { _Post = value; OnPropertyChanged("Post"); } }
+        public string Post { get { return _Post; } set { _Post = value; OnPropertyChanged(); } }
         /// <summary>
         /// 备注
         /// </summary>
-        public string Remarks { get { return _Remarks; } set { _Remarks = value; OnPropertyChanged("Remarks"); } }
+        public string Remarks { get { return _Remarks; } set { _Remarks = value; OnPropertyChanged(); } }
         /// <summary>
         /// 更新日期
         /// </summary>
         public DateTime UpDateTime
         {
             get { return _UpDateTime; }
-            set { _UpDateTime = value; OnPropertyChanged("UpDateTime"); }
+            set { _UpDateTime = value; OnPropertyChanged(); }
         }
 
         #region 事件
@@ -61,7 +62,7 @@ namespace Office.Work.Platform.Lib
         #endregion
 
         #region 方法
-        private void OnPropertyChanged(string propertyName)
+        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

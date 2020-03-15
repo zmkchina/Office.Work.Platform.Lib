@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
 namespace Office.Work.Platform.Lib
 {
@@ -26,7 +23,7 @@ namespace Office.Work.Platform.Lib
         public string Id
         {
             get { return _Id; }
-            set { _Id = value; OnPropertyChanged(nameof(Id)); }
+            set { _Id = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 登陆用户的密码
@@ -34,7 +31,7 @@ namespace Office.Work.Platform.Lib
         public string PassWord
         {
             get { return _PassWord; }
-            set { _PassWord = value; OnPropertyChanged(nameof(PassWord)); }
+            set { _PassWord = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 登陆用户的角色
@@ -42,7 +39,7 @@ namespace Office.Work.Platform.Lib
         public string Post
         {
             get { return _Post; }
-            set { _Post = value; OnPropertyChanged(nameof(Post)); }
+            set { _Post = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 登陆用户的部门
@@ -50,7 +47,7 @@ namespace Office.Work.Platform.Lib
         public string Department
         {
             get { return _Department; }
-            set { _Department = value; OnPropertyChanged(nameof(Department)); }
+            set { _Department = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 登陆用户的间隔休息时间
@@ -58,7 +55,7 @@ namespace Office.Work.Platform.Lib
         public int RestInterval
         {
             get { return _RestInterval; }
-            set { _RestInterval = value; OnPropertyChanged(nameof(RestInterval)); }
+            set { _RestInterval = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 登陆用户的操作权限
@@ -66,7 +63,7 @@ namespace Office.Work.Platform.Lib
         public string Grants
         {
             get { return _Grants; }
-            set { _Grants = value; OnPropertyChanged(nameof(Grants)); }
+            set { _Grants = value; OnPropertyChanged(); }
         }
 
         #region 事件
@@ -77,8 +74,8 @@ namespace Office.Work.Platform.Lib
         #endregion
 
         #region 方法
-      
-        private void OnPropertyChanged(string propertyName)
+
+        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
