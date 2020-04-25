@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -9,7 +11,7 @@ namespace Office.Work.Platform.Lib
     /// <summary>
     /// 系统服务器的相关设置（一般中只有管理员才能修改）
     /// </summary>
-    public class ModelSettingServer : INotifyPropertyChanged
+    public class SettingServer : INotifyPropertyChanged
     {
         #region 事件
         /// <summary>
@@ -24,41 +26,27 @@ namespace Office.Work.Platform.Lib
         private string _Deparmentts;
         private int _IntervalOne;
         private int _IntervalTwo;
-        private string _PlanStateType;
         #endregion
 
         #region 属性
         /// <summary>
         /// Id号，就一条记录，没有意义，为使用 efcore设置
         /// </summary>
+        [Key]
         public int Id { get; set; }
         /// <summary>
-        /// 计划状态：等待执行、正在进行、已经完结、计划取消
+        ///工作内容类型："总支议事，党的建设,党风廉政,意识形态,组织人事,劳动工资，制度建设、绩效考核,其他类别"
         /// </summary>
-        public string PlanStateType
-        {
-            get { return _PlanStateType; }
-            set { _PlanStateType = value; OnPropertyChanged(); }
-        }
-        /// <summary>
-        /// 工作内容（文件）的类型："纪检监察,新闻宣传,组织人事,劳动工资,党的建设,总支议事"
-        /// </summary>
+        [Required, Column(TypeName = "varchar(500)")]
         public string WorkContentType
         {
             get { return _WorkContentType; }
             set { _WorkContentType = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// 程序版本号
-        /// </summary>
-        public string AppVersion
-        {
-            get { return _AppVersion; }
-            set { _AppVersion = value; OnPropertyChanged(); }
-        }
-        /// <summary>
         /// 使用本系统的所有部门:政工科、综合科、养护科等
         /// </summary>
+        [Required, Column(TypeName = "varchar(500)")]
         public string Deparmentts
         {
             get { return _Deparmentts; }
@@ -86,14 +74,23 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 构造函数
         /// </summary>
-        public ModelSettingServer()
+        public SettingServer()
         {
         }
         #endregion
+
         #region 方法
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        /// <summary>
+        /// 返回工作内容类型的List对象
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetWorkContentTypes()
+        {
+            return new List<string>(WorkContentType.Split(',', StringSplitOptions.RemoveEmptyEntries));
         }
         #endregion
 

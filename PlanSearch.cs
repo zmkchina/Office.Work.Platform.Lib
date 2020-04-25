@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
     /// 本类用户从客户端查询Plan时的参数类
     /// </summary>
-    public class MSearchPlan
+    public class PlanSearch
     {
         /// <summary>
         /// 标题

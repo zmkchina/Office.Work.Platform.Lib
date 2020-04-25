@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,8 +11,9 @@ namespace Office.Work.Platform.Lib
     /// <summary>
     /// 计划类
     /// </summary>
-    public class ModelPlan : INotifyPropertyChanged
+    public class Plan : INotifyPropertyChanged
     {
+        private string _Id;
         private string _ReadGrant;
         private string _CurrectState;
         private string _CreateUserId;
@@ -23,7 +26,6 @@ namespace Office.Work.Platform.Lib
         private string _FinishNote;
         private string _Content;
         private string _Caption;
-        private string _Id;
         private string _Department;
         private Uri _PlanStateImage;
 
@@ -31,6 +33,7 @@ namespace Office.Work.Platform.Lib
         /// 计划ID号，格式yyyyMMddHHmmssfff
         /// </summary>
         [Key]
+        [Required, Column(TypeName = "varchar(20)")]
         public string Id
         {
             get { return _Id; }
@@ -39,6 +42,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 标题。
         /// </summary>
+        [Required, Column(TypeName = "varchar(100)")]
         public string Caption
         {
             get { return _Caption; }
@@ -47,6 +51,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 内容与要求
         /// </summary>
+        [Required, Column(TypeName = "varchar(2000)")]
         public string Content
         {
             get { return _Content; }
@@ -55,14 +60,16 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 完成情况
         /// </summary>
+        [Column(TypeName = "varchar(500)")]
         public string FinishNote
         {
             get { return _FinishNote; }
             set { _FinishNote = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// 类型：纪检监察、新闻宣传、总支议题。
+        /// 类型：纪检监察、新闻宣传、总支议题等。
         /// </summary>
+        [Required, Column(TypeName = "varchar(50)")]
         public string PlanType
         {
             get { return _PlanType; }
@@ -71,6 +78,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 计划所属部门。
         /// </summary>
+        [Required, Column(TypeName = "varchar(50)")]
         public string Department
         {
             get { return _Department; }
@@ -79,6 +87,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 责任人员
         /// </summary>
+        [Required, Column(TypeName = "varchar(50)")]
         public string ResponsiblePerson
         {
             get { return _ResponsiblePerson; }
@@ -87,6 +96,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 协助人员
         /// </summary>
+        [Required, Column(TypeName = "varchar(500)")]
         public string Helpers
         {
             get { return _Helpers; }
@@ -119,6 +129,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 创建人员
         /// </summary>
+        [Column(TypeName = "varchar(20)")]
         public string CreateUserId
         {
             get { return _CreateUserId; }
@@ -127,6 +138,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 当前状态
         /// </summary>
+        [Column(TypeName = "varchar(50)")]
         public string CurrectState
         {
             get { return _CurrectState; }
@@ -135,11 +147,16 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 计划读取权限(此字段存储用户ID列表)
         /// </summary>
+        [Column(TypeName = "varchar(1000)")]
         public string ReadGrant
         {
             get { return _ReadGrant; }
             set { _ReadGrant = value; OnPropertyChanged(); }
         }
+        /// <summary>
+        /// 该计划所拥有的附件。
+        /// </summary>
+        public ObservableCollection<PlanFile> Files { get; set; }
         /// <summary>
         /// 该计划状态图标URI，不映射到数据库
         /// </summary>
@@ -165,6 +182,10 @@ namespace Office.Work.Platform.Lib
         #endregion
 
         #region 方法        
+        public Plan()
+        {
+            Files = new ObservableCollection<PlanFile>();
+        }
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -190,5 +211,25 @@ namespace Office.Work.Platform.Lib
             return V_DefaultDocImg;
         }
         #endregion
+    }
+
+
+    public static class PlanStatus
+    {
+        public static string WaitBegin { get; set; }
+        public static string Running { get; set; }
+        public static string Finished { get; set; }
+        public static string Canceled { get; set; }
+        static PlanStatus()
+        {
+            WaitBegin = "等待执行"; Running = "正在进行"; Finished = "已经完结"; Canceled = "计划取消";
+        }
+        public static string[] PlanStatusArr
+        {
+            get
+            {
+                return new string[] { WaitBegin, Running, Finished, Canceled };
+            }
+        }
     }
 }

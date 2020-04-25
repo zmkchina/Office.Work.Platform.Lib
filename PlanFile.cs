@@ -10,7 +10,7 @@ namespace Office.Work.Platform.Lib
     /// <summary>
     /// 附件（文件）类
     /// </summary>
-    public class ModelFile : INotifyPropertyChanged
+    public class PlanFile : INotifyPropertyChanged
     {
         #region 字段
         private string _Id;
@@ -18,14 +18,12 @@ namespace Office.Work.Platform.Lib
         private string _Describe;
         private DateTime _UpDateTime;
         private string _UserId;
-        private string _OwnerId;
         private string _ReadGrant;
         private long _Length;
         private string _ExtendName;
-        private string _ContentType;
-        private string _OwnerType;
         private float _DownIntProgress;
         private Uri _FileTypeImageUri;
+        private float _UpIntProgress;
         #endregion
 
         #region 属性
@@ -33,14 +31,27 @@ namespace Office.Work.Platform.Lib
         /// 文件ID，与物理磁盘上的文件名称对应
         /// </summary>
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Id
         {
             get { return _Id; }
             set { _Id = value; OnPropertyChanged(); }
         }
         /// <summary>
+        /// 外键：指向该文件所对应的计划的Id
+        /// </summary>
+        /// </summary>
+        [ForeignKey("pfid")]
+        [Column(TypeName = "varchar(20)")]
+        public string PlanId { get; set; }
+        /// <summary>
+        /// 该文件所属计划，外键指向的实体
+        /// </summary>
+        public Plan Plan { get; set; }
+        /// <summary>
         /// 文件名称。
         /// </summary>
+        [Column(TypeName = "varchar(200)")]
         public string Name
         {
             get { return _Name; }
@@ -49,46 +60,26 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 文件的扩展名
         /// </summary>
+        [Column(TypeName = "varchar(10)")]
         public string ExtendName
         {
             get { return _ExtendName; }
             set { _ExtendName = value; FileTypeImageUri = GetFileTypeImage(ExtendName); OnPropertyChanged(); }
         }
-        /// <summary>
-        /// 该文件所属的计划、备忘、员工记录的ID号
-        /// </summary>
-        public string OwnerId
-        {
-            get { return _OwnerId; }
-            set { _OwnerId = value; OnPropertyChanged(); }
-        }
-        /// <summary>
-        /// 文件类型：计划附件、备忘文件、个人文件、普通文件
-        /// </summary>
-        public string OwnerType
-        {
-            get { return _OwnerType; }
-            set { _OwnerType = value; OnPropertyChanged(); }
-        }
-        /// <summary>
-        /// 文件分类：纪检监察、新闻宣传、组织人事、劳动工资、党的建设、总支议事
-        /// </summary>
-        public string ContentType
-        {
-            get { return _ContentType; }
-            set { _ContentType = value; OnPropertyChanged(); }
-        }
+
         /// <summary>
         /// 文件长度
         /// </summary>
+        [Column(TypeName = "bigint")]
         public long Length
         {
             get { return _Length; }
             set { _Length = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// 援用文件读取权限的用户列表。
+        /// 拥有文件读取权限的用户列表。
         /// </summary>
+        [Column(TypeName = "varchar(1000)")]
         public string ReadGrant
         {
             get { return _ReadGrant; }
@@ -98,6 +89,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 上传该文件的用户ID号
         /// </summary>
+        [Column(TypeName = "varchar(20)")]
         public string UserId
         {
             get { return _UserId; }
@@ -114,10 +106,21 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 该文件信息的描述
         /// </summary>
+        [Column(TypeName = "varchar(500)")]
         public string Describe
         {
             get { return _Describe; }
             set { _Describe = value; OnPropertyChanged(); }
+        }
+
+        /// <summary>
+        /// 该文件的上传进度条，不映射到数据库
+        /// </summary>
+        [NotMapped]
+        public float UpIntProgress
+        {
+            get { return _UpIntProgress; }
+            set { _UpIntProgress = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 该文件的下载进度条，不映射到数据库
@@ -144,6 +147,14 @@ namespace Office.Work.Platform.Lib
                     _FileTypeImageUri = value; OnPropertyChanged();
                 }
             }
+        }
+        /// <summary>
+        /// 文件具体信息
+        /// </summary>
+        [NotMapped]
+        public System.IO.FileInfo FileInfo
+        {
+            get; set;
         }
         #endregion
 

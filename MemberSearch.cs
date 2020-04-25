@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
     /// 单位员工类
     /// </summary>
-    public class MSearchMember
+    public class MemberSearch
     {
         /// <summary>
         /// 身份证号

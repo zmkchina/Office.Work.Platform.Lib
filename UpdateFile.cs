@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
     /// 升级文件描述类
     /// </summary>
-    public class ModelUpdateFile
+    public class UpdateFile
     {
         /// <summary>
         /// 欲升级的文件名称

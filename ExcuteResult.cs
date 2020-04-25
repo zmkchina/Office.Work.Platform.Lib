@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Office.Work.Platform.Lib
+﻿namespace Office.Work.Platform.Lib
 {
     /// <summary>
     /// Api执行返回结果类（用于JSON序列化和反序列化）
     /// </summary>
-    public class ModelResult
+    public class ExcuteResult
     {
         /// <summary>
         /// 无参构造，可以表示未执行任何操作。状态码设为-1,信息为：未执行任何操作。
         /// </summary>
-        public ModelResult()
+        public ExcuteResult()
         {
             State = -1;
             Msg = "未执行操作";
@@ -27,7 +23,7 @@ namespace Office.Work.Platform.Lib
         /// <param name="p_msg">操作成功与否反馈信息</param>
         /// <param name="p_apiurl">附加的Url，默认为空字符串</param>
         /// <param name="p_tag">附加信息，默认为空字符串</param>
-        public ModelResult(int p_state, string p_msg,string p_apiurl="",string p_tag="")
+        public ExcuteResult(int p_state, string p_msg,string p_apiurl="",string p_tag="")
         {
             State = p_state;
             Msg = p_msg;
