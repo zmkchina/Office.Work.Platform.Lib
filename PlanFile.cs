@@ -18,11 +18,9 @@ namespace Office.Work.Platform.Lib
         private string _Describe;
         private DateTime _UpDateTime;
         private string _UserId;
-        private string _ReadGrant;
         private long _Length;
         private string _ExtendName;
         private float _DownIntProgress;
-        private Uri _FileTypeImageUri;
         private float _UpIntProgress;
         #endregion
 
@@ -64,7 +62,7 @@ namespace Office.Work.Platform.Lib
         public string ExtendName
         {
             get { return _ExtendName; }
-            set { _ExtendName = value; FileTypeImageUri = GetFileTypeImage(ExtendName); OnPropertyChanged(); }
+            set { _ExtendName = value;  OnPropertyChanged(); }
         }
 
         /// <summary>
@@ -76,16 +74,6 @@ namespace Office.Work.Platform.Lib
             get { return _Length; }
             set { _Length = value; OnPropertyChanged(); }
         }
-        /// <summary>
-        /// 拥有文件读取权限的用户列表。
-        /// </summary>
-        [Column(TypeName = "varchar(1000)")]
-        public string ReadGrant
-        {
-            get { return _ReadGrant; }
-            set { _ReadGrant = value; OnPropertyChanged(); }
-        }
-
         /// <summary>
         /// 上传该文件的用户ID号
         /// </summary>
@@ -132,23 +120,6 @@ namespace Office.Work.Platform.Lib
             set { _DownIntProgress = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// 该文件的图标URI，不映射到数据库
-        /// 因为不映射到数据库，故从数据表中查询数据时，此值总为空。
-        /// </summary>
-        [NotMapped]
-        public Uri FileTypeImageUri
-        {
-            get { return _FileTypeImageUri; }
-            set
-            {
-                //判断一下：防止JsonConvert.DeserializeObject<T>过程中，此值被重新赋值为空
-                if (value != null)
-                {
-                    _FileTypeImageUri = value; OnPropertyChanged();
-                }
-            }
-        }
-        /// <summary>
         /// 文件具体信息
         /// </summary>
         [NotMapped]
@@ -169,39 +140,6 @@ namespace Office.Work.Platform.Lib
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        private Uri GetFileTypeImage(string FileExtentName)
-        {
-            Uri V_DefaultDocImg = new Uri("/Office.Work.Platform;component/AppRes/Images/DocImg.png", UriKind.Relative);
-            string[] imgExtNameArr = { ".bmp", ".jpg", ".gif", ".jpeg", ".png", ".jpe", ".jfif", ".ico", ".tif", ".tiff" };
-            if (imgExtNameArr.Contains(FileExtentName.ToLower()))
-            {
-                V_DefaultDocImg = new Uri("/Office.Work.Assistant;component/AppRes/Images/DefaultImg.png", UriKind.Relative);
-            }
-            else
-            {
-                if ((new string[] { ".xls", ".xlsx" }).Contains(FileExtentName.ToLower()))
-                {
-                    V_DefaultDocImg = new Uri("/Office.Work.Platform;component/AppRes/Images/DocExcel.png", UriKind.Relative);
-                }
-                if ((new string[] { ".doc", ".docx" }).Contains(FileExtentName.ToLower()))
-                {
-                    return new Uri("/Office.Work.Platform;component/AppRes/Images/DocWord.png", UriKind.Relative);
-                }
-                if ((new string[] { ".ppt", ".pptx" }).Contains(FileExtentName.ToLower()))
-                {
-                    V_DefaultDocImg = new Uri("/Office.Work.Platform;component/AppRes/Images/DocPpt.png", UriKind.Relative);
-                }
-                if ((new string[] { ".rar", ".zip" }).Contains(FileExtentName.ToLower()))
-                {
-                    V_DefaultDocImg = new Uri("/Office.Work.Platform;component/AppRes/Images/DocRar.png", UriKind.Relative);
-                }
-                if ((new string[] { ".pdf" }).Contains(FileExtentName.ToLower()))
-                {
-                    V_DefaultDocImg = new Uri("/Office.Work.Platform;component/AppRes/Images/DocPdf.png", UriKind.Relative);
-                }
-            }
-            return V_DefaultDocImg;
         }
         #endregion
     }

@@ -18,11 +18,12 @@ namespace Office.Work.Platform.Lib
         private string _Describe;
         private DateTime _UpDateTime;
         private string _UserId;
-        private string _ReadGrant;
         private long _Length;
         private string _ExtendName;
         private float _DownIntProgress;
-        private Uri _FileTypeImageUri;
+        private float _UpIntProgress;
+        private string _FType;
+        private string _PayId;
         #endregion
 
         #region 属性
@@ -39,10 +40,28 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 外键
         /// </summary>
-        [ForeignKey("mfid"),Required, Column(TypeName = "varchar(20)")]
+        [ForeignKey("mid_mf"),Required, Column(TypeName = "varchar(20)")]
         public string MemberId { get; set; }
         //外键指向的实体。
         public Member Member { get; set; }
+        /// <summary>
+        /// 文件类别：基本信息、工作信息、教育信息、个人简历、奖惩情况、社会关系、月度待遇、补充待遇。
+        /// </summary>
+        [Required, Column(TypeName = "varchar(20)")]
+        public string FType
+        {
+            get { return _FType; }
+            set { _FType = value; OnPropertyChanged(); }
+        }
+        /// <summary>
+        /// 待遇Id。
+        /// </summary>
+        [Column(TypeName = "varchar(20)")]
+        public string PayId
+        {
+            get { return _PayId; }
+            set { _PayId = value; OnPropertyChanged(); }
+        }
         /// <summary>
         /// 文件名称。
         /// </summary>
@@ -59,7 +78,7 @@ namespace Office.Work.Platform.Lib
         public string ExtendName
         {
             get { return _ExtendName; }
-            set { _ExtendName = value; FileTypeImageUri = GetFileTypeImage(ExtendName); OnPropertyChanged(); }
+            set { _ExtendName = value;  OnPropertyChanged(); }
         }     
         /// <summary>
         /// 文件长度
@@ -69,15 +88,6 @@ namespace Office.Work.Platform.Lib
         {
             get { return _Length; }
             set { _Length = value; OnPropertyChanged(); }
-        }
-        /// <summary>
-        /// 拥有文件读取权限的用户列表。
-        /// </summary>
-        [Required, Column(TypeName = "varchar(1000)")]
-        public string ReadGrant
-        {
-            get { return _ReadGrant; }
-            set { _ReadGrant = value; OnPropertyChanged(); }
         }
 
         /// <summary>
@@ -108,6 +118,15 @@ namespace Office.Work.Platform.Lib
         }
 
         /// <summary>
+        /// 该文件的上传进度条，不映射到数据库
+        /// </summary>
+        [NotMapped]
+        public float UpIntProgress
+        {
+            get { return _UpIntProgress; }
+            set { _UpIntProgress = value; OnPropertyChanged(); }
+        }
+        /// <summary>
         /// 该文件的下载进度条，不映射到数据库
         /// </summary>
         [NotMapped]
@@ -117,21 +136,12 @@ namespace Office.Work.Platform.Lib
             set { _DownIntProgress = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// 该文件的图标URI，不映射到数据库
-        /// 因为不映射到数据库，故从数据表中查询数据时，此值总为空。
+        /// 文件具体信息
         /// </summary>
         [NotMapped]
-        public Uri FileTypeImageUri
+        public System.IO.FileInfo FileInfo
         {
-            get { return _FileTypeImageUri; }
-            set
-            {
-                //判断一下：防止JsonConvert.DeserializeObject<T>过程中，此值被重新赋值为空
-                if (value != null)
-                {
-                    _FileTypeImageUri = value; OnPropertyChanged();
-                }
-            }
+            get; set;
         }
         #endregion
 

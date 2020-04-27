@@ -22,7 +22,6 @@ namespace Office.Work.Platform.Lib
 
         #region 字段
         private string _WorkContentType;
-        private string _AppVersion;
         private string _Deparmentts;
         private int _IntervalOne;
         private int _IntervalTwo;

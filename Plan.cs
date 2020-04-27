@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -27,7 +26,6 @@ namespace Office.Work.Platform.Lib
         private string _Content;
         private string _Caption;
         private string _Department;
-        private Uri _PlanStateImage;
 
         /// <summary>
         /// 计划ID号，格式yyyyMMddHHmmssfff
@@ -96,7 +94,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 协助人员
         /// </summary>
-        [Required, Column(TypeName = "varchar(500)")]
+        [Column(TypeName = "varchar(500)")]
         public string Helpers
         {
             get { return _Helpers; }
@@ -142,7 +140,7 @@ namespace Office.Work.Platform.Lib
         public string CurrectState
         {
             get { return _CurrectState; }
-            set { _CurrectState = value; PlanStateImage = GetPlanStateImage(CurrectState); OnPropertyChanged(); }
+            set { _CurrectState = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 计划读取权限(此字段存储用户ID列表)
@@ -157,23 +155,7 @@ namespace Office.Work.Platform.Lib
         /// 该计划所拥有的附件。
         /// </summary>
         public ObservableCollection<PlanFile> Files { get; set; }
-        /// <summary>
-        /// 该计划状态图标URI，不映射到数据库
-        /// </summary>
-        [NotMapped]
-        public Uri PlanStateImage
-        {
-            get { return _PlanStateImage; }
-            set
-            {
-                //判断一下：防止JsonConvert.DeserializeObject<T>过程中，此值被重新赋值为空
-                //因为不映射到数据库，故从数据表中查询数据时，此值总为空。
-                if (value != null)
-                {
-                    _PlanStateImage = value; OnPropertyChanged();
-                }
-            }
-        }
+
         #region 事件
         /// <summary>
         /// 属性改变事件
@@ -186,44 +168,48 @@ namespace Office.Work.Platform.Lib
         {
             Files = new ObservableCollection<PlanFile>();
         }
+        /// <summary>
+        /// 验证模型是否符合要求。
+        /// </summary>
+        /// <returns></returns>
+        public bool ModelIsValid()
+        {
+            if (string.IsNullOrWhiteSpace(Id) || string.IsNullOrWhiteSpace(CreateUserId) || string.IsNullOrWhiteSpace(Caption)
+                || string.IsNullOrWhiteSpace(Content) || string.IsNullOrWhiteSpace(PlanType) || string.IsNullOrWhiteSpace(ResponsiblePerson)
+                || string.IsNullOrWhiteSpace(Department))
+            {
+                return false;
+            }
+            if (BeginDate > EndDate) { return false; }
+            return true;
+        }
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        private Uri GetPlanStateImage(string PlanState)
-        {
-            Uri V_DefaultDocImg = new Uri("/Office.Work.Platform;component/AppRes/Images/PlanStateErr.png", UriKind.Relative);
-            switch (PlanState)
-            {
-                case "等待执行":
-                    V_DefaultDocImg = new Uri("/Office.Work.Platform;component/AppRes/Images/PlanNew.png", UriKind.Relative);
-                    break;
-                case "正在实施":
-                    V_DefaultDocImg = new Uri("/Office.Work.Platform;component/AppRes/Images/PlanHandle.png", UriKind.Relative);
-                    break;
-                case "已经完成":
-                    V_DefaultDocImg = new Uri("/Office.Work.Platform;component/AppRes/Images/PlanFinish.png", UriKind.Relative);
-                    break;
-                case "计划取消":
-                    V_DefaultDocImg = new Uri("/Office.Work.Platform;component/AppRes/Images/DocRar.png", UriKind.Relative);
-                    break;
-            }
-            return V_DefaultDocImg;
-        }
+
         #endregion
     }
 
-
     public static class PlanStatus
     {
-        public static string WaitBegin { get; set; }
-        public static string Running { get; set; }
-        public static string Finished { get; set; }
-        public static string Canceled { get; set; }
-        static PlanStatus()
-        {
-            WaitBegin = "等待执行"; Running = "正在进行"; Finished = "已经完结"; Canceled = "计划取消";
-        }
+        /// <summary>
+        /// 等待执行
+        /// </summary>
+        public const string WaitBegin = "等待执行";
+        /// <summary>
+        /// 正在实施
+        /// </summary>
+        public const string Running = "正在实施";
+        /// <summary>
+        /// 已经完结
+        /// </summary>
+        public const string Finished = "已经完结";
+        /// <summary>
+        /// 计划取消
+        /// </summary>
+        public const string Canceled = "计划取消";
+
         public static string[] PlanStatusArr
         {
             get

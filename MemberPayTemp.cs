@@ -16,6 +16,7 @@ namespace Office.Work.Platform.Lib
         private DateTime _UpDateTime = DateTime.Now;
         private float _Amount;
         private string _Remark;
+        private string _UserId;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]//不设为自增，不自动处理。
@@ -25,13 +26,13 @@ namespace Office.Work.Platform.Lib
             set { _Id = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// 名称
+        /// 临时发放的待遇名称
         /// </summary>
         public string PayName { get { return _PayName; } set { _PayName = value; OnPropertyChanged(); } }     
         /// <summary>
         /// 外键
         /// </summary>
-        [ForeignKey("mpmunid")]
+        [ForeignKey("mid_mpt")]
         [Required, Column(TypeName = "varchar(20)")] 
         public string MemberId { get; set; }
         //外键指向的实体。
@@ -49,10 +50,19 @@ namespace Office.Work.Platform.Lib
             set { _UpDateTime = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// 本月备注
+        /// 为此次临时发放的说明
         /// </summary>
-        [Column(TypeName = "varchar(500)")]
+        [Required, Column(TypeName = "varchar(500)")]
         public string Remark { get { return _Remark; } set { _Remark = value; OnPropertyChanged(); } }
+        /// <summary>
+        /// 该记录操作的用户ID号
+        /// </summary>
+        [Required, Column(TypeName = "varchar(20)")]
+        public string UserId
+        {
+            get { return _UserId; }
+            set { _UserId = value; OnPropertyChanged(); }
+        }
         #region 事件
         /// <summary>
         /// 属性改变事件

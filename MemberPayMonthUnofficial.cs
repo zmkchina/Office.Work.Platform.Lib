@@ -39,7 +39,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 外键
         /// </summary>
-        [ForeignKey("mpmunid")]
+        [ForeignKey("mid_mpmu")]
         [Required, Column(TypeName = "varchar(20)")]
         public string MemberId { get; set; }
         //外键指向的实体。

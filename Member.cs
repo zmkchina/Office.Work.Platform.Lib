@@ -63,7 +63,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 员工性别
         /// </summary>
-        [Required, Column(TypeName = "varchar(5)")]
+        [Column(TypeName = "varchar(5)")]
         public string Sex { get { return _Sex; } set { _Sex = value; OnPropertyChanged(); } }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 用工性质：聘用合同制、劳动合同制、劳务派遣制
         /// </summary>
-        [Required, Column(TypeName = "varchar(20)")]
+        [Column(TypeName = "varchar(20)")]
         public string EmploymentType { get { return _EmploymentType; } set { _EmploymentType = value; OnPropertyChanged(); } }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 政治面貌
         /// </summary>
-        [Required, Column(TypeName = "varchar(20)")]
+        [Column(TypeName = "varchar(20)")]
         public string PoliticalStatus { get { return _PoliticalStatus; } set { _PoliticalStatus = value; OnPropertyChanged(); } }
 
         /// <summary>
@@ -177,37 +177,37 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 部门:综合科、信息科....
         /// </summary>
-        [Required, Column(TypeName = "varchar(30)")]
+        [Column(TypeName = "varchar(30)")]
         public string Department { get { return _Department; } set { _Department = value; OnPropertyChanged(); } }
 
         /// <summary>
         /// 单位名称：港航中心、大柳巷船闸、成子河船闸、古泊河船闸
         /// </summary>
-        [Required, Column(TypeName = "varchar(30)")]
+        [Column(TypeName = "varchar(30)")]
         public string UnitName { get { return _UnitName; } set { _UnitName = value; OnPropertyChanged(); } }
 
         /// <summary>
         /// 职务:无（所有技术岗人员均无职务，双肩挑除外），办事员、科员、副科长、科长、副处长、处长。
         /// </summary>
-        [Required, Column(TypeName = "varchar(20)")]
+        [Column(TypeName = "varchar(20)")]
         public string Post { get { return _Post; } set { _Post = value; OnPropertyChanged(); } }
 
         /// <summary>
         /// 党内职务
         ///</summary>
-        [Required, Column(TypeName = "varchar(20)")]
+        [Column(TypeName = "varchar(20)")]
         public string PostInCPC { get { return _PostInCPC; } set { _PostInCPC = value; OnPropertyChanged(); } }
 
         /// <summary>
         /// 岗位性质：专技岗、管理岗、工勤岗、双肩挑
         /// </summary>
-        [Required, Column(TypeName = "varchar(20)")]
+        [Column(TypeName = "varchar(20)")]
         public string Job { get { return _Job; } set { _Job = value; OnPropertyChanged(); } }
 
         /// <summary>
         /// 岗位级别：管理岗1-10级、专技岗1-13级、工勤岗1-5级及初级工
         /// </summary>
-        [Required, Column(TypeName = "varchar(20)")]
+        [Column(TypeName = "varchar(20)")]
         public string JobGrade { get { return _JobGrade; } set { _JobGrade = value; OnPropertyChanged(); } }
 
         /// <summary>
