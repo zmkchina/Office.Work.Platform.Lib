@@ -7,17 +7,21 @@ using System.Runtime.CompilerServices;
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
-    /// 单位员工个人简历类
+    /// 单位员工奖惩情况类
     /// </summary>
-    public class MemberResume : INotifyPropertyChanged
+    public class MemberPrizePunish : INotifyPropertyChanged
     {
+
         private string _Id;
         private DateTime _UpDateTime = DateTime.Now;
         private string _Remark;
         private string _UserId;
-        private DateTime _BeginDate = DateTime.Now;
-        private DateTime _EndDate = DateTime.Now.AddYears(1);
-        private string _Content;
+        private DateTime _OccurDate;
+        private string _PrizrOrPunishName;
+        private string _PrizrOrPunishUnit;
+        private string _PrizrOrPunishReasion;
+        private int _GetScore;
+        private string _PrizrOrPunishType;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]//不设为自增，不自动处理。
@@ -36,27 +40,38 @@ namespace Office.Work.Platform.Lib
         public Member Member { get; set; }
 
         /// <summary>
-        /// 开始时间
+        /// 发生时间
         /// </summary>
-        public DateTime BeginDate
+        public DateTime OccurDate
         {
-            get { return _BeginDate; }
-            set { _BeginDate = value; OnPropertyChanged(); }
+            get { return _OccurDate; }
+            set { _OccurDate = value; OnPropertyChanged(); }
         }
+        /// <summary>
+        /// 类型：奖励、处理、处罚
+        /// </summary>
+        [Column(TypeName = "varchar(20)")]
+        public string PrizrOrPunishType { get { return _PrizrOrPunishType; } set { _PrizrOrPunishType = value; OnPropertyChanged(); } }
 
         /// <summary>
-        /// 结束时间
+        /// 奖励或处罚（理）名称
         /// </summary>
-        public DateTime EndDate
-        {
-            get { return _EndDate; }
-            set { _EndDate = value; OnPropertyChanged(); }
-        }
+        [Column(TypeName = "varchar(50)")]
+        public string PrizrOrPunishName { get { return _PrizrOrPunishName; } set { _PrizrOrPunishName = value; OnPropertyChanged(); } }
         /// <summary>
-        /// 工作或学习内容
+        /// 奖励或处罚（理）事由
         /// </summary>
         [Column(TypeName = "varchar(500)")]
-        public string Content { get { return _Content; } set { _Content = value; OnPropertyChanged(); } }
+        public string PrizrOrPunishReasion { get { return _PrizrOrPunishReasion; } set { _PrizrOrPunishReasion = value; OnPropertyChanged(); } }
+        /// <summary>
+        /// 奖励或处罚单位
+        /// </summary>
+        [Column(TypeName = "varchar(60)")]
+        public string PrizrOrPunishUnit { get { return _PrizrOrPunishUnit; } set { _PrizrOrPunishUnit = value; OnPropertyChanged(); } }
+        /// <summary>
+        /// 绩效加减分,如减分请输入负数。
+        /// </summary>
+        public int GetScore { get { return _GetScore; } set { _GetScore = value; OnPropertyChanged(); } }
         /// <summary>
         /// 更新日期
         /// </summary>
@@ -79,7 +94,8 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         [Column(TypeName = "varchar(500)")]
         public string Remark { get { return _Remark; } set { _Remark = value; OnPropertyChanged(); } }
-
+        [NotMapped]
+        public string[] PrizrOrPunishTypeArr { get; set; }
         #region 事件
         /// <summary>
         /// 属性改变事件
@@ -88,6 +104,10 @@ namespace Office.Work.Platform.Lib
         #endregion
 
         #region 方法
+        public MemberPrizePunish()
+        {
+            PrizrOrPunishTypeArr = new string[]{"奖励","处理","处分" };
+        }
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

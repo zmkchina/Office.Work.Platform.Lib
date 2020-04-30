@@ -7,16 +7,19 @@ using System.Runtime.CompilerServices;
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
-    /// 单位员工一次性、临时性、非月度性待遇，类别主要有：年终绩效分配工资、年终绩效考核奖金、补发工资、补发非工资
+    /// 单位员工考勤情况（请销假）
     /// </summary>
-    public class MemberPayTemp : INotifyPropertyChanged
+    public class MemberAttendance : INotifyPropertyChanged
     {
+
         private string _Id;
         private DateTime _UpDateTime = DateTime.Now;
-        private float _Amount;
         private string _Remark;
         private string _UserId;
-        private string _TypeName;
+        private DateTime _BeginDate;
+        private DateTime _EndDate;
+        private string _HolidayReasion;
+        private string _HolidayType;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]//不设为自增，不自动处理。
@@ -26,23 +29,41 @@ namespace Office.Work.Platform.Lib
             set { _Id = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// 临时发放的待遇类别
-        /// </summary>
-        [Required, Column(TypeName = "varchar(30)")]
-        public string TypeName { get { return _TypeName; } set { _TypeName = value; OnPropertyChanged(); } }     
-        /// <summary>
         /// 外键
         /// </summary>
-        [ForeignKey("mid_mpt")]
-        [Required, Column(TypeName = "varchar(20)")] 
+        [ForeignKey("mid_mpm")]
+        [Required, Column(TypeName = "varchar(20)")]
         public string MemberId { get; set; }
         //外键指向的实体。
         public Member Member { get; set; }
+
         /// <summary>
-        /// 金额
+        /// 开始时间
         /// </summary>
-        [Required, Column(TypeName = "float(10,2)")]
-        public float Amount { get { return _Amount; } set { _Amount = value; OnPropertyChanged(); } }
+        public DateTime BeginDate
+        {
+            get { return _BeginDate; }
+            set { _BeginDate = value; OnPropertyChanged(); }
+        }
+
+        /// <summary>
+        /// 结束时间
+        /// </summary>
+        public DateTime EndDate
+        {
+            get { return _EndDate; }
+            set { _EndDate = value; OnPropertyChanged(); }
+        }
+        /// <summary>
+        /// 假期类型
+        /// </summary>
+        [Column(TypeName = "varchar(20)")]
+        public string HolidayType { get { return _HolidayType; } set { _HolidayType = value; OnPropertyChanged(); } }
+        /// <summary>
+        /// 请假事由
+        /// </summary>
+        [Column(TypeName = "varchar(200)")]
+        public string HolidayReasion { get { return _HolidayReasion; } set { _HolidayReasion = value; OnPropertyChanged(); } }
         /// <summary>
         /// 更新日期
         /// </summary>
@@ -52,12 +73,7 @@ namespace Office.Work.Platform.Lib
             set { _UpDateTime = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// 为此次临时发放的说明
-        /// </summary>
-        [Required, Column(TypeName = "varchar(500)")]
-        public string Remark { get { return _Remark; } set { _Remark = value; OnPropertyChanged(); } }
-        /// <summary>
-        /// 该记录操作的用户ID号
+        /// 操作人员ID
         /// </summary>
         [Required, Column(TypeName = "varchar(20)")]
         public string UserId
@@ -65,8 +81,12 @@ namespace Office.Work.Platform.Lib
             get { return _UserId; }
             set { _UserId = value; OnPropertyChanged(); }
         }
-        [NotMapped]
-        public string[] TypeNameList { get; set; }
+        /// <summary>
+        /// 备注
+        /// </summary>
+        [Column(TypeName = "varchar(500)")]
+        public string Remark { get { return _Remark; } set { _Remark = value; OnPropertyChanged(); } }
+        
         #region 事件
         /// <summary>
         /// 属性改变事件
@@ -75,10 +95,6 @@ namespace Office.Work.Platform.Lib
         #endregion
 
         #region 方法
-        public MemberPayTemp()
-        {
-            TypeNameList = new string[] {"补发工资","补发房补","发放年终绩效工资","发放年终绩效考核奖","发放其他临时待遇" };
-        }
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

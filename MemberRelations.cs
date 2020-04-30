@@ -7,16 +7,19 @@ using System.Runtime.CompilerServices;
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
-    /// 单位员工一次性、临时性、非月度性待遇，类别主要有：年终绩效分配工资、年终绩效考核奖金、补发工资、补发非工资
+    /// 单位员工社会关系类
     /// </summary>
-    public class MemberPayTemp : INotifyPropertyChanged
+    public class MemberRelations : INotifyPropertyChanged
     {
+
         private string _Id;
         private DateTime _UpDateTime = DateTime.Now;
-        private float _Amount;
         private string _Remark;
         private string _UserId;
-        private string _TypeName;
+        private string _Role;
+        private string _UnitName;
+        private string _Relation;
+        private string _Name;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]//不设为自增，不自动处理。
@@ -26,23 +29,35 @@ namespace Office.Work.Platform.Lib
             set { _Id = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// 临时发放的待遇类别
-        /// </summary>
-        [Required, Column(TypeName = "varchar(30)")]
-        public string TypeName { get { return _TypeName; } set { _TypeName = value; OnPropertyChanged(); } }     
-        /// <summary>
         /// 外键
         /// </summary>
-        [ForeignKey("mid_mpt")]
-        [Required, Column(TypeName = "varchar(20)")] 
+        [ForeignKey("mid_mpm")]
+        [Required, Column(TypeName = "varchar(20)")]
         public string MemberId { get; set; }
         //外键指向的实体。
         public Member Member { get; set; }
+
         /// <summary>
-        /// 金额
+        /// 姓名
         /// </summary>
-        [Required, Column(TypeName = "float(10,2)")]
-        public float Amount { get { return _Amount; } set { _Amount = value; OnPropertyChanged(); } }
+        [Column(TypeName = "varchar(20)")]
+        public string Name { get { return _Name; } set { _Name = value; OnPropertyChanged(); } }
+        /// <summary>
+        /// 关系
+        /// </summary>
+        [Column(TypeName = "varchar(50)")]
+        public string Relation { get { return _Relation; } set { _Relation = value; OnPropertyChanged(); } }
+        /// <summary>
+        /// 工作单位
+        /// </summary>
+        [Column(TypeName = "varchar(50)")]
+        public string UnitName { get { return _UnitName; } set { _UnitName = value; OnPropertyChanged(); } }
+        /// <summary>
+        /// 职务
+        /// </summary>
+        [Column(TypeName = "varchar(50)")]
+        public string Role { get { return _Role; } set { _Role = value; OnPropertyChanged(); } }
+        
         /// <summary>
         /// 更新日期
         /// </summary>
@@ -52,12 +67,7 @@ namespace Office.Work.Platform.Lib
             set { _UpDateTime = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// 为此次临时发放的说明
-        /// </summary>
-        [Required, Column(TypeName = "varchar(500)")]
-        public string Remark { get { return _Remark; } set { _Remark = value; OnPropertyChanged(); } }
-        /// <summary>
-        /// 该记录操作的用户ID号
+        /// 操作人员ID
         /// </summary>
         [Required, Column(TypeName = "varchar(20)")]
         public string UserId
@@ -65,8 +75,12 @@ namespace Office.Work.Platform.Lib
             get { return _UserId; }
             set { _UserId = value; OnPropertyChanged(); }
         }
-        [NotMapped]
-        public string[] TypeNameList { get; set; }
+        /// <summary>
+        /// 备注
+        /// </summary>
+        [Column(TypeName = "varchar(500)")]
+        public string Remark { get { return _Remark; } set { _Remark = value; OnPropertyChanged(); } }
+        
         #region 事件
         /// <summary>
         /// 属性改变事件
@@ -75,10 +89,6 @@ namespace Office.Work.Platform.Lib
         #endregion
 
         #region 方法
-        public MemberPayTemp()
-        {
-            TypeNameList = new string[] {"补发工资","补发房补","发放年终绩效工资","发放年终绩效考核奖","发放其他临时待遇" };
-        }
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

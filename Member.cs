@@ -18,7 +18,6 @@ namespace Office.Work.Platform.Lib
         private DateTime _Birthday = DateTime.Now;
         private string _TechnicalTitle;
         private DateTime _UpDateTime = DateTime.Now;
-        private string _Punish;
         private string _EducationDays;
         private string _GraduationSchoolDays;
         private string _MajorDays;
@@ -28,8 +27,6 @@ namespace Office.Work.Platform.Lib
         private DateTime _GraduationDateTop = DateTime.Now;
         private string _MajorTop;
         private string _DegreeTop;
-        private string _Prize;
-        private string _Resume;
         private string _Remarks;
         private string _Job;
         private string _JobGrade;
@@ -211,32 +208,6 @@ namespace Office.Work.Platform.Lib
         public string JobGrade { get { return _JobGrade; } set { _JobGrade = value; OnPropertyChanged(); } }
 
         /// <summary>
-        /// 个人简历
-        /// </summary>
-        [Column(TypeName = "varchar(2000)")]
-        public string Resume { get { return _Resume; } set { _Resume = value; OnPropertyChanged(); } }
-
-        /// <summary>
-        /// 获奖情况
-        /// </summary>
-        [Column(TypeName = "varchar(2000)")]
-        public string Prize
-        {
-            get { return _Prize; }
-            set { _Prize = value; OnPropertyChanged(); }
-        }
-
-        /// <summary>
-        /// 受处罚情况
-        /// </summary>
-        [Column(TypeName = "varchar(2000)")]
-        public string Punish
-        {
-            get { return _Punish; }
-            set { _Punish = value; OnPropertyChanged(); }
-        }
-
-        /// <summary>
         /// 备注
         /// </summary>
         [Column(TypeName = "varchar(2000)")]
@@ -259,13 +230,6 @@ namespace Office.Work.Platform.Lib
             set { _UserId = value; OnPropertyChanged(); }
 
         }
-        /// <summary>
-        /// 一对多的多。
-        /// </summary>
-        public List<MemberFile> Files { get; set; }
-        public List<MemberPayMonth> PayMonths { get; set; }
-        public List<MemberPayMonthUnofficial> PayMonthUnofficials { get; set; }
-        public List<MemberPayTemp> PayTemps { get; set; }
         #region 事件
         /// <summary>
         /// 属性改变事件
@@ -276,10 +240,6 @@ namespace Office.Work.Platform.Lib
         #region 方法
         public Member()
         {
-            Files = new List<MemberFile>();
-            PayMonths = new List<MemberPayMonth>();
-            PayMonthUnofficials = new List<MemberPayMonthUnofficial>();
-            PayTemps = new List<MemberPayTemp>();
         }
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
