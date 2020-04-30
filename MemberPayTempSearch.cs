@@ -30,7 +30,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 该文件信息的描述
         /// </summary>
-        public string Describe { get; set; }
+        public string Remark { get; set; }
 
         /// <summary>
         /// 多字段查询 

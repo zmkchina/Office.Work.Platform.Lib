@@ -7,25 +7,24 @@ using System.Runtime.CompilerServices;
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
-    /// 单位员工月度待遇发放类
+    /// 单位员工月度交纳社会保险类
     /// </summary>
-    public class MemberPayMonth : INotifyPropertyChanged
+    public class MemberPayMonthInsurance : INotifyPropertyChanged
     {
 
         private string _Id;
         private DateTime _UpDateTime = DateTime.Now;
-        private float _PostPay;
-        private float _ScalePay;
-        private float _PostAllowance;
-        private float _LivingAllowance;
-        private float _IncentivePerformancePay;
+        private float _HousingFund;
+        private float _OccupationalPension;
+        private float _UnemploymentInsurance;
+        private float _PensionInsurance;
+        private float _MedicalInsurance;
+        private float _UnionFees;
+        private float _Tax;
         private string _Remark;
         private int _PayMonth;
         private int _PayYear;
         private string _UserId;
-        private float _FoodAllowance;
-        private float _TrafficAllowance;
-        private string _RemarkShow;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]//不设为自增，不自动处理。
@@ -43,43 +42,43 @@ namespace Office.Work.Platform.Lib
         //外键指向的实体。
         public Member Member { get; set; }
 
-        /// <summary>
-        /// 岗位工资
+        /// 扣住房公积金
         /// </summary>
         [Required, Column(TypeName = "float(10,2)")]
-        public float PostPay { get { return _PostPay; } set { _PostPay = value; OnPropertyChanged(); } }
+        public float HousingFund { get { return _HousingFund; } set { _HousingFund = value; OnPropertyChanged(); } }
         /// <summary>
-        /// 薪级工资
+        /// 扣职业年金
         /// </summary>
         [Required, Column(TypeName = "float(10,2)")]
-        public float ScalePay { get { return _ScalePay; } set { _ScalePay = value; OnPropertyChanged(); } }
+        public float OccupationalPension { get { return _OccupationalPension; } set { _OccupationalPension = value; OnPropertyChanged(); } }
         /// <summary>
-        /// 岗位津贴
+        /// 扣养老保险
         /// </summary>
         [Required, Column(TypeName = "float(10,2)")]
-        public float PostAllowance { get { return _PostAllowance; } set { _PostAllowance = value; OnPropertyChanged(); } }
+        public float PensionInsurance { get { return _PensionInsurance; } set { _PensionInsurance = value; OnPropertyChanged(); } }
         /// <summary>
-        /// 生活补贴
+        /// 扣失业保险
         /// </summary>
         [Required, Column(TypeName = "float(10,2)")]
-        public float LivingAllowance { get { return _LivingAllowance; } set { _LivingAllowance = value; OnPropertyChanged(); } }
+        public float UnemploymentInsurance { get { return _UnemploymentInsurance; } set { _UnemploymentInsurance = value; OnPropertyChanged(); } }
         /// <summary>
-        /// 奖励性绩效工资(月度发放部分）
+        /// 扣医疗保险
         /// </summary>
         [Required, Column(TypeName = "float(10,2)")]
-        public float IncentivePerformancePay { get { return _IncentivePerformancePay; } set { _IncentivePerformancePay = value; OnPropertyChanged(); } }
+        public float MedicalInsurance { get { return _MedicalInsurance; } set { _MedicalInsurance = value; OnPropertyChanged(); } }
         /// <summary>
-        /// 交通补贴
+        /// 扣工会费
         /// </summary>
         [Required, Column(TypeName = "float(10,2)")]
-        public float TrafficAllowance { get { return _TrafficAllowance; } set { _TrafficAllowance = value; OnPropertyChanged(); } }
+        public float UnionFees { get { return _UnionFees; } set { _UnionFees = value; OnPropertyChanged(); } }
         /// <summary>
-        /// 伙食补贴
+        /// 应纳个税
         /// </summary>
         [Required, Column(TypeName = "float(10,2)")]
-        public float FoodAllowance { get { return _FoodAllowance; } set { _FoodAllowance = value; OnPropertyChanged(); } }
+        public float Tax { get { return _Tax; } set { _Tax = value; OnPropertyChanged(); } }
+
         /// <summary>
-        /// 发放年份
+        /// 交纳年份
         /// </summary>
         public int PayYear
         {
@@ -87,7 +86,7 @@ namespace Office.Work.Platform.Lib
             set { _PayYear = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// 发放月份
+        /// 交纳月份
         /// </summary>
         public int PayMonth
         {
@@ -115,12 +114,7 @@ namespace Office.Work.Platform.Lib
         /// 本月备注
         /// </summary>
         [Column(TypeName = "varchar(500)")]
-        public string Remark { get { return _Remark; } set { _Remark = value; RemarkShow = value!=null && value.Trim().Length > 0?"Visible": "Collapsed"; OnPropertyChanged(); } }
-        /// <summary>
-        /// 有无备注信息，用于控制DataGrid是否显示详细信息
-        /// </summary>
-        [NotMapped]
-        public string RemarkShow { get { return _RemarkShow; } set { _RemarkShow = value; OnPropertyChanged(); } }
+        public string Remark { get { return _Remark; } set { _Remark = value; OnPropertyChanged(); } }
         #region 事件
         /// <summary>
         /// 属性改变事件

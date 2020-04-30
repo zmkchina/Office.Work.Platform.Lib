@@ -22,8 +22,8 @@ namespace Office.Work.Platform.Lib
         private string _ExtendName;
         private float _DownIntProgress;
         private float _UpIntProgress;
-        private string _FType;
-        private string _PayId;
+        private string _OtherRecordId;
+        private string _FileType;
         #endregion
 
         #region 属性
@@ -48,19 +48,19 @@ namespace Office.Work.Platform.Lib
         /// 文件类别：基本信息、工作信息、教育信息、个人简历、奖惩情况、社会关系、月度待遇、补充待遇。
         /// </summary>
         [Required, Column(TypeName = "varchar(20)")]
-        public string FType
+        public string FileType
         {
-            get { return _FType; }
-            set { _FType = value; OnPropertyChanged(); }
+            get { return _FileType; }
+            set { _FileType = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// 待遇Id。
+        /// 对应该职工相关记录信息的Id。如：用户工作发生变动、增加一个奖惩信息等可能都需要有相关附件。
         /// </summary>
         [Column(TypeName = "varchar(20)")]
-        public string PayId
+        public string OtherRecordId
         {
-            get { return _PayId; }
-            set { _PayId = value; OnPropertyChanged(); }
+            get { return _OtherRecordId; }
+            set { _OtherRecordId = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 文件名称。

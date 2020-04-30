@@ -17,6 +17,7 @@ namespace Office.Work.Platform.Lib
         private string _Grants;
         private int _OrderIndex;
         private string _Name;
+        private string _UnitName;
 
         /// <summary>
         /// 登陆用户的帐号ID
@@ -57,6 +58,15 @@ namespace Office.Work.Platform.Lib
             set { _Post = value; OnPropertyChanged(); }
         }
         /// <summary>
+        /// 登陆用户的单位
+        /// </summary>
+        [Required, Column(TypeName = "varchar(40)")]
+        public string UnitName
+        {
+            get { return _UnitName; }
+            set { _UnitName = value; OnPropertyChanged(); }
+        }
+        /// <summary>
         /// 登陆用户的部门
         /// </summary>
         [Required, Column(TypeName = "varchar(20)")]
@@ -65,7 +75,6 @@ namespace Office.Work.Platform.Lib
             get { return _Department; }
             set { _Department = value; OnPropertyChanged(); }
         }
-
         /// <summary>
         /// 登陆用户的操作权限
         /// </summary>

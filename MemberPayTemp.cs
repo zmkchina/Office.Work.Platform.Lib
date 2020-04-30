@@ -26,8 +26,9 @@ namespace Office.Work.Platform.Lib
             set { _Id = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// 临时发放的待遇名称
+        /// 临时发放的待遇类别
         /// </summary>
+        [Required, Column(TypeName = "varchar(30)")]
         public string PayName { get { return _PayName; } set { _PayName = value; OnPropertyChanged(); } }     
         /// <summary>
         /// 外键
@@ -40,6 +41,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 金额
         /// </summary>
+        [Required, Column(TypeName = "float(10,2)")]
         public float Amount { get { return _Amount; } set { _Amount = value; OnPropertyChanged(); } }
         /// <summary>
         /// 更新日期
@@ -63,6 +65,8 @@ namespace Office.Work.Platform.Lib
             get { return _UserId; }
             set { _UserId = value; OnPropertyChanged(); }
         }
+        [NotMapped]
+        public string[] PayNameList { get; set; }
         #region 事件
         /// <summary>
         /// 属性改变事件
@@ -71,6 +75,10 @@ namespace Office.Work.Platform.Lib
         #endregion
 
         #region 方法
+        public MemberPayTemp()
+        {
+            PayNameList = new string[] {"补发工资","补发房补","发放年终绩效工资","发放年终绩效考核奖","发放其他临时待遇" };
+        }
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

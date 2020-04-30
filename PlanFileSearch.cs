@@ -55,9 +55,9 @@ namespace Office.Work.Platform.Lib
         public string Describe { get; set; }
 
         /// <summary>
-        /// 多字段查询 
+        /// 多字段查询，查询文件名称及文件描述
         /// </summary>
-        public string SearchFromNameDesc { get; set; }
+        public string SearchNameOrDesc { get; set; }
 
         #endregion
 

@@ -7,22 +7,18 @@ using System.Runtime.CompilerServices;
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
-    /// 编外劳动用工人员
+    /// 单位员工月度待遇发放类
     /// </summary>
-    public class MemberPayMonthUnofficial : INotifyPropertyChanged
+    public class MemberResume : INotifyPropertyChanged
     {
 
         private string _Id;
         private DateTime _UpDateTime = DateTime.Now;
-        private float _PostPay;
         private string _Remark;
-        private int _PayMonth;
-        private int _PayYear;
-        private float _PerformancePay;
-        private float _BasicPay;
         private string _UserId;
-        private float _TrafficAllowance;
-        private float _FoodAllowance;
+        private DateTime _BeginDate;
+        private DateTime _EndDate;
+        private string _Content;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]//不设为自增，不自动处理。
@@ -34,53 +30,34 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 外键
         /// </summary>
-        [ForeignKey("mid_mpmu")]
+        [ForeignKey("mid_mpm")]
         [Required, Column(TypeName = "varchar(20)")]
         public string MemberId { get; set; }
         //外键指向的实体。
         public Member Member { get; set; }
 
         /// <summary>
-        /// 基本工资
+        /// 开始时间
         /// </summary>
-        [Required, Column(TypeName = "float(10,2)")]
-        public float BasicPay { get { return _BasicPay; } set { _BasicPay = value; OnPropertyChanged(); } }
-        /// <summary>
-        /// 岗位工资
-        /// </summary>
-        [Required, Column(TypeName = "float(10,2)")]
-        public float PostPay { get { return _PostPay; } set { _PostPay = value; OnPropertyChanged(); } }
-        /// <summary>
-        /// 绩效工资
-        /// </summary>
-        [Required, Column(TypeName = "float(10,2)")]
-        public float PerformancePay { get { return _PerformancePay; } set { _PerformancePay = value; OnPropertyChanged(); } }
-        /// <summary>
-        /// 交通补贴
-        /// </summary>
-        [Required, Column(TypeName = "float(10,2)")]
-        public float TrafficAllowance { get { return _TrafficAllowance; } set { _TrafficAllowance = value; OnPropertyChanged(); } }
-        /// <summary>
-        /// 伙食补贴
-        /// </summary>
-        [Required, Column(TypeName = "float(10,2)")]
-        public float FoodAllowance { get { return _FoodAllowance; } set { _FoodAllowance = value; OnPropertyChanged(); } }
-        /// <summary>
-        /// 发放年份
-        /// </summary>
-        public int PayYear
+        public DateTime BeginDate
         {
-            get { return _PayYear; }
-            set { _PayYear = value; OnPropertyChanged(); }
+            get { return _BeginDate; }
+            set { _BeginDate = value; OnPropertyChanged(); }
+        }
+
+        /// <summary>
+        /// 结束时间
+        /// </summary>
+        public DateTime EndDate
+        {
+            get { return _EndDate; }
+            set { _EndDate = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// 发放月份
+        /// 工作或学习内容
         /// </summary>
-        public int PayMonth
-        {
-            get { return _PayMonth; }
-            set { _PayMonth = value; OnPropertyChanged(); }
-        }
+        [Column(TypeName = "varchar(500)")]
+        public string Content { get { return _Content; } set { _Content = value; OnPropertyChanged(); } }
         /// <summary>
         /// 更新日期
         /// </summary>
@@ -97,14 +74,13 @@ namespace Office.Work.Platform.Lib
         {
             get { return _UserId; }
             set { _UserId = value; OnPropertyChanged(); }
-
         }
         /// <summary>
-        /// 本月备注
+        /// 备注
         /// </summary>
         [Column(TypeName = "varchar(500)")]
         public string Remark { get { return _Remark; } set { _Remark = value; OnPropertyChanged(); } }
-
+        
         #region 事件
         /// <summary>
         /// 属性改变事件
