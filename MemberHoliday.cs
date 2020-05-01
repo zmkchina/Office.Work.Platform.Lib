@@ -7,17 +7,17 @@ using System.Runtime.CompilerServices;
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
-    /// 单位员工考勤情况（请销假）
+    /// 单位员工休假情况
     /// </summary>
-    public class MemberAttendance : INotifyPropertyChanged
+    public class MemberHoliday : INotifyPropertyChanged
     {
 
         private string _Id;
         private DateTime _UpDateTime = DateTime.Now;
         private string _Remark;
         private string _UserId;
-        private DateTime _BeginDate;
-        private DateTime _EndDate;
+        private DateTime _BeginDate = DateTime.Now;
+        private DateTime _EndDate = DateTime.Now.AddDays(2);
         private string _HolidayReasion;
         private string _HolidayType;
 
@@ -86,7 +86,11 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         [Column(TypeName = "varchar(500)")]
         public string Remark { get { return _Remark; } set { _Remark = value; OnPropertyChanged(); } }
-        
+        /// <summary>
+        /// 假期类型
+        /// </summary>
+        [NotMapped]
+        public string[] HolidayTypeArr { get; set; }
         #region 事件
         /// <summary>
         /// 属性改变事件
@@ -95,6 +99,10 @@ namespace Office.Work.Platform.Lib
         #endregion
 
         #region 方法
+        public MemberHoliday()
+        {
+            HolidayTypeArr = new string[] { "事假","病假","调休假","年休假","婚假","产假","陪产假","探亲假","丧假","其他假期"};
+        }
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

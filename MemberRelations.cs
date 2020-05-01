@@ -40,12 +40,12 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 姓名
         /// </summary>
-        [Column(TypeName = "varchar(20)")]
+        [Required,Column(TypeName = "varchar(20)")]
         public string Name { get { return _Name; } set { _Name = value; OnPropertyChanged(); } }
         /// <summary>
         /// 关系
         /// </summary>
-        [Column(TypeName = "varchar(50)")]
+        [Required, Column(TypeName = "varchar(50)")]
         public string Relation { get { return _Relation; } set { _Relation = value; OnPropertyChanged(); } }
         /// <summary>
         /// 工作单位
@@ -80,7 +80,11 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         [Column(TypeName = "varchar(500)")]
         public string Remark { get { return _Remark; } set { _Remark = value; OnPropertyChanged(); } }
-        
+        /// <summary>
+        /// 主要社会关系
+        /// </summary>
+        [NotMapped]
+        public string[] RelationArr { get; set; }
         #region 事件
         /// <summary>
         /// 属性改变事件
@@ -89,6 +93,10 @@ namespace Office.Work.Platform.Lib
         #endregion
 
         #region 方法
+        public MemberRelations()
+        {
+            RelationArr = new string[] { "父亲","母亲","姐妹","兄弟","儿子","女儿","其他关系"};
+        }
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

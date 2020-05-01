@@ -3,16 +3,16 @@
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
-    /// 附件（文件）查询条件类
+    /// 工作备忘信息查询条件类
     /// </summary>
     public class NoteSearch
     {
-        
+
         #region 属性
         /// <summary>
-        /// 文件ID，与物理磁盘上的文件名称对应
+        /// 备忘记录ID
         /// </summary>
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// 备忘类型。

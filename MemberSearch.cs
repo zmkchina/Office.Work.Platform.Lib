@@ -25,7 +25,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 年龄
         /// </summary>
-        public int Age { get; set; }
+        public string Age { get; set; }
 
         /// <summary>
         /// 固定电话

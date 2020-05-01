@@ -8,6 +8,10 @@ namespace Office.Work.Platform.Lib
     public class PlanSearch
     {
         /// <summary>
+        /// 计划的Id号
+        /// </summary>
+        public string Id { get; set; }
+        /// <summary>
         /// 标题
         /// </summary>
         public string Caption { get; set; }

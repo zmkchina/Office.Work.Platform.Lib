@@ -26,12 +26,13 @@ namespace Office.Work.Platform.Lib
         private string _Content;
         private string _Caption;
         private string _Department;
+        private DateTime _UpDateTime;
 
         /// <summary>
         /// 计划ID号，格式yyyyMMddHHmmssfff
         /// </summary>
         [Key]
-        [Required, Column(TypeName = "varchar(20)")]
+        [Column(TypeName = "varchar(20)")]
         public string Id
         {
             get { return _Id; }
@@ -152,10 +153,14 @@ namespace Office.Work.Platform.Lib
             set { _ReadGrant = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// 该计划所拥有的附件。
+        /// 更新日期
         /// </summary>
-        public ObservableCollection<PlanFile> Files { get; set; }
-
+        public DateTime UpDateTime
+        {
+            get { return _UpDateTime; }
+            set { _UpDateTime = value; OnPropertyChanged(); }
+        }
+       
         #region 事件
         /// <summary>
         /// 属性改变事件
@@ -166,7 +171,6 @@ namespace Office.Work.Platform.Lib
         #region 方法        
         public Plan()
         {
-            Files = new ObservableCollection<PlanFile>();
         }
         /// <summary>
         /// 验证模型是否符合要求。
@@ -174,7 +178,7 @@ namespace Office.Work.Platform.Lib
         /// <returns></returns>
         public bool ModelIsValid()
         {
-            if (string.IsNullOrWhiteSpace(Id) || string.IsNullOrWhiteSpace(CreateUserId) || string.IsNullOrWhiteSpace(Caption)
+            if (string.IsNullOrWhiteSpace(CreateUserId) || string.IsNullOrWhiteSpace(Caption)
                 || string.IsNullOrWhiteSpace(Content) || string.IsNullOrWhiteSpace(PlanType) || string.IsNullOrWhiteSpace(ResponsiblePerson)
                 || string.IsNullOrWhiteSpace(Department))
             {

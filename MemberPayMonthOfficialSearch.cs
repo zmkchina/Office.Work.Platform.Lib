@@ -4,7 +4,7 @@ namespace Office.Work.Platform.Lib
     /// <summary>
     /// 单位员工月度待遇发放类
     /// </summary>
-    public class MemberPayMonthSearch
+    public class MemberPayMonthOfficialSearch
     {
         public string Id { get; set; }
         public string MemberId { get; set; }

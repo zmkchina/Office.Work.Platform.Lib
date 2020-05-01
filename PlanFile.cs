@@ -39,8 +39,7 @@ namespace Office.Work.Platform.Lib
         /// 外键：指向该文件所对应的计划的Id
         /// </summary>
         /// </summary>
-        [ForeignKey("pfid")]
-        [Column(TypeName = "varchar(20)")]
+        [ForeignKey("PF_FKey"), Required, Column(TypeName = "varchar(20)")]
         public string PlanId { get; set; }
         /// <summary>
         /// 该文件所属计划，外键指向的实体

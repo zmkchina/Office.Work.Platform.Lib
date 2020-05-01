@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
-    /// 附件（文件）类
+    /// 工作备忘信息类
     /// </summary>
     public class Note : INotifyPropertyChanged
     {

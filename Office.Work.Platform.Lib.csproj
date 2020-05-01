@@ -6,9 +6,9 @@
     <Authors>ZMK</Authors>
     <Product>政工科信息化工作平台</Product>
     <Description>此为政工科信息化工作平台平台公用Model类库</Description>
-    <Version>1.1.3.6</Version>
-    <AssemblyVersion>1.1.3.6</AssemblyVersion>
-    <FileVersion>1.1.3.6</FileVersion>
+    <Version>1.5.5.5</Version>
+    <AssemblyVersion>1.5.5.5</AssemblyVersion>
+    <FileVersion>1.5.5.5</FileVersion>
     <Company>ZMK COMPANY</Company>
   </PropertyGroup>
 

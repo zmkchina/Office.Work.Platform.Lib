@@ -238,9 +238,10 @@ namespace Office.Work.Platform.Lib
         #endregion
 
         #region 方法
-        public Member()
-        {
-        }
+        /// <summary>
+        /// 绑定通知机制
+        /// </summary>
+        /// <param name="propertyName"></param>
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

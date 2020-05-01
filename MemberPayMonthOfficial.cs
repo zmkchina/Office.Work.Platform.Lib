@@ -9,7 +9,7 @@ namespace Office.Work.Platform.Lib
     /// <summary>
     /// 单位员工月度待遇发放类
     /// </summary>
-    public class MemberPayMonth : INotifyPropertyChanged
+    public class MemberPayMonthOfficial : INotifyPropertyChanged
     {
 
         private string _Id;

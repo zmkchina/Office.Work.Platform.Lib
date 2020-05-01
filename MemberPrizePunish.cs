@@ -16,11 +16,11 @@ namespace Office.Work.Platform.Lib
         private DateTime _UpDateTime = DateTime.Now;
         private string _Remark;
         private string _UserId;
-        private DateTime _OccurDate;
+        private DateTime _OccurDate = DateTime.Now;
         private string _PrizrOrPunishName;
         private string _PrizrOrPunishUnit;
         private string _PrizrOrPunishReasion;
-        private int _GetScore;
+        private float _GetScore;
         private string _PrizrOrPunishType;
 
         [Key]
@@ -71,7 +71,8 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 绩效加减分,如减分请输入负数。
         /// </summary>
-        public int GetScore { get { return _GetScore; } set { _GetScore = value; OnPropertyChanged(); } }
+        [Required, Column(TypeName = "float(10,2)")]
+        public float GetScore { get { return _GetScore; } set { _GetScore = value; OnPropertyChanged(); } }
         /// <summary>
         /// 更新日期
         /// </summary>
@@ -96,6 +97,9 @@ namespace Office.Work.Platform.Lib
         public string Remark { get { return _Remark; } set { _Remark = value; OnPropertyChanged(); } }
         [NotMapped]
         public string[] PrizrOrPunishTypeArr { get; set; }
+        [NotMapped]
+        public string[] PrizrOrPunishNameArr { get; set; }
+        
         #region 事件
         /// <summary>
         /// 属性改变事件
@@ -107,6 +111,7 @@ namespace Office.Work.Platform.Lib
         public MemberPrizePunish()
         {
             PrizrOrPunishTypeArr = new string[]{"奖励","处理","处分" };
+            PrizrOrPunishNameArr = new string[] { "先进工作者","劳动模范","嘉奖","记功","提醒谈话","诫勉谈话","责令检讨","通报批评", "政务警告", "政务记过", "政务记大过", "政务降级", "政务撤职", "政务开除", "党内警告", "党内严重警告", "撤销党内职务", "留党察看", "开除党籍" };
         }
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
