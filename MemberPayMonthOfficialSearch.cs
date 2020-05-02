@@ -2,7 +2,7 @@
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
-    /// 单位员工月度待遇发放类
+    /// 单位员工月度待遇发放查询类
     /// </summary>
     public class MemberPayMonthOfficialSearch
     {

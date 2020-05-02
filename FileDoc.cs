@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace Office.Work.Platform.Lib
@@ -10,18 +9,24 @@ namespace Office.Work.Platform.Lib
     /// <summary>
     /// 附件（文件）类
     /// </summary>
-    public class PlanFile : INotifyPropertyChanged
+    public class FileDoc : INotifyPropertyChanged
     {
         #region 字段
         private string _Id;
         private string _Name;
         private string _Describe;
-        private DateTime _UpDateTime;
+        private DateTime _UpDateTime=DateTime.Now;
         private string _UserId;
         private long _Length;
         private string _ExtendName;
         private float _DownIntProgress;
         private float _UpIntProgress;
+        private string _ContentType;
+        private string _DispatchUnit;
+        private DateTime _Pubdate=DateTime.Now;
+        private string _FileNumber;
+        private string _CanReadUserIds;
+        private string _OwnerType;
         #endregion
 
         #region 属性
@@ -36,15 +41,32 @@ namespace Office.Work.Platform.Lib
             set { _Id = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// 外键：指向该文件所对应的计划的Id
+        /// 文件所有者分类：计划附件、人事附件、无所有者（单独上传的）
         /// </summary>
-        /// </summary>
-        [ForeignKey("PF_FKey"), Required, Column(TypeName = "varchar(20)")]
-        public string PlanId { get; set; }
+        [Column(TypeName = "varchar(10)")]
+        public string OwnerType
+        {
+            get { return _OwnerType; }
+            set { _OwnerType = value; OnPropertyChanged(); }
+        }
+
         /// <summary>
-        /// 该文件所属计划，外键指向的实体
+        /// 该文件所对应所有者Id，对“无所有者”的文件此值始终为000
         /// </summary>
-        public Plan Plan { get; set; }
+        /// </summary>
+        [Required, Column(TypeName = "varchar(20)")]
+        public string OwnerId { get; set; }
+
+        /// <summary>
+        /// 文件内容类型(一般应当于其所属的计划相一致，不一致其实也无所谓)。
+        /// </summary>
+        [Column(TypeName = "varchar(200)")]
+        public string ContentType
+        {
+            get { return _ContentType; }
+            set { _ContentType = value; OnPropertyChanged(); }
+        }
+
         /// <summary>
         /// 文件名称。
         /// </summary>
@@ -54,16 +76,53 @@ namespace Office.Work.Platform.Lib
             get { return _Name; }
             set { _Name = value; OnPropertyChanged(); }
         }
+        
         /// <summary>
-        /// 文件的扩展名
+        /// 发文单位。
+        /// </summary>
+        [Column(TypeName = "varchar(500)")]
+        public string DispatchUnit
+        {
+            get { return _DispatchUnit; }
+            set { _DispatchUnit = value; OnPropertyChanged(); }
+        }
+        /// <summary>
+        /// 有限读取人员。
+        /// </summary>
+        [Column(TypeName = "varchar(1000)")]
+        public string CanReadUserIds
+        {
+            get { return _CanReadUserIds; }
+            set { _CanReadUserIds = value; OnPropertyChanged(); }
+        }
+        /// <summary>
+        /// 文件编号。
+        /// </summary>
+        [Column(TypeName = "varchar(500)")]
+        public string FileNumber
+        {
+            get { return _FileNumber; }
+            set { _FileNumber = value; OnPropertyChanged(); }
+        }
+        /// <summary>
+        /// 成文时间。
+        /// </summary>
+        public DateTime Pubdate
+        {
+            get { return _Pubdate; }
+            set { _Pubdate = value; OnPropertyChanged(); }
+        }
+        
+        
+        /// <summary>
+        /// 文件扩展名
         /// </summary>
         [Column(TypeName = "varchar(10)")]
         public string ExtendName
         {
             get { return _ExtendName; }
-            set { _ExtendName = value;  OnPropertyChanged(); }
+            set { _ExtendName = value; OnPropertyChanged(); }
         }
-
         /// <summary>
         /// 文件长度
         /// </summary>
@@ -118,14 +177,7 @@ namespace Office.Work.Platform.Lib
             get { return _DownIntProgress; }
             set { _DownIntProgress = value; OnPropertyChanged(); }
         }
-        /// <summary>
-        /// 文件具体信息
-        /// </summary>
-        [NotMapped]
-        public System.IO.FileInfo FileInfo
-        {
-            get; set;
-        }
+       
         #endregion
 
         #region 事件

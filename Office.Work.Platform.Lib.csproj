@@ -10,9 +10,20 @@
     <AssemblyVersion>1.5.5.5</AssemblyVersion>
     <FileVersion>1.5.5.5</FileVersion>
     <Company>ZMK COMPANY</Company>
+    <Platforms>AnyCPU;x64;x86</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>D:\我的项目\Office.Work.Platform.Lib\Office.Work.Platform.Lib.xml</DocumentationFile>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <DocumentationFile>D:\我的项目\Office.Work.Platform.Lib\Office.Work.Platform.Lib.xml</DocumentationFile>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DocumentationFile>D:\我的项目\Office.Work.Platform.Lib\Office.Work.Platform.Lib.xml</DocumentationFile>
     <OutputPath>bin\Release\</OutputPath>
   </PropertyGroup>

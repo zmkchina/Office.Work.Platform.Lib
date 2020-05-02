@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -21,12 +20,12 @@ namespace Office.Work.Platform.Lib
         private DateTime _BeginDate;
         private string _Helpers;
         private string _ResponsiblePerson;
-        private string _PlanType;
         private string _FinishNote;
         private string _Content;
         private string _Caption;
         private string _Department;
         private DateTime _UpDateTime;
+        private string _ContentType;
 
         /// <summary>
         /// 计划ID号，格式yyyyMMddHHmmssfff
@@ -69,10 +68,10 @@ namespace Office.Work.Platform.Lib
         /// 类型：纪检监察、新闻宣传、总支议题等。
         /// </summary>
         [Required, Column(TypeName = "varchar(50)")]
-        public string PlanType
+        public string ContentType
         {
-            get { return _PlanType; }
-            set { _PlanType = value; OnPropertyChanged(); }
+            get { return _ContentType; }
+            set { _ContentType = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 计划所属部门。
@@ -179,7 +178,7 @@ namespace Office.Work.Platform.Lib
         public bool ModelIsValid()
         {
             if (string.IsNullOrWhiteSpace(CreateUserId) || string.IsNullOrWhiteSpace(Caption)
-                || string.IsNullOrWhiteSpace(Content) || string.IsNullOrWhiteSpace(PlanType) || string.IsNullOrWhiteSpace(ResponsiblePerson)
+                || string.IsNullOrWhiteSpace(Content) || string.IsNullOrWhiteSpace(ContentType) || string.IsNullOrWhiteSpace(ResponsiblePerson)
                 || string.IsNullOrWhiteSpace(Department))
             {
                 return false;
