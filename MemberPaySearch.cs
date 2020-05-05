@@ -3,20 +3,38 @@
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
-    /// 职工社会交纳记录查询条件类
+    /// 单位员工类
     /// </summary>
-    public class MemberPayMonthInsuranceSearch
+    public class MemberPaySearch
     {
-
+        /// <summary>
+        /// 记录Id号
+        /// </summary>
         public string Id { get; set; }
+
+        /// <summary>
+        /// 员工Id号
+        /// </summary>
         public string MemberId { get; set; }
-        /// 交纳年份
+
+        /// <summary>
+        /// 待遇项目Id号
+        /// </summary>
+        public string MemberPayItemId { get; set; }
+
+        /// <summary>
+        /// 发生年份
         /// </summary>
         public int PayYear { get; set; }
+
         /// <summary>
-        /// 交纳月份
+        /// 发生月份
         /// </summary>
         public int PayMonth { get; set; }
+        /// <summary>
+        /// 备注
+        /// </summary>
+        public string Remark { get; set; }
         /// <summary>
         /// 更新日期
         /// </summary>
@@ -25,10 +43,5 @@ namespace Office.Work.Platform.Lib
         /// 操作人员ID
         /// </summary>
         public string UserId { get; set; }
-        /// <summary>
-        /// 本月备注
-        /// </summary>
-        public string Remark { get; set; }
-
     }
 }

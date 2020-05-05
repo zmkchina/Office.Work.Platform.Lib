@@ -3,7 +3,7 @@
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
-    /// 单位员工类
+    /// 单位员工查询类
     /// </summary>
     public class MemberSearch
     {

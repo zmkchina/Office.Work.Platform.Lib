@@ -43,6 +43,7 @@ namespace Office.Work.Platform.Lib
         private string _PostInCPC;
         private string _EmploymentType;
         private string _UserId;
+        private int _OrderIndex;
 
         /// <summary>
         /// 身份证号
@@ -206,6 +207,11 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         [Column(TypeName = "varchar(20)")]
         public string JobGrade { get { return _JobGrade; } set { _JobGrade = value; OnPropertyChanged(); } }
+
+        /// <summary>
+        /// 内部排序
+        /// </summary>
+        public int OrderIndex { get { return _OrderIndex; } set { _OrderIndex = value; OnPropertyChanged(); } }
 
         /// <summary>
         /// 备注
