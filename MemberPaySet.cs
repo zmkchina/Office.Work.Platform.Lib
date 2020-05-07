@@ -13,17 +13,17 @@ namespace Office.Work.Platform.Lib
     {
         private DateTime _UpDateTime;
         private string _UserId;
-        private string _UnitName;
+        private string _PayUnitName;
         private string _PayItemNames;
 
         /// <summary>
-        /// 单位名称：表明是哪个单位的待遇发放配置信息
+        /// 发放单位名称：表明是哪个单位的待遇发放配置信息
         /// </summary>
         [Required, Column(TypeName = "varchar(50)")]
-        public string UnitName
+        public string PayUnitName
         {
-            get { return _UnitName; }
-            set { _UnitName = value; OnPropertyChanged(); }
+            get { return _PayUnitName; }
+            set { _PayUnitName = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 主键，同时也是外键（指向员工信息，表明该条配置是对哪个用户的）。
@@ -60,11 +60,22 @@ namespace Office.Work.Platform.Lib
             set { _UserId = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// 员工的姓名(不保存到数据库）
+        /// 员工的姓名(不保存到数据库,仅供检索使用）
         /// </summary>
         [NotMapped]
         public string MemberName { get; set; }
 
+        /// <summary>
+        /// 员工所在单位(不保存到数据库,仅供检索使用）
+        /// </summary>
+        [NotMapped]
+        public string MemberUnitName { get; set; }
+
+        /// <summary>
+        /// 内部人员排序(不保存到数据库,仅供检索使用）
+        /// </summary>
+        [NotMapped]
+        public int OrderIndex { get; set; }
         /// <summary>
         /// 属性改变事件
         /// </summary>

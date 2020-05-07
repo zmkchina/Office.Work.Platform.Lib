@@ -19,13 +19,19 @@ namespace Office.Work.Platform.Lib
         private string _UnitName;
         private DateTime _UpDateTime;
         private string _UserId;
+        private int _OrderIndex;
+
         /// <summary>
         /// 待遇项目的名称
         /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]//不设为自增，不自动处理。
         [Required, Column(TypeName = "varchar(30)")]
-        public string Name { get { return _Name; } set { _Name = value; OnPropertyChanged(); } }
+        public string Name
+        {
+            get { return _Name; }
+            set { _Name = value; OnPropertyChanged(); }
+        }
         /// <summary>
         /// 是否计入各类交费基数
         /// </summary>
@@ -63,7 +69,7 @@ namespace Office.Work.Platform.Lib
             get { return _UnitName; }
             set { _UnitName = value; OnPropertyChanged(); }
         }
-       
+
         /// <summary>
         /// 具体操作人员
         /// </summary>
@@ -92,10 +98,11 @@ namespace Office.Work.Platform.Lib
             set { _Remark = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// ：月度工资表、月度补贴表、其他待遇表
+        /// 内部排序
         /// </summary>
-        [NotMapped]
-        public string[] InTableTypeList { get; set; }
+        public int OrderIndex { get { return _OrderIndex; } set { _OrderIndex = value; OnPropertyChanged(); } }
+
+     
         #region 事件
         /// <summary>
         /// 属性改变事件
@@ -106,7 +113,6 @@ namespace Office.Work.Platform.Lib
         #region 方法
         public MemberPayItem()
         {
-            InTableTypeList = new string[] { "月度工资表", "月度补贴表", "其他待遇表" };
         }
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {

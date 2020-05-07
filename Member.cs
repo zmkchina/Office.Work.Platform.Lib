@@ -209,7 +209,7 @@ namespace Office.Work.Platform.Lib
         public string JobGrade { get { return _JobGrade; } set { _JobGrade = value; OnPropertyChanged(); } }
 
         /// <summary>
-        /// 内部排序
+        /// 内部人员排序
         /// </summary>
         public int OrderIndex { get { return _OrderIndex; } set { _OrderIndex = value; OnPropertyChanged(); } }
 

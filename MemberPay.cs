@@ -20,7 +20,11 @@ namespace Office.Work.Platform.Lib
         private string _Remark;
         private DateTime _UpDateTime;
         private string _UserId;
-        private DateTime _PayDate;
+        private int _PayMonth;
+        private int _OrderIndex;
+        private int _PayYear;
+        private string _PayUnitName;
+        private int _MemberIndex;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]//不设为自增，不自动处理。
@@ -30,14 +34,10 @@ namespace Office.Work.Platform.Lib
             set { _Id = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// 外键：指向员工信息表
+        /// 工作人员Id
         /// </summary>
-        [ForeignKey("ToMemberId")]
         [Required, Column(TypeName = "varchar(20)")]
         public string MemberId { get; set; }
-
-        //外键指向的员工实体。
-        public Member Member { get; set; }
 
         /// <summary>
         /// 待遇项目的名称
@@ -78,14 +78,38 @@ namespace Office.Work.Platform.Lib
         [Required, Column(TypeName = "float(10,2)")]
         public float Amount { get { return _Amount; } set { _Amount = value; OnPropertyChanged(); } }
         /// <summary>
-        /// 发放时间
+        /// 发放年份
         /// </summary>
-        public DateTime PayDate
+        public int PayYear
         {
-            get { return _PayDate; }
-            set { _PayDate = value; OnPropertyChanged(); }
+            get { return _PayYear; }
+            set { _PayYear = value; OnPropertyChanged(); }
         }
-       
+        /// <summary>
+        /// 发放月份
+        /// </summary>
+        public int PayMonth
+        {
+            get { return _PayMonth; }
+            set { _PayMonth = value; OnPropertyChanged(); }
+        }
+        /// <summary>
+        /// 发放单位
+        /// </summary>
+        public string PayUnitName
+        {
+            get { return _PayUnitName; }
+            set { _PayUnitName = value; OnPropertyChanged(); }
+        }
+        
+        /// <summary>
+        /// 内部人员排序(此字段值来源于Member表）
+        /// </summary>
+        public int MemberIndex { get { return _MemberIndex; } set { _MemberIndex = value; OnPropertyChanged(); } }
+        /// <summary>
+        /// 发放项目排序(此字段值来源于MemberPayItem表）
+        /// </summary>
+        public int OrderIndex { get { return _OrderIndex; } set { _OrderIndex = value; OnPropertyChanged(); } }
         /// <summary>
         /// 更新日期
         /// </summary>
@@ -106,7 +130,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 备注
         /// </summary>
-        [Required, Column(TypeName = "varchar(300)")]
+        [Column(TypeName = "varchar(300)")]
         public string Remark
         {
             get { return _Remark; }

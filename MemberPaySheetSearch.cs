@@ -3,25 +3,11 @@
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
-    /// 单位员工类
+    /// 员工待遇表查询类
     /// </summary>
-    public class MemberPaySearch
+    public class MemberPaySheetSearch
     {
-        /// <summary>
-        /// 记录Id号
-        /// </summary>
-        public string Id { get; set; }
-
-        /// <summary>
-        /// 员工Id号
-        /// </summary>
-        public string MemberId { get; set; }
-
-        /// <summary>
-        /// 待遇项目名称
-        /// </summary>
-        public string PayName { get; set; }
-
+      
         /// <summary>
         /// 发生年份
         /// </summary>
@@ -37,13 +23,13 @@ namespace Office.Work.Platform.Lib
         public string PayUnitName { get; set; }
 
         /// <summary>
-        /// 备注
+        /// 用工性质
         /// </summary>
-        public string Remark { get; set; }
+        public string EmploymentType { get; set; }
         /// <summary>
-        /// 更新日期
+        /// 查询的待遇表类型
         /// </summary>
-        public DateTime UpDateTime { get; set; }
+        public string PayTableType { get; set; }
         /// <summary>
         /// 操作人员ID
         /// </summary>
