@@ -41,7 +41,7 @@ namespace Office.Work.Platform.Lib
         private string _EmployTitle;
         private string _UnitName;
         private string _PostInCPC;
-        private string _EmploymentType;
+        private string _MemberType;
         private string _UserId;
         private int _OrderIndex;
 
@@ -95,7 +95,7 @@ namespace Office.Work.Platform.Lib
         /// 用工性质：聘用合同制、劳动合同制、劳务派遣制
         /// </summary>
         [Column(TypeName = "varchar(20)")]
-        public string EmploymentType { get { return _EmploymentType; } set { _EmploymentType = value; OnPropertyChanged(); } }
+        public string MemberType { get { return _MemberType; } set { _MemberType = value; OnPropertyChanged(); } }
 
         /// <summary>
         /// 入党时间

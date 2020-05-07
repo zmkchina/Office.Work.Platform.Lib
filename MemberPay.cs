@@ -38,6 +38,16 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         [Required, Column(TypeName = "varchar(20)")]
         public string MemberId { get; set; }
+        /// <summary>
+        /// 工作人员姓名
+        /// </summary>
+        [Required, Column(TypeName = "varchar(20)")]
+        public string MemberName { get; set; }
+        /// <summary>
+        /// 工作人员Id
+        /// </summary>
+        [Required, Column(TypeName = "varchar(20)")]
+        public string MemberType { get; set; }
 
         /// <summary>
         /// 待遇项目的名称

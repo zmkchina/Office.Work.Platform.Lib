@@ -25,7 +25,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 用工性质
         /// </summary>
-        public string EmploymentType { get; set; }
+        public string MemberType { get; set; }
         /// <summary>
         /// 查询的待遇表类型
         /// </summary>

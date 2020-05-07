@@ -64,6 +64,11 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         [NotMapped]
         public string MemberName { get; set; }
+        /// <summary>
+        /// 员工的类型(不保存到数据库,仅供检索使用）
+        /// </summary>
+        [NotMapped]
+        public string MemberType { get; set; }
 
         /// <summary>
         /// 员工所在单位(不保存到数据库,仅供检索使用）
