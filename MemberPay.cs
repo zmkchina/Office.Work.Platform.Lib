@@ -44,7 +44,7 @@ namespace Office.Work.Platform.Lib
         [Required, Column(TypeName = "varchar(20)")]
         public string MemberName { get; set; }
         /// <summary>
-        /// 工作人员Id
+        /// 工作人员类型
         /// </summary>
         [Required, Column(TypeName = "varchar(20)")]
         public string MemberType { get; set; }
