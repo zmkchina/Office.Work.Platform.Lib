@@ -6,6 +6,16 @@
     public class MemberPayItemSearch 
     {
         /// <summary>
+        /// 构造函数，至少需提供两个值。
+        /// </summary>
+        /// <param name="PayUnitName">单位名称,必须提供</param>
+        /// <param name="UserId">操作人员ID,必须提供</param>
+        public MemberPayItemSearch(string PayUnitName, string UserId)
+        {
+            this.PayUnitName = PayUnitName;
+            this.UserId = UserId;
+        }
+        /// <summary>
         /// 待遇项目的名称
         /// </summary>
         public string Name { get; set; }
@@ -30,7 +40,7 @@
         /// <summary>
         /// 该项目属于哪个单位
         /// </summary>
-        public string UnitName { get; set; }
+        public string PayUnitName { get; set; }
         /// <summary>
         /// 操作人员ID
         /// </summary>
