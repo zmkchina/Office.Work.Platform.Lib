@@ -8,16 +8,6 @@ namespace Office.Work.Platform.Lib
     public class MemberPaySetSearch
     {
         /// <summary>
-        /// 构造函数，至少需提供两个值。
-        /// </summary>
-        /// <param name="PayUnitName">单位名称,必须提供</param>
-        /// <param name="UserId">操作人员ID,必须提供</param>
-        public MemberPaySetSearch(string PayUnitName, string UserId)
-        {
-            this.PayUnitName = PayUnitName;
-            this.UserId = UserId;
-        }
-        /// <summary>
         /// 单位名称：表明是哪个单位的待遇发放配置信息
         /// </summary>
         [Required]

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -14,12 +13,12 @@ namespace Office.Work.Platform.Lib
     {
         #region 字段
         private string _Id;
-        private string _Type;
         private string _Caption;
         private string _Content;
         private DateTime _UpDateTime;
         private string _UserId;
         private string _CanReadUserIds;
+        private string _TextContent;
         #endregion
 
         #region 属性
@@ -30,15 +29,7 @@ namespace Office.Work.Platform.Lib
             get { return _Id; }
             set { _Id = value; OnPropertyChanged(); }
         }
-        /// <summary>
-        /// 备忘类型。
-        /// </summary>
-        [Required, Column(TypeName = "varchar(50)")]
-        public string Type
-        {
-            get { return _Type; }
-            set { _Type = value; OnPropertyChanged(); }
-        }
+       
         /// <summary>
         /// 备忘标题
         /// </summary>
@@ -51,11 +42,20 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 备忘内容
         /// </summary>
-        [Required, Column(TypeName = "blob")]
+        [Required, Column(TypeName = "mediumblob")]
         public string Content
         {
             get { return _Content; }
             set { _Content = value; OnPropertyChanged(); }
+        }
+        /// <summary>
+        /// 备忘内容，纯文本
+        /// </summary>
+        [Column(TypeName = "mediumtext")]
+        public string TextContent
+        {
+            get { return _TextContent; }
+            set { _TextContent = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 创建用户Id

@@ -7,8 +7,6 @@ namespace Office.Work.Platform.Lib
     /// </summary>
     public class MemberPrizePunishSearch
     {
-        
-        #region 属性
         /// <summary>
         /// 记录Id号
         /// </summary>
@@ -32,9 +30,6 @@ namespace Office.Work.Platform.Lib
         /// 更新记录的人员
         /// </summary>
         public string UserId { get; set; }
-
-
-        #endregion
 
     }
 }

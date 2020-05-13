@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Office.Work.Platform.Lib
 {
@@ -20,6 +21,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 发放单位名称
         /// </summary>
+        [Required]
         public string PayUnitName { get; set; }
 
         /// <summary>
@@ -33,6 +35,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 操作人员ID
         /// </summary>
+        [Required]
         public string UserId { get; set; }
     }
 }

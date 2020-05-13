@@ -160,14 +160,10 @@ namespace Office.Work.Platform.Lib
             set { _UpDateTime = value; OnPropertyChanged(); }
         }
        
-        #region 事件
         /// <summary>
         /// 属性改变事件
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
-
-        #region 方法        
         public Plan()
         {
         }
@@ -191,7 +187,6 @@ namespace Office.Work.Platform.Lib
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        #endregion
     }
 
     public static class PlanStatus

@@ -1,20 +1,13 @@
-﻿namespace Office.Work.Platform.Lib
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Office.Work.Platform.Lib
 {
     /// <summary>
     /// 本类定义待遇发放项目查询条件信息
     /// </summary>
     public class MemberPayItemSearch 
     {
-        /// <summary>
-        /// 构造函数，至少需提供两个值。
-        /// </summary>
-        /// <param name="PayUnitName">单位名称,必须提供</param>
-        /// <param name="UserId">操作人员ID,必须提供</param>
-        public MemberPayItemSearch(string PayUnitName, string UserId)
-        {
-            this.PayUnitName = PayUnitName;
-            this.UserId = UserId;
-        }
+       
         /// <summary>
         /// 待遇项目的名称
         /// </summary>
@@ -40,10 +33,12 @@
         /// <summary>
         /// 该项目属于哪个单位
         /// </summary>
+        [Required]
         public string PayUnitName { get; set; }
         /// <summary>
         /// 操作人员ID
         /// </summary>
+        [Required]
         public string UserId { get; set; }
     }
 }

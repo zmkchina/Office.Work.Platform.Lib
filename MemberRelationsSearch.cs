@@ -7,8 +7,7 @@ namespace Office.Work.Platform.Lib
     /// </summary>
     public class MemberRelationsSearch
     {
-        
-        #region 属性
+    
         /// <summary>
         /// 记录Id号
         /// </summary>
@@ -29,8 +28,6 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         public string UserId { get; set; }
 
-
-        #endregion
 
     }
 }
