@@ -44,6 +44,7 @@ namespace Office.Work.Platform.Lib
         private string _MemberType;
         private string _UserId;
         private int _OrderIndex;
+        private DateTime _BirthdayArchives;
 
         /// <summary>
         /// 身份证号
@@ -68,6 +69,11 @@ namespace Office.Work.Platform.Lib
         /// 出生日期
         /// </summary>
         public DateTime Birthday { get { return _Birthday; } set { _Birthday = value; OnPropertyChanged(); } }
+
+        /// <summary>
+        /// 档案生日
+        /// </summary>
+        public DateTime BirthdayArchives { get { return _BirthdayArchives; } set { _BirthdayArchives = value; OnPropertyChanged(); } }
 
         /// <summary>
         /// 固定电话
