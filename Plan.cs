@@ -26,6 +26,7 @@ namespace Office.Work.Platform.Lib
         private string _Department;
         private DateTime _UpDateTime;
         private string _ContentType;
+        private string _UnitName;
 
         /// <summary>
         /// 计划ID号，格式yyyyMMddHHmmssfff
@@ -72,6 +73,15 @@ namespace Office.Work.Platform.Lib
         {
             get { return _ContentType; }
             set { _ContentType = value; OnPropertyChanged(); }
+        }
+        /// <summary>
+        /// 计划所属单位。
+        /// </summary>
+        [Required, Column(TypeName = "varchar(50)")]
+        public string UnitName
+        {
+            get { return _UnitName; }
+            set { _UnitName = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 计划所属部门。
@@ -127,7 +137,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 创建人员
         /// </summary>
-        [Column(TypeName = "varchar(20)")]
+        [Required, Column(TypeName = "varchar(20)")]
         public string CreateUserId
         {
             get { return _CreateUserId; }
@@ -136,7 +146,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 当前状态
         /// </summary>
-        [Column(TypeName = "varchar(50)")]
+        [Required, Column(TypeName = "varchar(50)")]
         public string CurrectState
         {
             get { return _CurrectState; }
@@ -159,21 +169,18 @@ namespace Office.Work.Platform.Lib
             get { return _UpDateTime; }
             set { _UpDateTime = value; OnPropertyChanged(); }
         }
-       
+
         /// <summary>
         /// 属性改变事件
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-        public Plan()
-        {
-        }
         /// <summary>
         /// 验证模型是否符合要求。
         /// </summary>
         /// <returns></returns>
         public bool ModelIsValid()
         {
-            if (string.IsNullOrWhiteSpace(CreateUserId) || string.IsNullOrWhiteSpace(Caption)
+            if (string.IsNullOrWhiteSpace(CreateUserId) || string.IsNullOrWhiteSpace(Caption) || string.IsNullOrWhiteSpace(CurrectState)
                 || string.IsNullOrWhiteSpace(Content) || string.IsNullOrWhiteSpace(ContentType) || string.IsNullOrWhiteSpace(ResponsiblePerson)
                 || string.IsNullOrWhiteSpace(Department))
             {
@@ -189,6 +196,9 @@ namespace Office.Work.Platform.Lib
 
     }
 
+    /// <summary>
+    /// 计划的四种状态：等待执行、正在实施、已经完结、计划取消
+    /// </summary>
     public static class PlanStatus
     {
         /// <summary>
@@ -208,6 +218,9 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         public const string Canceled = "计划取消";
 
+        /// <summary>
+        /// 计划四种状态的字符串常量数组
+        /// </summary>
         public static string[] PlanStatusArr
         {
             get

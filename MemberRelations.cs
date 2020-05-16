@@ -21,8 +21,11 @@ namespace Office.Work.Platform.Lib
         private string _Relation;
         private string _Name;
 
+        /// <summary>
+        ///主键：不设为自增，不自动处理。
+        /// </summary>
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]//不设为自增，不自动处理。
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Id
         {
             get { return _Id; }
@@ -34,13 +37,16 @@ namespace Office.Work.Platform.Lib
         [ForeignKey("mid_mpm")]
         [Required, Column(TypeName = "varchar(20)")]
         public string MemberId { get; set; }
-        //外键指向的实体。
+
+        /// <summary>
+        /// 外键指向的实体。
+        /// </summary>
         public Member Member { get; set; }
 
         /// <summary>
         /// 姓名
         /// </summary>
-        [Required,Column(TypeName = "varchar(20)")]
+        [Required, Column(TypeName = "varchar(20)")]
         public string Name { get { return _Name; } set { _Name = value; OnPropertyChanged(); } }
         /// <summary>
         /// 关系
@@ -57,7 +63,7 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         [Column(TypeName = "varchar(50)")]
         public string Role { get { return _Role; } set { _Role = value; OnPropertyChanged(); } }
-        
+
         /// <summary>
         /// 更新日期
         /// </summary>
@@ -93,9 +99,12 @@ namespace Office.Work.Platform.Lib
         #endregion
 
         #region 方法
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public MemberRelations()
         {
-            RelationArr = new string[] { "父亲","母亲","姐妹","兄弟","儿子","女儿","其他关系"};
+            RelationArr = new string[] { "父亲", "母亲", "姐妹", "兄弟", "儿子", "女儿", "其他关系" };
         }
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {

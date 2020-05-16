@@ -23,7 +23,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 创建用户Id
         /// </summary>
-        public string  UserId{ get; set; }
+        public string UserId { get; set; }
         /// <summary>
         /// 是否只查询本人备忘信息
         /// </summary>

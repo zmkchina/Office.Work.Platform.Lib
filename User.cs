@@ -18,6 +18,7 @@ namespace Office.Work.Platform.Lib
         private int _OrderIndex;
         private string _Name;
         private string _UnitName;
+        private string _UnitShortName;
 
         /// <summary>
         /// 登陆用户的帐号ID
@@ -47,7 +48,7 @@ namespace Office.Work.Platform.Lib
             get { return _Name; }
             set { _Name = value; OnPropertyChanged(); }
         }
-       
+
         /// <summary>
         /// 登陆用户的角色
         /// </summary>
@@ -65,6 +66,15 @@ namespace Office.Work.Platform.Lib
         {
             get { return _UnitName; }
             set { _UnitName = value; OnPropertyChanged(); }
+        }
+        /// <summary>
+        /// 登陆用户单位的简称
+        /// </summary>
+        [Required, Column(TypeName = "varchar(40)")]
+        public string UnitShortName
+        {
+            get { return _UnitShortName; }
+            set { _UnitShortName = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 登陆用户的部门

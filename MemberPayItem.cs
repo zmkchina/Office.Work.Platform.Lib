@@ -102,7 +102,7 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         public int OrderIndex { get { return _OrderIndex; } set { _OrderIndex = value; OnPropertyChanged(); } }
 
-     
+
         #region 事件
         /// <summary>
         /// 属性改变事件
@@ -111,9 +111,6 @@ namespace Office.Work.Platform.Lib
         #endregion
 
         #region 方法
-        public MemberPayItem()
-        {
-        }
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

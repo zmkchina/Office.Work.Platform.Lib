@@ -22,14 +22,17 @@ namespace Office.Work.Platform.Lib
         #endregion
 
         #region 属性
+        /// <summary>
+        /// 主键：不设为自增，不自动处理。
+        /// </summary>
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]//不设为自增，不自动处理。
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Id
         {
             get { return _Id; }
             set { _Id = value; OnPropertyChanged(); }
         }
-       
+
         /// <summary>
         /// 备忘标题
         /// </summary>

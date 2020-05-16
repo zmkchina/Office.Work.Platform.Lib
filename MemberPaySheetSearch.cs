@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Office.Work.Platform.Lib
 {
@@ -8,7 +7,7 @@ namespace Office.Work.Platform.Lib
     /// </summary>
     public class MemberPaySheetSearch
     {
-      
+
         /// <summary>
         /// 发生年份
         /// </summary>

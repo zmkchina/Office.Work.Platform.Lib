@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -45,6 +44,11 @@ namespace Office.Work.Platform.Lib
         private string _UserId;
         private int _OrderIndex;
         private DateTime _BirthdayArchives;
+        private string _Nation;
+        private string _Birthplace;
+        private string _NativePlace;
+        private string _HealthState;
+        private string _Speciality;
 
         /// <summary>
         /// 身份证号
@@ -65,6 +69,35 @@ namespace Office.Work.Platform.Lib
         [Column(TypeName = "varchar(5)")]
         public string Sex { get { return _Sex; } set { _Sex = value; OnPropertyChanged(); } }
 
+        /// <summary>
+        /// 民族
+        /// </summary>
+        [Column(TypeName = "varchar(20)")]
+        public string Nation { get { return _Nation; } set { _Nation = value; OnPropertyChanged(); } }
+
+        /// <summary>
+        /// 出生地（城市）
+        /// </summary>
+        [Column(TypeName = "varchar(20)")]
+        public string Birthplace { get { return _Birthplace; } set { _Birthplace = value; OnPropertyChanged(); } }
+
+        /// <summary>
+        /// 籍贯
+        /// </summary>
+        [Column(TypeName = "varchar(30)")]
+        public string NativePlace { get { return _NativePlace; } set { _NativePlace = value; OnPropertyChanged(); } }
+        /// <summary>
+        /// 健康状况
+        /// </summary>
+        [Column(TypeName = "varchar(30)")]
+        public string HealthState { get { return _HealthState; } set { _HealthState = value; OnPropertyChanged(); } }
+
+        /// <summary>
+        /// 有何特长
+        /// </summary>
+        [Column(TypeName = "varchar(30)")]
+        public string Speciality { get { return _Speciality; } set { _Speciality = value; OnPropertyChanged(); } }
+        
         /// <summary>
         /// 出生日期
         /// </summary>

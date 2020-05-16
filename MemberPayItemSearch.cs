@@ -5,14 +5,14 @@ namespace Office.Work.Platform.Lib
     /// <summary>
     /// 本类定义待遇发放项目查询条件信息
     /// </summary>
-    public class MemberPayItemSearch 
+    public class MemberPayItemSearch
     {
-       
+
         /// <summary>
         /// 待遇项目的名称
         /// </summary>
         public string Name { get; set; }
-      
+
         /// <summary>
         /// 是否计入各类交费基数
         /// </summary>

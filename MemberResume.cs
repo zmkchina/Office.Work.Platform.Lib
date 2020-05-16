@@ -19,8 +19,11 @@ namespace Office.Work.Platform.Lib
         private DateTime _EndDate = DateTime.Now.AddYears(1);
         private string _Content;
 
+        /// <summary>
+        /// 主键：不设为自增，不自动处理。
+        /// </summary>
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]//不设为自增，不自动处理。
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Id
         {
             get { return _Id; }
@@ -32,7 +35,10 @@ namespace Office.Work.Platform.Lib
         [ForeignKey("mid_mpm")]
         [Required, Column(TypeName = "varchar(20)")]
         public string MemberId { get; set; }
-        //外键指向的实体。
+
+        /// <summary>
+        /// 外键指向的实体。
+        /// </summary>
         public Member Member { get; set; }
 
         /// <summary>

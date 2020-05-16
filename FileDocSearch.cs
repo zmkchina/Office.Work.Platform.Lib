@@ -7,7 +7,7 @@ namespace Office.Work.Platform.Lib
     /// </summary>
     public class FileDocSearch
     {
-        
+
         #region 属性
         /// <summary>
         /// 文件ID，与物理磁盘上的文件名称对应
@@ -22,6 +22,7 @@ namespace Office.Work.Platform.Lib
         /// 文件的扩展名
         /// </summary>
         public string ExtendName { get; set; }
+        /// <summary>
         /// 拥有者类型：计划附件、人事附件、无所有者（单独上传的）
         /// </summary>
         public string OwnerType { get; set; }

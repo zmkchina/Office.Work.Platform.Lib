@@ -1,13 +1,11 @@
-﻿using System;
-
-namespace Office.Work.Platform.Lib
+﻿namespace Office.Work.Platform.Lib
 {
     /// <summary>
     /// 职工临时待遇查询条件类
     /// </summary>
     public class MemberHolidaySearch
     {
-        
+
         #region 属性
         /// <summary>
         /// 记录Id号

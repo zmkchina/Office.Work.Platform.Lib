@@ -15,7 +15,7 @@ namespace Office.Work.Platform.Lib
         private string _Id;
         private string _Name;
         private string _Describe;
-        private DateTime _UpDateTime=DateTime.Now;
+        private DateTime _UpDateTime = DateTime.Now;
         private string _UserId;
         private long _Length;
         private string _ExtendName;
@@ -23,10 +23,11 @@ namespace Office.Work.Platform.Lib
         private float _UpIntProgress;
         private string _ContentType;
         private string _DispatchUnit;
-        private DateTime _Pubdate=DateTime.Now;
+        private DateTime _Pubdate = DateTime.Now;
         private string _FileNumber;
         private string _CanReadUserIds;
         private string _OwnerType;
+        private string _CanDelte;
         #endregion
 
         #region 属性
@@ -53,7 +54,6 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 该文件所对应所有者Id，对“无所有者”的文件此值始终为000
         /// </summary>
-        /// </summary>
         [Required, Column(TypeName = "varchar(20)")]
         public string OwnerId { get; set; }
 
@@ -76,7 +76,7 @@ namespace Office.Work.Platform.Lib
             get { return _Name; }
             set { _Name = value; OnPropertyChanged(); }
         }
-        
+
         /// <summary>
         /// 发文单位。
         /// </summary>
@@ -112,8 +112,8 @@ namespace Office.Work.Platform.Lib
             get { return _Pubdate; }
             set { _Pubdate = value; OnPropertyChanged(); }
         }
-        
-        
+
+
         /// <summary>
         /// 文件扩展名
         /// </summary>
@@ -177,7 +177,16 @@ namespace Office.Work.Platform.Lib
             get { return _DownIntProgress; }
             set { _DownIntProgress = value; OnPropertyChanged(); }
         }
-       
+        /// <summary>
+        /// 该文件能否被删除标志，不映射到数据库
+        /// </summary>
+        [NotMapped]
+        public string CanDelte
+        {
+            get { return _CanDelte; }
+            set { _CanDelte = value; OnPropertyChanged(); }
+        }
+
         #endregion
 
         #region 事件

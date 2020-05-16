@@ -32,6 +32,11 @@ namespace Office.Work.Platform.Lib
         public string PlanType { get; set; }
 
         /// <summary>
+        /// 计划所属单位
+        /// </summary>
+        public string UnitName { get; set; }
+
+        /// <summary>
         /// 计划所属部门
         /// </summary>
         public string Department { get; set; }

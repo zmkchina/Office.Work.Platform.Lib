@@ -11,7 +11,6 @@ namespace Office.Work.Platform.Lib
     /// </summary>
     public class MemberPrizePunish : INotifyPropertyChanged
     {
-
         private string _Id;
         private DateTime _UpDateTime = DateTime.Now;
         private string _Remark;
@@ -23,8 +22,11 @@ namespace Office.Work.Platform.Lib
         private float _GetScore;
         private string _PrizrOrPunishType;
 
+        /// <summary>
+        /// 主键：不设为自增，不自动处理。
+        /// </summary>
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]//不设为自增，不自动处理。
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Id
         {
             get { return _Id; }
@@ -36,7 +38,10 @@ namespace Office.Work.Platform.Lib
         [ForeignKey("mid_mpm")]
         [Required, Column(TypeName = "varchar(20)")]
         public string MemberId { get; set; }
-        //外键指向的实体。
+
+        /// <summary>
+        /// 外键指向的实体。
+        /// </summary>
         public Member Member { get; set; }
 
         /// <summary>
@@ -95,11 +100,19 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         [Column(TypeName = "varchar(500)")]
         public string Remark { get { return _Remark; } set { _Remark = value; OnPropertyChanged(); } }
+
+        /// <summary>
+        /// 奖惩类型
+        /// </summary>
         [NotMapped]
         public string[] PrizrOrPunishTypeArr { get; set; }
+
+        /// <summary>
+        /// 奖惩类型具体名称
+        /// </summary>
         [NotMapped]
         public string[] PrizrOrPunishNameArr { get; set; }
-        
+
         #region 事件
         /// <summary>
         /// 属性改变事件
@@ -108,10 +121,13 @@ namespace Office.Work.Platform.Lib
         #endregion
 
         #region 方法
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public MemberPrizePunish()
         {
-            PrizrOrPunishTypeArr = new string[]{"奖励","处理","处分" };
-            PrizrOrPunishNameArr = new string[] { "先进工作者","劳动模范","嘉奖","记功","提醒谈话","诫勉谈话","责令检讨","通报批评", "政务警告", "政务记过", "政务记大过", "政务降级", "政务撤职", "政务开除", "党内警告", "党内严重警告", "撤销党内职务", "留党察看", "开除党籍" };
+            PrizrOrPunishTypeArr = new string[] { "奖励", "处理", "处分" };
+            PrizrOrPunishNameArr = new string[] { "先进工作者", "劳动模范", "嘉奖", "记功", "批评教育", "提醒谈话", "诫勉谈话", "警示谈话", "责令检讨", "通报批评", "政务警告", "政务记过", "政务记大过", "政务降级", "政务撤职", "政务开除", "党内警告", "党内严重警告", "撤销党内职务", "留党察看", "开除党籍" };
         }
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {

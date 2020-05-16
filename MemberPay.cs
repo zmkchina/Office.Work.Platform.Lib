@@ -26,8 +26,12 @@ namespace Office.Work.Platform.Lib
         private string _PayUnitName;
         private int _MemberIndex;
 
+
+        /// <summary>
+        /// 主键：不设为自增，不自动处理。
+        /// </summary>
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]//不设为自增，不自动处理。
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Id
         {
             get { return _Id; }
@@ -54,7 +58,7 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         [Required, Column(TypeName = "varchar(30)")]
         public string PayName { get { return _PayName; } set { _PayName = value; OnPropertyChanged(); } }
-       
+
         /// <summary>
         /// 是否计入各类交费基数
         /// </summary>
@@ -111,7 +115,7 @@ namespace Office.Work.Platform.Lib
             get { return _PayUnitName; }
             set { _PayUnitName = value; OnPropertyChanged(); }
         }
-        
+
         /// <summary>
         /// 内部人员排序(此字段值来源于Member表）
         /// </summary>
@@ -146,7 +150,7 @@ namespace Office.Work.Platform.Lib
             get { return _Remark; }
             set { _Remark = value; OnPropertyChanged(); }
         }
-      
+
         /// <summary>
         /// 属性改变事件
         /// </summary>

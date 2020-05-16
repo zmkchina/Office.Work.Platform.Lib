@@ -14,6 +14,7 @@
             Msg = "未执行操作";
             ApiUrl = "";
             Tag = "";
+            Caption = "信息";
         }
 
         /// <summary>
@@ -23,12 +24,14 @@
         /// <param name="p_msg">操作成功与否反馈信息</param>
         /// <param name="p_apiurl">附加的Url，默认为空字符串</param>
         /// <param name="p_tag">附加信息，默认为空字符串</param>
-        public ExcuteResult(int p_state, string p_msg, string p_apiurl = "", string p_tag = "")
+        /// <param name="p_caption">执行结果的信息标题</param>
+        public ExcuteResult(int p_state, string p_msg, string p_apiurl = "", string p_tag = "", string p_caption = "信息")
         {
             State = p_state;
             Msg = p_msg;
             ApiUrl = p_apiurl;
             Tag = p_tag;
+            Caption = p_caption;
         }
         /// <summary>
         /// 执行结果状态码（0:成功,1出错，）
@@ -54,10 +57,11 @@
         /// <summary>
         /// 设备结果对象属性值。
         /// </summary>
-        /// <param name="p_state"></param>
-        /// <param name="p_msg"></param>
-        /// <param name="p_apiurl"></param>
-        /// <param name="p_tag"></param>
+        /// <param name="p_state">结果执行状态 0:成功，-1：未执行任何实际，-2：出现错误</param>
+        /// <param name="p_msg">执行结果信息的文本描述</param>
+        /// <param name="p_apiurl">执行返回的地址</param>
+        /// <param name="p_tag">执行返回的其他值</param>
+        /// <param name="p_caption">执行结果的信息标题</param>
         public void SetValues(int p_state, string p_msg, string p_apiurl = "", string p_tag = "", string p_caption = "信息")
         {
             State = p_state;

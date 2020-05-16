@@ -21,8 +21,11 @@ namespace Office.Work.Platform.Lib
         private string _HolidayReasion;
         private string _HolidayType;
 
+        /// <summary>
+        /// 主键：不设为自增，不自动处理。
+        /// </summary>
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]//不设为自增，不自动处理。
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Id
         {
             get { return _Id; }
@@ -34,7 +37,9 @@ namespace Office.Work.Platform.Lib
         [ForeignKey("mid_mpm")]
         [Required, Column(TypeName = "varchar(20)")]
         public string MemberId { get; set; }
-        //外键指向的实体。
+        /// <summary>
+        /// 外键指向的实体。
+        /// </summary>
         public Member Member { get; set; }
 
         /// <summary>
@@ -99,9 +104,12 @@ namespace Office.Work.Platform.Lib
         #endregion
 
         #region 方法
+        /// <summary>
+        /// 假期类型
+        /// </summary>
         public MemberHoliday()
         {
-            HolidayTypeArr = new string[] { "事假","病假","调休假","年休假","婚假","产假","陪产假","探亲假","丧假","其他假期"};
+            HolidayTypeArr = new string[] { "事假", "病假", "调休假", "年休假", "婚假", "产假", "小产假", "陪产假", "探亲假", "丧假", "其他假期" };
         }
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {

@@ -46,7 +46,7 @@ namespace Office.Work.Platform.Lib
         /// <param name="strContent">要解密字符</param>
         /// <param name="strKey">加密时使用的键值，长度为8个字符，如没提供则使用常量"KEY_64"</param>
         /// <returns></returns>
-        public static string DeCrypt(string strContent, string strKey=null)
+        public static string DeCrypt(string strContent, string strKey = null)
         {
             if (string.IsNullOrEmpty(strContent)) return string.Empty;
             strKey ??= KEY_64;

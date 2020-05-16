@@ -21,7 +21,7 @@
         /// 主键 同时也是 外键：指向员工信息，表明该条配置是对哪个用户的。
         /// </summary>
         public string MemberId { get; set; }
-      
+
         /// <summary>
         /// 人员身份性质
         /// </summary>
