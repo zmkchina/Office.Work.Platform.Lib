@@ -194,6 +194,11 @@ namespace Office.Work.Platform.Lib
         public string MajorTop { get { return _MajorTop; } set { _MajorTop = value; OnPropertyChanged(); } }
 
         /// <summary>
+        /// 全日制学位
+        /// </summary>
+        [Column(TypeName = "varchar(20)")]
+        public string DegreeDays { get { return _DegreeTop; } set { _DegreeTop = value; OnPropertyChanged(); } }
+        /// <summary>
         /// 最高学位
         /// </summary>
         [Column(TypeName = "varchar(20)")]

@@ -1,9 +1,9 @@
 ﻿namespace Office.Work.Platform.Lib
 {
     /// <summary>
-    /// 单位员工奖惩情况查询条件类
+    /// 单位员工年度考核情况查询条件类
     /// </summary>
-    public class MemberPrizePunishSearch
+    public class MemberAppraiseSearch
     {
         /// <summary>
         /// 记录Id号
@@ -14,11 +14,15 @@
         /// 所属职工的Id号（身份证号）
         /// </summary>
         public string MemberId { get; set; }
-
+        
         /// <summary>
-        /// 类型：奖励、处理、处罚
+        /// 考核年份
         /// </summary>
-        public string PrizrOrPunishType { get; set; }
+        public string Year { get; set; }
+        /// <summary>
+        /// 考核结果
+        /// </summary>
+        public string Result { get; set; }
         /// <summary>
         /// 备注
         /// </summary>

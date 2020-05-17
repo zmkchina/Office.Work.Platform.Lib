@@ -7,23 +7,19 @@ using System.Runtime.CompilerServices;
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
-    /// 单位员工社会关系类
+    /// 单位员工年度考核情况（事业单位人员年度考核）
     /// </summary>
-    public class MemberRelations : INotifyPropertyChanged
+    public class MemberAppraise : INotifyPropertyChanged
     {
-
         private string _Id;
         private DateTime _UpDateTime = DateTime.Now;
         private string _Remark;
         private string _UserId;
-        private string _Role;
-        private string _UnitName;
-        private string _Relation;
-        private string _Name;
-        private int _OrderIndex;
+        private string _Year;
+        private string _Result;
 
         /// <summary>
-        ///主键：不设为自增，不自动处理。
+        /// 主键：不设为自增，不自动处理。
         /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -45,34 +41,24 @@ namespace Office.Work.Platform.Lib
         public Member Member { get; set; }
 
         /// <summary>
-        /// 姓名
+        /// 考核年份
+        /// </summary>
+        [Required, Column(TypeName = "varchar(10)")]
+        public string Year
+        {
+            get { return _Year; }
+            set { _Year = value; OnPropertyChanged(); }
+        }
+        /// <summary>
+        /// 考核结果
         /// </summary>
         [Required, Column(TypeName = "varchar(20)")]
-        public string Name { get { return _Name; } set { _Name = value; OnPropertyChanged(); } }
-        /// <summary>
-        /// 关系
-        /// </summary>
-        [Required, Column(TypeName = "varchar(50)")]
-        public string Relation { get { return _Relation; } set { _Relation = value; OnPropertyChanged(); } }
-        /// <summary>
-        /// 工作单位
-        /// </summary>
-        [Column(TypeName = "varchar(50)")]
-        public string UnitName { get { return _UnitName; } set { _UnitName = value; OnPropertyChanged(); } }
-        /// <summary>
-        /// 职务
-        /// </summary>
-        [Column(TypeName = "varchar(50)")]
-        public string Role { get { return _Role; } set { _Role = value; OnPropertyChanged(); } }
-
-        /// <summary>
-        /// 人员排序
-        /// </summary>
-        public int OrderIndex
+        public string Result
         {
-            get { return _OrderIndex; }
-            set { _OrderIndex = value; OnPropertyChanged(); }
+            get { return _Result; }
+            set { _Result = value; OnPropertyChanged(); }
         }
+
         /// <summary>
         /// 更新日期
         /// </summary>
@@ -95,11 +81,15 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         [Column(TypeName = "varchar(500)")]
         public string Remark { get { return _Remark; } set { _Remark = value; OnPropertyChanged(); } }
+
         /// <summary>
-        /// 主要社会关系
+        /// 考核结果种类
         /// </summary>
         [NotMapped]
-        public string[] RelationArr { get; set; }
+        public string[] AppraiseTypeArr { get; set; }
+
+       
+
         #region 事件
         /// <summary>
         /// 属性改变事件
@@ -111,9 +101,9 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 构造函数
         /// </summary>
-        public MemberRelations()
+        public MemberAppraise()
         {
-            RelationArr = new string[] { "父亲", "母亲", "姐妹", "兄弟", "儿子", "女儿", "其他关系" };
+            AppraiseTypeArr = new string[] { "优秀", "合格", "基本合格","不合格" };
         }
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
