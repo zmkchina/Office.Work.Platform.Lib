@@ -1,7 +1,7 @@
 ﻿namespace Office.Work.Platform.Lib
 {
     /// <summary>
-    /// 职工临时待遇查询条件类
+    /// 员工社会关系查询条件类
     /// </summary>
     public class MemberRelationsSearch
     {

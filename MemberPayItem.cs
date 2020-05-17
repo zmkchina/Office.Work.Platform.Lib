@@ -103,18 +103,14 @@ namespace Office.Work.Platform.Lib
         public int OrderIndex { get { return _OrderIndex; } set { _OrderIndex = value; OnPropertyChanged(); } }
 
 
-        #region 事件
         /// <summary>
         /// 属性改变事件
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
 
-        #region 方法
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        #endregion
     }
 }

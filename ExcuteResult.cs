@@ -33,22 +33,27 @@
             Tag = p_tag;
             Caption = p_caption;
         }
+
         /// <summary>
         /// 执行结果状态码（0:成功,1出错，）
         /// </summary>
         public int State { get; set; }
+
         /// <summary>
         /// 执行结果信息
         /// </summary>
         public string Msg { get; set; }
+
         /// <summary>
         /// 执行结果信息标题
         /// </summary>
         public string Caption { get; set; }
+
         /// <summary>
         /// 需要返回的ApiUrl
         /// </summary>
         public string ApiUrl { get; set; }
+
         /// <summary>
         /// 额外数据
         /// </summary>

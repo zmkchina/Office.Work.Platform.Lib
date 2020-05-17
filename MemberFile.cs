@@ -11,7 +11,6 @@ namespace Office.Work.Platform.Lib
     /// </summary>
     public class MemberFile : INotifyPropertyChanged
     {
-        #region 字段
         private string _Id;
         private string _Name;
         private string _Describe;
@@ -27,9 +26,7 @@ namespace Office.Work.Platform.Lib
         private string _FileNumber;
         private string _CanReadUserIds;
         private string _CanDelte;
-        #endregion
 
-        #region 属性
         /// <summary>
         /// 文件ID，与物理磁盘上的文件名称对应
         /// </summary>
@@ -183,20 +180,15 @@ namespace Office.Work.Platform.Lib
             set { _CanDelte = value; OnPropertyChanged(); }
         }
 
-        #endregion
 
-        #region 事件
         /// <summary>
         /// 属性改变事件
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
 
-        #region 方法
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        #endregion
     }
 }

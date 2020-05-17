@@ -8,7 +8,6 @@ namespace Office.Work.Platform.Lib
     public class MemberFileSearch
     {
 
-        #region 属性
         /// <summary>
         /// 文件ID，与物理磁盘上的文件名称对应
         /// </summary>
@@ -65,8 +64,6 @@ namespace Office.Work.Platform.Lib
         /// 多字段查询，查询文件名称及文件描述
         /// </summary>
         public string SearchNameOrDesc { get; set; }
-
-        #endregion
 
     }
 }

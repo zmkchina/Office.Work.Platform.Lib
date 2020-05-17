@@ -24,6 +24,7 @@ namespace Office.Work.Platform.Lib
             var secondBody = ParameterRebinder.ReplaceParameters(map, second.Body);
             return Expression.Lambda<T>(merge(first.Body, secondBody), first.Parameters);
         }
+
         /// <summary>
         /// Expression类的扩展方法。添加 与（并且）关系表达式
         /// </summary>
@@ -35,6 +36,7 @@ namespace Office.Work.Platform.Lib
         {
             return first.ComposeLambda(second, Expression.And);
         }
+
         /// <summary>
         /// Expression类的扩展方法。添加 或（或者）关系表达式
         /// </summary>
@@ -46,6 +48,7 @@ namespace Office.Work.Platform.Lib
         {
             return first.ComposeLambda(second, Expression.Or);
         }
+
         /// <summary>
         /// 内部类，用于处理参数，继承 ExpressionVisitor 类
         /// </summary>

@@ -75,6 +75,7 @@ namespace Office.Work.Platform.Lib
             get { return _InCardinality; }
             set { _InCardinality = value; OnPropertyChanged(); }
         }
+
         /// <summary>
         /// 生成打印表格时放在哪个表中：月度工资表、月度补贴表、其他待遇表
         /// </summary>
@@ -84,6 +85,7 @@ namespace Office.Work.Platform.Lib
             get { return _InTableType; }
             set { _InTableType = value; OnPropertyChanged(); }
         }
+
         /// <summary>
         /// 该项目是发放待遇还是扣除待遇:发放、扣除
         /// </summary>
@@ -93,11 +95,13 @@ namespace Office.Work.Platform.Lib
             get { return _AddOrCut; }
             set { _AddOrCut = value; OnPropertyChanged(); }
         }
+
         /// <summary>
         /// 金额
         /// </summary>
         [Required, Column(TypeName = "float(10,2)")]
         public float Amount { get { return _Amount; } set { _Amount = value; OnPropertyChanged(); } }
+
         /// <summary>
         /// 发放年份
         /// </summary>
@@ -114,6 +118,7 @@ namespace Office.Work.Platform.Lib
             get { return _PayMonth; }
             set { _PayMonth = value; OnPropertyChanged(); }
         }
+
         /// <summary>
         /// 发放单位
         /// </summary>
@@ -127,10 +132,12 @@ namespace Office.Work.Platform.Lib
         /// 内部人员排序(此字段值来源于Member表）
         /// </summary>
         public int MemberIndex { get { return _MemberIndex; } set { _MemberIndex = value; OnPropertyChanged(); } }
+
         /// <summary>
         /// 发放项目排序(此字段值来源于MemberPayItem表）
         /// </summary>
         public int OrderIndex { get { return _OrderIndex; } set { _OrderIndex = value; OnPropertyChanged(); } }
+
         /// <summary>
         /// 更新日期
         /// </summary>
@@ -139,6 +146,7 @@ namespace Office.Work.Platform.Lib
             get { return _UpDateTime; }
             set { _UpDateTime = value; OnPropertyChanged(); }
         }
+
         /// <summary>
         /// 操作人员ID
         /// </summary>
@@ -148,6 +156,7 @@ namespace Office.Work.Platform.Lib
             get { return _UserId; }
             set { _UserId = value; OnPropertyChanged(); }
         }
+
         /// <summary>
         /// 备注
         /// </summary>

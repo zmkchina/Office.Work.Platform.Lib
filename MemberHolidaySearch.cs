@@ -6,7 +6,6 @@
     public class MemberHolidaySearch
     {
 
-        #region 属性
         /// <summary>
         /// 记录Id号
         /// </summary>
@@ -30,8 +29,6 @@
         /// </summary>
         public string UserId { get; set; }
 
-
-        #endregion
 
     }
 }

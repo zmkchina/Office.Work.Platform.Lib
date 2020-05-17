@@ -45,7 +45,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 备忘内容
         /// </summary>
-        [Required, Column(TypeName = "mediumblob")]
+        [Required, Column(TypeName = "longblob")]
         public string Content
         {
             get { return _Content; }
@@ -54,7 +54,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 备忘内容，纯文本
         /// </summary>
-        [Column(TypeName = "mediumtext")]
+        [Column(TypeName = "longtext")]
         public string TextContent
         {
             get { return _TextContent; }

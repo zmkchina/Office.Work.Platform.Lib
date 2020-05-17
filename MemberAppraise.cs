@@ -28,6 +28,7 @@ namespace Office.Work.Platform.Lib
             get { return _Id; }
             set { _Id = value; OnPropertyChanged(); }
         }
+
         /// <summary>
         /// 外键
         /// </summary>
@@ -48,6 +49,7 @@ namespace Office.Work.Platform.Lib
             get { return _Year; }
             set { _Year = value; OnPropertyChanged(); }
         }
+
         /// <summary>
         /// 考核结果
         /// </summary>
@@ -66,6 +68,7 @@ namespace Office.Work.Platform.Lib
             get { return _UpDateTime; }
             set { _UpDateTime = value; OnPropertyChanged(); }
         }
+
         /// <summary>
         /// 操作人员ID
         /// </summary>
@@ -75,6 +78,7 @@ namespace Office.Work.Platform.Lib
             get { return _UserId; }
             set { _UserId = value; OnPropertyChanged(); }
         }
+
         /// <summary>
         /// 备注
         /// </summary>
@@ -87,16 +91,11 @@ namespace Office.Work.Platform.Lib
         [NotMapped]
         public string[] AppraiseTypeArr { get; set; }
 
-       
-
-        #region 事件
         /// <summary>
         /// 属性改变事件
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
 
-        #region 方法
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -108,6 +107,5 @@ namespace Office.Work.Platform.Lib
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        #endregion
     }
 }

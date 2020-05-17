@@ -280,14 +280,12 @@ namespace Office.Work.Platform.Lib
             set { _UserId = value; OnPropertyChanged(); }
 
         }
-        #region 事件
+
         /// <summary>
         /// 属性改变事件
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
 
-        #region 方法
         /// <summary>
         /// 绑定通知机制
         /// </summary>
@@ -296,6 +294,5 @@ namespace Office.Work.Platform.Lib
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        #endregion
     }
 }

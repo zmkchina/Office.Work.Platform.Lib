@@ -3,7 +3,7 @@
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
-    /// 单位员工类
+    /// 单位员工信息查询类
     /// </summary>
     public class MemberPaySearch
     {
@@ -31,6 +31,7 @@ namespace Office.Work.Platform.Lib
         /// 发生月份
         /// </summary>
         public int PayMonth { get; set; }
+
         /// <summary>
         /// 发放单位名称
         /// </summary>
@@ -40,10 +41,12 @@ namespace Office.Work.Platform.Lib
         /// 备注
         /// </summary>
         public string Remark { get; set; }
+
         /// <summary>
         /// 更新日期
         /// </summary>
         public DateTime UpDateTime { get; set; }
+
         /// <summary>
         /// 操作人员ID
         /// </summary>

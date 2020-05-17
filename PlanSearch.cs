@@ -84,7 +84,6 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 多字段查询 
         /// </summary>
-
         public string KeysInMultiple { get; set; }
     }
 }

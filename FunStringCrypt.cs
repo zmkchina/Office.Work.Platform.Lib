@@ -40,6 +40,7 @@ namespace Office.Work.Platform.Lib
             sw.Flush();
             return Convert.ToBase64String(ms.GetBuffer(), 0, (int)ms.Length);
         }
+
         /// <summary>
         /// 按指定键值进行解密
         /// </summary>

@@ -85,18 +85,14 @@ namespace Office.Work.Platform.Lib
         [Column(TypeName = "varchar(500)")]
         public string Remark { get { return _Remark; } set { _Remark = value; OnPropertyChanged(); } }
 
-        #region 事件
         /// <summary>
         /// 属性改变事件
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
 
-        #region 方法
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        #endregion
     }
 }

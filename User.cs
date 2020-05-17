@@ -30,6 +30,7 @@ namespace Office.Work.Platform.Lib
             get { return _Id; }
             set { _Id = value; OnPropertyChanged(); }
         }
+
         /// <summary>
         /// 登陆用户的密码
         /// </summary>
@@ -39,6 +40,7 @@ namespace Office.Work.Platform.Lib
             get { return _PassWord; }
             set { _PassWord = value; OnPropertyChanged(); }
         }
+
         /// <summary>
         /// 登陆用户的姓名
         /// </summary>
@@ -58,6 +60,7 @@ namespace Office.Work.Platform.Lib
             get { return _Post; }
             set { _Post = value; OnPropertyChanged(); }
         }
+
         /// <summary>
         /// 登陆用户的单位
         /// </summary>
@@ -67,6 +70,7 @@ namespace Office.Work.Platform.Lib
             get { return _UnitName; }
             set { _UnitName = value; OnPropertyChanged(); }
         }
+
         /// <summary>
         /// 登陆用户单位的简称
         /// </summary>
@@ -76,6 +80,7 @@ namespace Office.Work.Platform.Lib
             get { return _UnitShortName; }
             set { _UnitShortName = value; OnPropertyChanged(); }
         }
+
         /// <summary>
         /// 登陆用户的部门
         /// </summary>
@@ -85,6 +90,7 @@ namespace Office.Work.Platform.Lib
             get { return _Department; }
             set { _Department = value; OnPropertyChanged(); }
         }
+
         /// <summary>
         /// 登陆用户的操作权限
         /// </summary>
@@ -94,6 +100,7 @@ namespace Office.Work.Platform.Lib
             get { return _Grants; }
             set { _Grants = value; OnPropertyChanged(); }
         }
+
         /// <summary>
         /// 用户排序
         /// </summary>
@@ -103,19 +110,14 @@ namespace Office.Work.Platform.Lib
             set { _OrderIndex = value; OnPropertyChanged(); }
         }
 
-        #region 事件
         /// <summary>
         /// 属性改变事件
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
-
-        #region 方法
 
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        #endregion
     }
 }
