@@ -48,6 +48,12 @@ namespace Office.Work.Platform.Lib
         public string PlanId { get; set; }
 
         /// <summary>
+        ///外键：指向计划实体
+        /// </summary>
+
+        public Lib.Plan Plan { get; set; }
+
+        /// <summary>
         /// 文件内容类型(一般应当于其所属的计划相一致，不一致其实也无所谓)。
         /// </summary>
         [Column(TypeName = "varchar(200)")]

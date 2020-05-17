@@ -38,10 +38,17 @@ namespace Office.Work.Platform.Lib
             set { _Id = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// 工作人员Id
+        /// 外键:关联员工表 Id
         /// </summary>
         [ForeignKey("PayFkey"), Required, Column(TypeName = "varchar(20)")]
         public string MemberId { get; set; }
+
+        /// <summary>
+        /// 外键指向的实体。
+        /// 该属性必须有，否则在生成数据库时，将无法产生外键，即使上面设置了外键（PayFKey)。
+        /// </summary>
+        public Member Member { get; set; }
+
         /// <summary>
         /// 工作人员姓名
         /// </summary>

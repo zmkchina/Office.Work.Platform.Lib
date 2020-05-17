@@ -13,7 +13,10 @@ namespace Office.Work.Platform.Lib
         /// 文件ID，与物理磁盘上的文件名称对应
         /// </summary>
         public string Id { get; set; }
-
+        /// <summary>
+        /// 文件所属员工的单位名称。
+        /// </summary>
+        public string MemberUnitName { get; set; }
         /// <summary>
         /// 文件名称。
         /// </summary>

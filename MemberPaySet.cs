@@ -15,6 +15,29 @@ namespace Office.Work.Platform.Lib
         private string _UserId;
         private string _PayUnitName;
         private string _PayItemNames;
+        private string _Id;
+
+        /// <summary>
+        /// 主键：设为自增。
+        /// </summary>
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public string Id
+        {
+            get { return _Id; }
+            set { _Id = value; OnPropertyChanged(); }
+        }
+
+        /// <summary>
+        /// 外键:关联员工表 Id
+        /// </summary>
+        [ForeignKey("PaySetFkey"), Required, Column(TypeName = "varchar(20)")]
+        public string MemberId { get; set; }
+
+        /// <summary>
+        /// 外键指向的实体。
+        /// </summary>
+        public Member Member { get; set; }
 
         /// <summary>
         /// 发放单位名称：表明是哪个单位的待遇发放配置信息
@@ -25,13 +48,6 @@ namespace Office.Work.Platform.Lib
             get { return _PayUnitName; }
             set { _PayUnitName = value; OnPropertyChanged(); }
         }
-        /// <summary>
-        /// 主键，同时也是外键（指向员工信息，表明该条配置是对哪个用户的）。
-        /// </summary>
-        [Key]
-        [ForeignKey("PaySetFkey"), Required, Column(TypeName = "varchar(20)")]
-        public string MemberId { get; set; }
-
 
         /// <summary>
         /// 发放哪些待遇项目，项目之间用,号分隔

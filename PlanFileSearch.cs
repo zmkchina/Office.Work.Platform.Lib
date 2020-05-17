@@ -15,6 +15,11 @@ namespace Office.Work.Platform.Lib
         public string Id { get; set; }
 
         /// <summary>
+        /// 文件所属计划的单位名称。
+        /// </summary>
+        public string PlanUnitName { get; set; }
+
+        /// <summary>
         /// 文件名称。
         /// </summary>
         public string Name { get; set; }

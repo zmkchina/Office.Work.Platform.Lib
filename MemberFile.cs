@@ -48,6 +48,12 @@ namespace Office.Work.Platform.Lib
         public string MemberId { get; set; }
 
         /// <summary>
+        ///外键：指向员工实体
+        /// </summary>
+
+        public Lib.Member Member { get; set; }
+
+        /// <summary>
         /// 文件内容类型(根据员工的项目分类)。
         /// </summary>
         [Column(TypeName = "varchar(200)")]

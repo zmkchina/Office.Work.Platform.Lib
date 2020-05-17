@@ -33,7 +33,7 @@ namespace Office.Work.Platform.Lib
             set { _Id = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// 外键
+        /// 外键:关联员工表 Id
         /// </summary>
         [ForeignKey("PPunishFkey"), Required, Column(TypeName = "varchar(20)")]
         public string MemberId { get; set; }
