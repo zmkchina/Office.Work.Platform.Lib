@@ -35,8 +35,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 外键
         /// </summary>
-        [ForeignKey("mid_mpm")]
-        [Required, Column(TypeName = "varchar(20)")]
+        [ForeignKey("RelationsFkey"), Required, Column(TypeName = "varchar(20)")]
         public string MemberId { get; set; }
 
         /// <summary>

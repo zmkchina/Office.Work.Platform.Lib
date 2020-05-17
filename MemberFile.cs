@@ -9,7 +9,7 @@ namespace Office.Work.Platform.Lib
     /// <summary>
     /// 附件（文件）类
     /// </summary>
-    public class FileDoc : INotifyPropertyChanged
+    public class MemberFile : INotifyPropertyChanged
     {
         #region 字段
         private string _Id;
@@ -26,7 +26,6 @@ namespace Office.Work.Platform.Lib
         private DateTime _Pubdate = DateTime.Now;
         private string _FileNumber;
         private string _CanReadUserIds;
-        private string _OwnerType;
         private string _CanDelte;
         #endregion
 
@@ -41,24 +40,15 @@ namespace Office.Work.Platform.Lib
             get { return _Id; }
             set { _Id = value; OnPropertyChanged(); }
         }
-        /// <summary>
-        /// 文件所有者分类：计划附件、人事附件、无所有者（单独上传的）
-        /// </summary>
-        [Column(TypeName = "varchar(10)")]
-        public string OwnerType
-        {
-            get { return _OwnerType; }
-            set { _OwnerType = value; OnPropertyChanged(); }
-        }
 
         /// <summary>
-        /// 该文件所对应所有者Id，对“无所有者”的文件此值始终为000
+        ///外键：指向员工信息
         /// </summary>
-        [Required, Column(TypeName = "varchar(20)")]
-        public string OwnerId { get; set; }
+        [ForeignKey("MemberFileFkey"), Required, Column(TypeName = "varchar(20)")]
+        public string MemberId { get; set; }
 
         /// <summary>
-        /// 文件内容类型(一般应当于其所属的计划相一致，不一致其实也无所谓)。
+        /// 文件内容类型(根据员工的项目分类)。
         /// </summary>
         [Column(TypeName = "varchar(200)")]
         public string ContentType

@@ -29,7 +29,7 @@ namespace Office.Work.Platform.Lib
         /// 主键，同时也是外键（指向员工信息，表明该条配置是对哪个用户的）。
         /// </summary>
         [Key]
-        [Required, Column(TypeName = "varchar(20)")]
+        [ForeignKey("PaySetFkey"), Required, Column(TypeName = "varchar(20)")]
         public string MemberId { get; set; }
 
 

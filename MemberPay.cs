@@ -40,7 +40,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 工作人员Id
         /// </summary>
-        [Required, Column(TypeName = "varchar(20)")]
+        [ForeignKey("PayFkey"), Required, Column(TypeName = "varchar(20)")]
         public string MemberId { get; set; }
         /// <summary>
         /// 工作人员姓名

@@ -5,7 +5,7 @@ namespace Office.Work.Platform.Lib
     /// <summary>
     /// 附件（文件）查询条件类
     /// </summary>
-    public class FileDocSearch
+    public class PlanFileSearch
     {
 
         #region 属性
@@ -23,13 +23,9 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         public string ExtendName { get; set; }
         /// <summary>
-        /// 拥有者类型：计划附件、人事附件、无所有者（单独上传的）
-        /// </summary>
-        public string OwnerType { get; set; }
-        /// <summary>
         /// 拥有者Id号
         /// </summary>
-        public string OwnerId { get; set; }
+        public string PlanId { get; set; }
         /// <summary>
         /// 文件分类：纪检监察、新闻宣传、组织人事、劳动工资、党的建设、总支议事
         /// </summary>
