@@ -21,7 +21,7 @@ namespace Office.Work.Platform.Lib
         /// 主键：设为自增。
         /// </summary>
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None),Required, Column(TypeName = "varchar(20)")]
         public string Id
         {
             get { return _Id; }
