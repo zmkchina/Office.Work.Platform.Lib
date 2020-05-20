@@ -22,6 +22,10 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         public string Name { get; set; }
         /// <summary>
+        /// 文件编号
+        /// </summary>
+        public string FileNumber { get; set; }
+        /// <summary>
         /// 文件的扩展名
         /// </summary>
         public string ExtendName { get; set; }

@@ -17,9 +17,13 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         public string MemberUnitName { get; set; }
         /// <summary>
-        /// 文件名称。
+        /// 文件名称
         /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// 文件编号
+        /// </summary>
+        public string FileNumber { get; set; }
         /// <summary>
         /// 文件的扩展名
         /// </summary>

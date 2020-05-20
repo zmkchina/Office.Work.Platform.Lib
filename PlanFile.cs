@@ -71,6 +71,10 @@ namespace Office.Work.Platform.Lib
         }
 
         /// <summary>
+        /// 文件编号
+        /// </summary>
+        public string FileNumber { get; set; }
+        /// <summary>
         /// 发文单位。
         /// </summary>
         [Column(TypeName = "varchar(500)")]
@@ -87,15 +91,6 @@ namespace Office.Work.Platform.Lib
         {
             get { return _CanReadUserIds; }
             set { _CanReadUserIds = value; OnPropertyChanged(); }
-        }
-        /// <summary>
-        /// 文件编号。
-        /// </summary>
-        [Column(TypeName = "varchar(500)")]
-        public string FileNumber
-        {
-            get { return _FileNumber; }
-            set { _FileNumber = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 成文时间。
