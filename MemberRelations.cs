@@ -21,6 +21,8 @@ namespace Office.Work.Platform.Lib
         private string _Relation;
         private string _Name;
         private int _OrderIndex;
+        private DateTime _Birthday;
+        private string _PoliticalStatus;
 
         /// <summary>
         ///主键：不设为自增，不自动处理。
@@ -53,6 +55,20 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         [Required, Column(TypeName = "varchar(50)")]
         public string Relation { get { return _Relation; } set { _Relation = value; OnPropertyChanged(); } }
+
+        /// <summary>
+        /// 出生日期
+        /// </summary>
+        [Description("出生日期")]
+        public DateTime Birthday { get { return _Birthday; } set { _Birthday = value; OnPropertyChanged(); } }
+
+        /// <summary>
+        /// 政治面貌
+        /// </summary>
+        [Description("政治面貌")]
+        [Column(TypeName = "varchar(20)")]
+        public string PoliticalStatus { get { return _PoliticalStatus; } set { _PoliticalStatus = value; OnPropertyChanged(); } }
+
         /// <summary>
         /// 工作单位
         /// </summary>
@@ -99,25 +115,22 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         [NotMapped]
         public string[] RelationArr { get; set; }
-        #region 事件
+
         /// <summary>
         /// 属性改变事件
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
 
-        #region 方法
         /// <summary>
         /// 构造函数
         /// </summary>
         public MemberRelations()
         {
-            RelationArr = new string[] { "父亲", "母亲", "姐妹", "兄弟", "儿子", "女儿", "其他关系" };
+            RelationArr = new string[] { "父亲", "母亲", "岳父", "岳母", "配偶", "女儿", "儿子" };
         }
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        #endregion
     }
 }

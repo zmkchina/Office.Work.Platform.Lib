@@ -1,12 +1,19 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
     /// 附件（文件）查询条件类
     /// </summary>
-    public class PlanFileSearch
+    public class PlanFileSearch : INotifyPropertyChanged
     {
+        private int _PageCount;
+        private int _PageIndex;
+        private int _RecordCount;
+        private int _PageSize;
+
         /// <summary>
         /// 文件ID，与物理磁盘上的文件名称对应
         /// </summary>
@@ -70,5 +77,87 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         public string SearchNameOrDesc { get; set; }
 
+        /// <summary>
+        /// 总记录数
+        /// </summary>
+        public int RecordCount
+        {
+            get
+            {
+                return _RecordCount;
+            }
+            set
+            {
+                _RecordCount = value;
+                PageCount = (RecordCount % PageSize) > 0 ? (RecordCount / PageSize) + 1 : RecordCount / PageSize;
+                OnPropertyChanged();
+            }
+        }
+
+
+
+        /// <summary>
+        /// 总页数
+        /// </summary>
+        public int PageCount
+        {
+            get
+            {
+                return _PageCount;
+            }
+            set
+            {
+                _PageCount = value; OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// 当前页号
+        /// </summary>
+        public int PageIndex
+        {
+            get
+            {
+                return _PageIndex;
+            }
+            set
+            {
+                _PageIndex = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// 每页记录条数
+        /// </summary>
+        public int PageSize
+        {
+            get
+            {
+                return _PageSize;
+            }
+            set
+            {
+                _PageSize = value;
+                PageCount = (RecordCount % PageSize) > 0 ? (RecordCount / PageSize) + 1 : RecordCount / PageSize;
+                OnPropertyChanged();
+            }
+        }
+
+        public PlanFileSearch()
+        {
+            PageSize = 10;
+            PageIndex = 1;
+        }
+
+        /// <summary>
+        /// 属性改变事件
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

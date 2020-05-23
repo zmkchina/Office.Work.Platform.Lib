@@ -73,7 +73,11 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 文件编号
         /// </summary>
-        public string FileNumber { get; set; }
+        public string FileNumber
+        {
+            get { return _FileNumber; }
+            set { _FileNumber = value; OnPropertyChanged(); }
+        }
         /// <summary>
         /// 发文单位。
         /// </summary>
