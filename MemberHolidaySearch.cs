@@ -1,7 +1,7 @@
 ﻿namespace Office.Work.Platform.Lib
 {
     /// <summary>
-    /// 职工临时待遇查询条件类
+    /// 职工休假信息查询条件类
     /// </summary>
     public class MemberHolidaySearch
     {
@@ -16,6 +16,11 @@
         /// </summary>
         public string MemberId { get; set; }
 
+        /// <summary>
+        /// 假期开始时间年份
+        /// </summary>
+        public int OccurYear { get; set; }
+        
         /// <summary>
         /// 备注
         /// </summary>

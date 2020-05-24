@@ -11,7 +11,6 @@ namespace Office.Work.Platform.Lib
     /// </summary>
     public class Note : INotifyPropertyChanged
     {
-        #region 字段
         private string _Id;
         private string _Caption;
         private string _Content;
@@ -19,9 +18,7 @@ namespace Office.Work.Platform.Lib
         private string _UserId;
         private string _CanReadUserIds;
         private string _TextContent;
-        #endregion
-
-        #region 属性
+        
         /// <summary>
         /// 主键：不设为自增，不自动处理。
         /// </summary>
@@ -86,20 +83,15 @@ namespace Office.Work.Platform.Lib
             get { return _UpDateTime; }
             set { _UpDateTime = value; OnPropertyChanged(); }
         }
-        #endregion
-
-        #region 事件
+       
         /// <summary>
         /// 属性改变事件
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
-
-        #region 方法
+      
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        #endregion
     }
 }

@@ -110,11 +110,6 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         [Column(TypeName = "varchar(500)")]
         public string Remark { get { return _Remark; } set { _Remark = value; OnPropertyChanged(); } }
-        /// <summary>
-        /// 主要社会关系
-        /// </summary>
-        [NotMapped]
-        public string[] RelationArr { get; set; }
 
         /// <summary>
         /// 属性改变事件
@@ -126,7 +121,6 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         public MemberRelations()
         {
-            RelationArr = new string[] { "父亲", "母亲", "岳父", "岳母", "配偶", "女儿", "儿子" };
         }
         private void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
