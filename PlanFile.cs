@@ -1,15 +1,13 @@
 ﻿using System;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.CompilerServices;
 
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
     /// 附件（文件）类
     /// </summary>
-    public class PlanFile : INotifyPropertyChanged
+    public class PlanFile : ModelBaseClass
     {
         private string _Id;
         private string _Name;
@@ -47,13 +45,12 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         ///外键：指向计划实体
         /// </summary>
-
         public Lib.Plan Plan { get; set; }
 
         /// <summary>
         /// 文件内容类型(一般应当于其所属的计划相一致，不一致其实也无所谓)。
         /// </summary>
-        [Column(TypeName = "varchar(200)")]
+        [Required, Column(TypeName = "varchar(200)")]
         public string ContentType
         {
             get { return _ContentType; }
@@ -63,7 +60,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 文件名称。
         /// </summary>
-        [Column(TypeName = "varchar(200)")]
+        [Required, Column(TypeName = "varchar(200)")]
         public string Name
         {
             get { return _Name; }
@@ -99,6 +96,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 成文时间。
         /// </summary>
+        [Required]
         public DateTime Pubdate
         {
             get { return _Pubdate; }
@@ -127,7 +125,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 上传该文件的用户ID号
         /// </summary>
-        [Column(TypeName = "varchar(20)")]
+        [Required, Column(TypeName = "varchar(20)")]
         public string UserId
         {
             get { return _UserId; }
@@ -177,17 +175,6 @@ namespace Office.Work.Platform.Lib
         {
             get { return _CanDelte; }
             set { _CanDelte = value; OnPropertyChanged(); }
-        }
-
-
-        /// <summary>
-        /// 属性改变事件
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

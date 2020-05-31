@@ -9,7 +9,7 @@ namespace Office.Work.Platform.Lib
     /// <summary>
     /// 附件（文件）类
     /// </summary>
-    public class MemberFile : INotifyPropertyChanged
+    public class MemberFile : ModelBaseClass
     {
         private string _Id;
         private string _Name;
@@ -178,17 +178,6 @@ namespace Office.Work.Platform.Lib
         {
             get { return _CanDelte; }
             set { _CanDelte = value; OnPropertyChanged(); }
-        }
-
-
-        /// <summary>
-        /// 属性改变事件
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

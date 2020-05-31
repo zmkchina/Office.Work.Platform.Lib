@@ -1,15 +1,13 @@
 ﻿using System;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.CompilerServices;
 
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
     /// 单位员工奖惩情况类
     /// </summary>
-    public class MemberPrizePunish : INotifyPropertyChanged
+    public class MemberPrizePunish : ModelBaseClass
     {
         private string _Id;
         private DateTime _UpDateTime = DateTime.Now;
@@ -99,21 +97,6 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         [Column(TypeName = "varchar(500)")]
         public string Remark { get { return _Remark; } set { _Remark = value; OnPropertyChanged(); } }
-
-        /// <summary>
-        /// 属性改变事件
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-        
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        public MemberPrizePunish()
-        {
-        }
-        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+       
     }
 }

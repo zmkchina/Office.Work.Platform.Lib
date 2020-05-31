@@ -1,15 +1,13 @@
 ﻿using System;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.CompilerServices;
 
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
     /// 单位员工休假情况
     /// </summary>
-    public class MemberHoliday : INotifyPropertyChanged
+    public class MemberHoliday : ModelBaseClass
     {
 
         private string _Id;
@@ -101,24 +99,9 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 假期类型
         /// </summary>
-        [NotMapped]
-        public string[] HolidayTypeArr { get; set; }
-
-        /// <summary>
-        /// 属性改变事件
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// 假期类型
-        /// </summary>
         public MemberHoliday()
         {
-            HolidayTypeArr = new string[] { "事假", "病假", "调休假", "年休假", "婚假", "产假", "小产假", "陪产假", "探亲假", "丧假", "其他假期" };
         }
-        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+       
     }
 }

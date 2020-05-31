@@ -1,16 +1,13 @@
 ﻿using System;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Reflection;
-using System.Runtime.CompilerServices;
 
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
     /// 本类定义员工绩效考核信息
     /// </summary>
-    public class MemberScore : INotifyPropertyChanged
+    public class MemberScore : ModelBaseClass
     {
         private string _Id;
         private string _Remark;
@@ -49,7 +46,14 @@ namespace Office.Work.Platform.Lib
         /// 得分情由：基础分值、发表文章、获得表彰、迟到早退、党政纪处理、党政纪处分、其他加分情形、其他扣分情形
         /// </summary>
         [Required(AllowEmptyStrings = false, ErrorMessage = "得分类型必须输入"), Column(TypeName = "varchar(30)")]
-        public string ScoreType { get { return _ScoreType; } set { _ScoreType = value; OnPropertyChanged(); } }
+        public string ScoreType
+        {
+            get { return _ScoreType; }
+            set
+            {
+                _ScoreType = value; OnPropertyChanged();
+            }
+        }
 
         /// <summary>
         /// 具体分值
@@ -64,6 +68,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 发生时间
         /// </summary>
+        [Required]
         public DateTime OccurDate
         {
             get { return _OccurDate; }
@@ -112,45 +117,6 @@ namespace Office.Work.Platform.Lib
         {
             get { return _UpDateTime; }
             set { _UpDateTime = value; OnPropertyChanged(); }
-        }
-        /// <summary>
-        /// 检查模型有效性。
-        /// </summary>
-        /// <returns></returns>
-        public bool ModelIsValid()
-        {
-            PropertyInfo[] propertyInfos = this.GetType().GetProperties();
-            foreach (var property in propertyInfos)
-            {
-                //获取当前属性是否具被“[Required]”属性修饰。
-                object[] objs = property.GetCustomAttributes(typeof(RequiredAttribute), true);
-                if (objs.Length > 0)
-                {
-                    if (property.GetValue(this) == null || string.IsNullOrWhiteSpace(property.GetValue(this).ToString()))
-                    {
-                        return false;
-                    }
-                    if (property.Name.Equals("Score"))
-                    {
-                        if (int.TryParse(property.GetValue(this).ToString(), out int intScore))
-                        {
-                            if (intScore == 0) { return false; }
-                        }
-                        else
-                        { return false; }
-                    }
-                }
-            }
-            return true;
-        }
-        /// <summary>
-        /// 属性改变事件
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

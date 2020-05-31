@@ -1,13 +1,11 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
     /// 本类用户从客户端查询Plan时的参数类
     /// </summary>
-    public class PlanSearch : INotifyPropertyChanged
+    public class PlanSearch : ModelBaseClass
     {
         private int _PageCount;
         private int _PageIndex;
@@ -161,16 +159,6 @@ namespace Office.Work.Platform.Lib
         {
             PageSize = 10;
             PageIndex = 1;
-        }
-
-        /// <summary>
-        /// 属性改变事件
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

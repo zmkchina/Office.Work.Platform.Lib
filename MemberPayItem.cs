@@ -1,15 +1,13 @@
 ﻿using System;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.CompilerServices;
 
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
     /// 本类定义所有待遇发放项目
     /// </summary>
-    public class MemberPayItem : INotifyPropertyChanged
+    public class MemberPayItem : ModelBaseClass
     {
         private string _Name;
         private string _InCardinality;
@@ -20,6 +18,7 @@ namespace Office.Work.Platform.Lib
         private DateTime _UpDateTime;
         private string _UserId;
         private int _OrderIndex;
+        private string _MemberTypes;
 
         /// <summary>
         /// 待遇项目的名称
@@ -69,6 +68,16 @@ namespace Office.Work.Platform.Lib
             get { return _UnitName; }
             set { _UnitName = value; OnPropertyChanged(); }
         }
+        
+        /// <summary>
+        /// 该项目属于哪种性质的人员
+        /// </summary>
+        [Required, Column(TypeName = "varchar(500)")]
+        public string MemberTypes
+        {
+            get { return _MemberTypes; }
+            set { _MemberTypes = value; OnPropertyChanged(); }
+        }
 
         /// <summary>
         /// 具体操作人员
@@ -102,15 +111,5 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         public int OrderIndex { get { return _OrderIndex; } set { _OrderIndex = value; OnPropertyChanged(); } }
 
-
-        /// <summary>
-        /// 属性改变事件
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

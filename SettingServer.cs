@@ -1,21 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.CompilerServices;
 
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
     /// 系统服务器的相关设置（一般只有管理员才能修改）
     /// </summary>
-    public class SettingServer : INotifyPropertyChanged
+    public class SettingServer : ModelBaseClass
     {
-        /// <summary>
-        /// 属性改变事件
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
         private string _WorkContentType;
         private int _IntervalOne;
         private int _IntervalTwo;
@@ -35,6 +28,7 @@ namespace Office.Work.Platform.Lib
         private string _PrizrOrPunishNames;
         private string _Relations;
         private string _MemberScoreTypes;
+        private string _Appraises;
 
         /// <summary>
         /// Id号，就一条记录，没有意义，为使用 efcore设置
@@ -230,6 +224,17 @@ namespace Office.Work.Platform.Lib
             set { _IntervalTwo = value; OnPropertyChanged(); }
         }
 
+        /// <summary>
+        /// 考核结果种类
+        /// </summary>
+        [Required, Column(TypeName = "text")]
+        public string Appraises
+        {
+            get { return _Appraises; }
+            set { _Appraises = value; OnPropertyChanged(); }
+        }
+        
+
         [NotMapped]
         public string[] UnitNameArr
         {
@@ -326,11 +331,17 @@ namespace Office.Work.Platform.Lib
         {
             get { return Relations?.Split(",", StringSplitOptions.RemoveEmptyEntries); }
         }
-        
+
         [NotMapped]
         public string[] MemberScoreTypeArr
         {
             get { return MemberScoreTypes?.Split(",", StringSplitOptions.RemoveEmptyEntries); }
+        }
+
+        [NotMapped]
+        public string[] AppraiseTypeArr
+        {
+            get { return Appraises?.Split(",", StringSplitOptions.RemoveEmptyEntries); }
         }
 
         /// <summary>
@@ -356,22 +367,9 @@ namespace Office.Work.Platform.Lib
             PrizrOrPunishNames = "先进工作者,劳动模范,嘉奖,记功,批评教育,提醒谈话,诫勉谈话,警示谈话,责令检讨,通报批评,政务警告,政务记过,政务记大过,政务降级,政务撤职,政务开除,党内警告,党内严重警告,撤销党内职务,留党察看,开除党籍";
             Relations = "父亲,母亲,岳父,岳母,丈夫,妻子,女儿,儿子";
             MemberScoreTypes = "基础分值,发表文章,获得表彰,迟到早退,党政纪处理,党政纪处分,其他加分情形,其他扣分情形";
+            Appraises = "优秀,合格,基本合格,不合格";
             IntervalOne = 20;
             IntervalTwo = 30;
-        }
-
-        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        /// <summary>
-        /// 返回工作内容类型的List对象
-        /// </summary>
-        /// <returns></returns>
-        public List<string> GetWorkContentTypes()
-        {
-            return new List<string>(WorkContentType.Split(',', StringSplitOptions.RemoveEmptyEntries));
         }
     }
 }

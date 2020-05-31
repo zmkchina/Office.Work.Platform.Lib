@@ -2,14 +2,13 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.CompilerServices;
 
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
     /// 单位员工类
     /// </summary>
-    public class Member : INotifyPropertyChanged
+    public class Member : ModelBaseClass
     {
         private string _Id;
         private string _Name;
@@ -317,20 +316,6 @@ namespace Office.Work.Platform.Lib
             get { return _UserId; }
             set { _UserId = value; OnPropertyChanged(); }
 
-        }
-
-        /// <summary>
-        /// 属性改变事件
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// 绑定通知机制
-        /// </summary>
-        /// <param name="propertyName"></param>
-        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

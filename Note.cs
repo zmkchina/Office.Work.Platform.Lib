@@ -9,7 +9,7 @@ namespace Office.Work.Platform.Lib
     /// <summary>
     /// 工作备忘信息类
     /// </summary>
-    public class Note : INotifyPropertyChanged
+    public class Note : ModelBaseClass
     {
         private string _Id;
         private string _Caption;
@@ -84,14 +84,5 @@ namespace Office.Work.Platform.Lib
             set { _UpDateTime = value; OnPropertyChanged(); }
         }
        
-        /// <summary>
-        /// 属性改变事件
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-      
-        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

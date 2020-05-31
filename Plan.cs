@@ -1,15 +1,13 @@
 ﻿using System;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.CompilerServices;
 
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
     /// 计划类
     /// </summary>
-    public class Plan : INotifyPropertyChanged
+    public class Plan : ModelBaseClass
     {
         private string _Id;
         private string _ReadGrant;
@@ -168,30 +166,6 @@ namespace Office.Work.Platform.Lib
         {
             get { return _UpDateTime; }
             set { _UpDateTime = value; OnPropertyChanged(); }
-        }
-
-        /// <summary>
-        /// 属性改变事件
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-        /// <summary>
-        /// 验证模型是否符合要求。
-        /// </summary>
-        /// <returns></returns>
-        public bool ModelIsValid()
-        {
-            if (string.IsNullOrWhiteSpace(CreateUserId) || string.IsNullOrWhiteSpace(Caption) || string.IsNullOrWhiteSpace(CurrectState)
-                || string.IsNullOrWhiteSpace(Content) || string.IsNullOrWhiteSpace(ContentType) || string.IsNullOrWhiteSpace(ResponsiblePerson)
-                || string.IsNullOrWhiteSpace(Department))
-            {
-                return false;
-            }
-            if (BeginDate > EndDate) { return false; }
-            return true;
-        }
-        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
     }

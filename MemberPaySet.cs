@@ -1,15 +1,13 @@
 ﻿using System;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.CompilerServices;
 
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
     /// 本类定义待遇发放配置信息：为哪些人发，在发放新待遇时从上月复制哪些项目数据。
     /// </summary>
-    public class MemberPaySet : INotifyPropertyChanged
+    public class MemberPaySet : ModelBaseClass
     {
         private DateTime _UpDateTime;
         private string _UserId;
@@ -96,15 +94,6 @@ namespace Office.Work.Platform.Lib
         /// 内部人员排序(不保存到数据库,仅供检索使用）
         /// </summary>
         [NotMapped]
-        public int OrderIndex { get; set; }
-        /// <summary>
-        /// 属性改变事件
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        public int OrderIndex { get; set; }      
     }
 }

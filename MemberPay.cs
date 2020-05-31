@@ -1,15 +1,13 @@
 ﻿using System;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.CompilerServices;
 
 namespace Office.Work.Platform.Lib
 {
     /// <summary>
     /// 本类定义员工发放记录表
     /// </summary>
-    public class MemberPay : INotifyPropertyChanged
+    public class MemberPay : ModelBaseClass
     {
         private string _Id;
         private string _PayName;
@@ -165,16 +163,6 @@ namespace Office.Work.Platform.Lib
         {
             get { return _Remark; }
             set { _Remark = value; OnPropertyChanged(); }
-        }
-
-        /// <summary>
-        /// 属性改变事件
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
