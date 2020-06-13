@@ -60,14 +60,14 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 员工姓名
         /// </summary>
-        [Description("员工姓名")]
+        [Description("姓名")]
         [Required, Column(TypeName = "varchar(10)")]
         public string Name { get { return _Name; } set { _Name = value; OnPropertyChanged(); } }
 
         /// <summary>
         /// 员工性别
         /// </summary>
-        [Description("员工性别")]
+        [Description("性别")]
         [Column(TypeName = "varchar(5)")]
         public string Sex { get { return _Sex; } set { _Sex = value; OnPropertyChanged(); } }
 
@@ -94,12 +94,12 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 健康状况
         /// </summary>
-        [Description("员工性别")]
+        [Description("健康状况")]
         [Column(TypeName = "varchar(30)")]
         public string HealthState { get { return _HealthState; } set { _HealthState = value; OnPropertyChanged(); } }
 
         /// <summary>
-        /// 有何特长
+        /// 个人特长
         /// </summary>
         [Description("个人特长")]
         [Column(TypeName = "varchar(30)")]
@@ -261,7 +261,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 职务:无（所有技术岗人员均无职务，双肩挑除外），办事员、科员、副科长、科长、副处长、处长。
         /// </summary>
-        [Description("职务")]
+        [Description("行政职务")]
         [Column(TypeName = "varchar(20)")]
         public string Post { get { return _Post; } set { _Post = value; OnPropertyChanged(); } }
 
@@ -289,7 +289,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 内部人员排序
         /// </summary>
-        [Description("内部人员排序")]
+        [Description("人员排序")]
         public int OrderIndex { get { return _OrderIndex; } set { _OrderIndex = value; OnPropertyChanged(); } }
 
         /// <summary>
@@ -311,6 +311,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 操作人员ID
         /// </summary>
+        [Description("操作人员")]
         public string UserId
         {
             get { return _UserId; }

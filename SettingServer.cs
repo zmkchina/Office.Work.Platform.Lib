@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -29,6 +30,7 @@ namespace Office.Work.Platform.Lib
         private string _Relations;
         private string _MemberScoreTypes;
         private string _Appraises;
+        private string _PrizrOrPunishGrades;
 
         /// <summary>
         /// Id号，就一条记录，没有意义，为使用 efcore设置
@@ -177,6 +179,16 @@ namespace Office.Work.Platform.Lib
         }
 
         /// <summary>
+        /// 奖惩级别: 县级、市级、省级、国家级
+        /// </summary>
+        [Required, Column(TypeName = "text")]
+        public string PrizrOrPunishGrades
+        {
+            get { return _PrizrOrPunishGrades; }
+            set { _PrizrOrPunishGrades = value; OnPropertyChanged(); }
+        }
+
+        /// <summary>
         /// 奖惩类型具体名称: "先进工作者", "劳动模范", "嘉奖", "记功", "批评教育", "提醒谈话", "诫勉谈话", "警示谈话", "责令检讨", "通报批评", "政务警告", "政务记过", "政务记大过", "政务降级", "政务撤职", "政务开除", "党内警告", "党内严重警告", "撤销党内职务", "留党察看", "开除党籍" 
         /// </summary>
         [Required, Column(TypeName = "text")]
@@ -233,115 +245,121 @@ namespace Office.Work.Platform.Lib
             get { return _Appraises; }
             set { _Appraises = value; OnPropertyChanged(); }
         }
-        
+
 
         [NotMapped]
-        public string[] UnitNameArr
+        public ReadOnlyCollection<string> UnitNameArr
         {
-            get { return UnitNames?.Split(",", StringSplitOptions.RemoveEmptyEntries); }
+            get { return new ReadOnlyCollection<string>(UnitNames?.Split(",", StringSplitOptions.RemoveEmptyEntries)); }
         }
 
         [NotMapped]
-        public string[] DepartmentArr
+        public ReadOnlyCollection<string> DepartmentArr
         {
-            get { return Departments?.Split(",", StringSplitOptions.RemoveEmptyEntries); }
+            get { return new ReadOnlyCollection<string>(Departments?.Split(",", StringSplitOptions.RemoveEmptyEntries)); }
         }
 
         [NotMapped]
-        public string[] WorkContentTypeArr
+        public ReadOnlyCollection<string> WorkContentTypeArr
         {
-            get { return WorkContentType?.Split(",", StringSplitOptions.RemoveEmptyEntries); }
+            get { return new ReadOnlyCollection<string>(WorkContentType?.Split(",", StringSplitOptions.RemoveEmptyEntries)); }
         }
 
         [NotMapped]
-        public string[] HolidayTypeArr
+        public ReadOnlyCollection<string> HolidayTypeArr
         {
-            get { return HolidayTypes?.Split(",", StringSplitOptions.RemoveEmptyEntries); }
+            get { return new ReadOnlyCollection<string>(HolidayTypes?.Split(",", StringSplitOptions.RemoveEmptyEntries)); }
         }
 
         [NotMapped]
-        public string[] PayTableTypeArr
+        public ReadOnlyCollection<string> PayTableTypeArr
         {
-            get { return PayTableTypes?.Split(",", StringSplitOptions.RemoveEmptyEntries); }
+            get { return new ReadOnlyCollection<string>(PayTableTypes?.Split(",", StringSplitOptions.RemoveEmptyEntries)); }
         }
 
         [NotMapped]
-        public string[] MemberPostArr
+        public ReadOnlyCollection<string> MemberPostArr
         {
-            get { return MemberPosts?.Split(",", StringSplitOptions.RemoveEmptyEntries); }
+            get { return new ReadOnlyCollection<string>(MemberPosts?.Split(",", StringSplitOptions.RemoveEmptyEntries)); }
         }
 
         [NotMapped]
-        public string[] MemberPartyPostArr
+        public ReadOnlyCollection<string> MemberPartyPostArr
         {
-            get { return MemberPartyPosts?.Split(",", StringSplitOptions.RemoveEmptyEntries); }
+            get { return new ReadOnlyCollection<string>(MemberPartyPosts?.Split(",", StringSplitOptions.RemoveEmptyEntries)); }
         }
 
         [NotMapped]
-        public string[] EducationArr
+        public ReadOnlyCollection<string> EducationArr
         {
-            get { return Educations?.Split(",", StringSplitOptions.RemoveEmptyEntries); }
+            get { return new ReadOnlyCollection<string>(Educations?.Split(",", StringSplitOptions.RemoveEmptyEntries)); }
         }
 
         [NotMapped]
-        public string[] DegreeArr
+        public ReadOnlyCollection<string> DegreeArr
         {
-            get { return Degrees?.Split(",", StringSplitOptions.RemoveEmptyEntries); }
+            get { return new ReadOnlyCollection<string>(Degrees?.Split(",", StringSplitOptions.RemoveEmptyEntries)); }
         }
 
 
         [NotMapped]
-        public string[] JobArr
+        public ReadOnlyCollection<string> JobArr
         {
-            get { return Jobs?.Split(",", StringSplitOptions.RemoveEmptyEntries); }
+            get { return new ReadOnlyCollection<string>(Jobs?.Split(",", StringSplitOptions.RemoveEmptyEntries)); }
         }
 
         [NotMapped]
-        public string[] JobGradeArr
+        public ReadOnlyCollection<string> JobGradeArr
         {
-            get { return JobGrades?.Split(",", StringSplitOptions.RemoveEmptyEntries); }
+            get { return new ReadOnlyCollection<string>(JobGrades?.Split(",", StringSplitOptions.RemoveEmptyEntries)); }
         }
 
         [NotMapped]
-        public string[] MemberTypeArr
+        public ReadOnlyCollection<string> MemberTypeArr
         {
-            get { return MemberTypes?.Split(",", StringSplitOptions.RemoveEmptyEntries); }
+            get { return new ReadOnlyCollection<string>(MemberTypes?.Split(",", StringSplitOptions.RemoveEmptyEntries)); }
         }
 
         [NotMapped]
-        public string[] NationTypeArr
+        public ReadOnlyCollection<string> NationTypeArr
         {
-            get { return NationTypes?.Split(",", StringSplitOptions.RemoveEmptyEntries); }
+            get { return new ReadOnlyCollection<string>(NationTypes?.Split(",", StringSplitOptions.RemoveEmptyEntries)); }
         }
 
         [NotMapped]
-        public string[] PrizrOrPunishTypeArr
+        public ReadOnlyCollection<string> PrizrOrPunishTypeArr
         {
-            get { return PrizrOrPunishTypes?.Split(",", StringSplitOptions.RemoveEmptyEntries); }
+            get { return new ReadOnlyCollection<string>(PrizrOrPunishTypes?.Split(",", StringSplitOptions.RemoveEmptyEntries)); }
         }
 
         [NotMapped]
-        public string[] PrizrOrPunishNameArr
+        public ReadOnlyCollection<string> PrizrOrPunishGradeArr
         {
-            get { return PrizrOrPunishNames?.Split(",", StringSplitOptions.RemoveEmptyEntries); }
+            get { return new ReadOnlyCollection<string>(PrizrOrPunishGrades?.Split(",", StringSplitOptions.RemoveEmptyEntries)); }
         }
 
         [NotMapped]
-        public string[] RelationArr
+        public ReadOnlyCollection<string> PrizrOrPunishNameArr
         {
-            get { return Relations?.Split(",", StringSplitOptions.RemoveEmptyEntries); }
+            get { return new ReadOnlyCollection<string>(PrizrOrPunishNames?.Split(",", StringSplitOptions.RemoveEmptyEntries)); }
         }
 
         [NotMapped]
-        public string[] MemberScoreTypeArr
+        public ReadOnlyCollection<string> RelationArr
         {
-            get { return MemberScoreTypes?.Split(",", StringSplitOptions.RemoveEmptyEntries); }
+            get { return new ReadOnlyCollection<string>(Relations?.Split(",", StringSplitOptions.RemoveEmptyEntries)); }
         }
 
         [NotMapped]
-        public string[] AppraiseTypeArr
+        public ReadOnlyCollection<string> MemberScoreTypeArr
         {
-            get { return Appraises?.Split(",", StringSplitOptions.RemoveEmptyEntries); }
+            get { return new ReadOnlyCollection<string>(MemberScoreTypes?.Split(",", StringSplitOptions.RemoveEmptyEntries)); }
+        }
+
+        [NotMapped]
+        public ReadOnlyCollection<string> AppraiseTypeArr
+        {
+            get { return new ReadOnlyCollection<string>(Appraises?.Split(",", StringSplitOptions.RemoveEmptyEntries)); }
         }
 
         /// <summary>
@@ -364,6 +382,7 @@ namespace Office.Work.Platform.Lib
             MemberTypes = "聘用合同制,劳动合同制,劳务派遣制,离退休人员";
             NationTypes = "汉族,满族,维吾尔族,苗族,蒙古族,羌族,白族";
             PrizrOrPunishTypes = "奖励,处理,处分";
+            PrizrOrPunishGrades = "县级,市级,省级,国家级";
             PrizrOrPunishNames = "先进工作者,劳动模范,嘉奖,记功,批评教育,提醒谈话,诫勉谈话,警示谈话,责令检讨,通报批评,政务警告,政务记过,政务记大过,政务降级,政务撤职,政务开除,党内警告,党内严重警告,撤销党内职务,留党察看,开除党籍";
             Relations = "父亲,母亲,岳父,岳母,丈夫,妻子,女儿,儿子";
             MemberScoreTypes = "基础分值,发表文章,获得表彰,迟到早退,党政纪处理,党政纪处分,其他加分情形,其他扣分情形";

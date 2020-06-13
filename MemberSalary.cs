@@ -7,22 +7,17 @@ namespace Office.Work.Platform.Lib
     /// <summary>
     /// 本类定义员工发放记录表
     /// </summary>
-    public class MemberPay : ModelBaseClass
+    public class MemberSalary : ModelBaseClass
     {
         private string _Id;
-        private string _PayName;
-        private string _InCardinality;
-        private string _AddOrCut;
-        private string _InTableType;
-        private float _Amount;
         private string _Remark;
         private DateTime _UpDateTime;
         private string _UserId;
         private int _PayMonth;
-        private int _OrderIndex;
         private int _PayYear;
         private string _PayUnitName;
-        private int _MemberIndex;
+        private string _TableType;
+        private string _NameAndAmount;
 
 
         /// <summary>
@@ -48,58 +43,18 @@ namespace Office.Work.Platform.Lib
         public Member Member { get; set; }
 
         /// <summary>
-        /// 工作人员姓名
+        /// 已发放的待遇项目Id号及对应的金额列表（JSON格式）。
         /// </summary>
-        [Required, Column(TypeName = "varchar(20)")]
-        public string MemberName { get; set; }
-        /// <summary>
-        /// 工作人员类型
-        /// </summary>
-        [Required, Column(TypeName = "varchar(20)")]
-        public string MemberType { get; set; }
+        [Required, Column(TypeName = "varchar(2000)")]
+        public string NameAndAmount { get { return _NameAndAmount; } set { _NameAndAmount = value; OnPropertyChanged(); } }
 
         /// <summary>
-        /// 待遇项目的名称
+        /// 发放类型：月度待遇表、月度补贴表、其他待遇表
         /// </summary>
         [Required, Column(TypeName = "varchar(30)")]
-        public string PayName { get { return _PayName; } set { _PayName = value; OnPropertyChanged(); } }
+        public string TableType { get { return _TableType; } set { _TableType = value; OnPropertyChanged(); } }
 
-        /// <summary>
-        /// 是否计入各类交费基数
-        /// </summary>
-        [Required, Column(TypeName = "varchar(10)")]
-        public string InCardinality
-        {
-            get { return _InCardinality; }
-            set { _InCardinality = value; OnPropertyChanged(); }
-        }
-
-        /// <summary>
-        /// 生成打印表格时放在哪个表中：月度工资表、月度补贴表、其他待遇表
-        /// </summary>
-        [Required, Column(TypeName = "varchar(20)")]
-        public string InTableType
-        {
-            get { return _InTableType; }
-            set { _InTableType = value; OnPropertyChanged(); }
-        }
-
-        /// <summary>
-        /// 该项目是发放待遇还是扣除待遇:发放、扣除
-        /// </summary>
-        [Required, Column(TypeName = "varchar(10)")]
-        public string AddOrCut
-        {
-            get { return _AddOrCut; }
-            set { _AddOrCut = value; OnPropertyChanged(); }
-        }
-
-        /// <summary>
-        /// 金额
-        /// </summary>
-        [Required, Column(TypeName = "float(10,2)")]
-        public float Amount { get { return _Amount; } set { _Amount = value; OnPropertyChanged(); } }
-
+        
         /// <summary>
         /// 发放年份
         /// </summary>
@@ -125,16 +80,6 @@ namespace Office.Work.Platform.Lib
             get { return _PayUnitName; }
             set { _PayUnitName = value; OnPropertyChanged(); }
         }
-
-        /// <summary>
-        /// 内部人员排序(此字段值来源于Member表）
-        /// </summary>
-        public int MemberIndex { get { return _MemberIndex; } set { _MemberIndex = value; OnPropertyChanged(); } }
-
-        /// <summary>
-        /// 发放项目排序(此字段值来源于MemberPayItem表）
-        /// </summary>
-        public int OrderIndex { get { return _OrderIndex; } set { _OrderIndex = value; OnPropertyChanged(); } }
 
         /// <summary>
         /// 更新日期

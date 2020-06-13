@@ -11,7 +11,6 @@ namespace Office.Work.Platform.Lib
     {
         private string _Name;
         private string _InCardinality;
-        private string _AddOrCut;
         private string _Remark;
         private string _InTableType;
         private string _UnitName;
@@ -19,6 +18,7 @@ namespace Office.Work.Platform.Lib
         private string _UserId;
         private int _OrderIndex;
         private string _MemberTypes;
+        private string _PayType;
 
         /// <summary>
         /// 待遇项目的名称
@@ -51,13 +51,13 @@ namespace Office.Work.Platform.Lib
             set { _InTableType = value; OnPropertyChanged(); }
         }
         /// <summary>
-        /// 该项目是发放待遇还是扣除待遇:发放、扣除
+        /// 该项目性须:应发待遇、单位交纳、个人交纳
         /// </summary>
-        [Required, Column(TypeName = "varchar(10)")]
-        public string AddOrCut
+        [Required, Column(TypeName = "varchar(20)")]
+        public string PayType
         {
-            get { return _AddOrCut; }
-            set { _AddOrCut = value; OnPropertyChanged(); }
+            get { return _PayType; }
+            set { _PayType = value; OnPropertyChanged(); }
         }
         /// <summary>
         /// 该项目属于哪个单位

@@ -5,7 +5,7 @@ namespace Office.Work.Platform.Lib
     /// <summary>
     /// 单位员工信息查询类
     /// </summary>
-    public class MemberPaySearch
+    public class MemberSalarySearch
     {
         /// <summary>
         /// 记录Id号
@@ -20,7 +20,17 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 待遇项目名称
         /// </summary>
-        public string PayName { get; set; }
+        public string ItemName { get; set; }
+
+        /// <summary>
+        /// 用户类型
+        /// </summary>
+        public string MemberType { get; set; }
+
+        /// <summary>
+        /// 发放类型
+        /// </summary>
+        public string TableType { get; set; }
 
         /// <summary>
         /// 发生年份

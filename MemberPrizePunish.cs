@@ -18,6 +18,7 @@ namespace Office.Work.Platform.Lib
         private string _PrizrOrPunishUnit;
         private string _PrizrOrPunishReasion;
         private string _PrizrOrPunishType;
+        private string _PrizrOrPunishGrade;
 
         /// <summary>
         /// 主键：不设为自增，不自动处理。
@@ -55,6 +56,12 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         [Column(TypeName = "varchar(20)")]
         public string PrizrOrPunishType { get { return _PrizrOrPunishType; } set { _PrizrOrPunishType = value; OnPropertyChanged(); } }
+
+        /// <summary>
+        /// 级别：县级、市级、省级、国家级
+        /// </summary>
+        [Column(TypeName = "varchar(20)")]
+        public string PrizrOrPunishGrade { get { return _PrizrOrPunishGrade; } set { _PrizrOrPunishGrade = value; OnPropertyChanged(); } }
 
         /// <summary>
         /// 奖励或处罚（理）名称
