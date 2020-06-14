@@ -9,6 +9,10 @@ namespace Office.Work.Platform.Lib
     public class MemberSalarySearchResult
     {
         /// <summary>
+        /// 记录的Id号
+        /// </summary>
+        public string Id { get; set; }
+        /// <summary>
         /// 发放单位名称
         /// </summary>
         public string PayUnitName { get; set; }

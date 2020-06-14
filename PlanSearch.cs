@@ -91,6 +91,11 @@ namespace Office.Work.Platform.Lib
         public string KeysInMultiple { get; set; }
 
         /// <summary>
+        /// 是否要查询长期计划（3个月以上，值为yes:表查询长期计划，no:表查询短期计划，all:表查询所有） 
+        /// </summary>
+        public string LongPlan { get; set; }
+
+        /// <summary>
         /// 总记录数
         /// </summary>
         public int RecordCount

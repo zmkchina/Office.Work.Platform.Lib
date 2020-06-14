@@ -9,7 +9,6 @@ namespace Office.Work.Platform.Lib
     /// </summary>
     public class MemberScore : ModelBaseClass
     {
-        private string _Id;
         private string _Remark;
         private DateTime _UpDateTime;
         private string _UserId;
@@ -25,11 +24,8 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public string Id
-        {
-            get { return _Id; }
-            set { _Id = value; OnPropertyChanged(); }
-        }
+        public string Id { get; set; }
+
         /// <summary>
         /// 外键:关联员工表 Id
         /// </summary>

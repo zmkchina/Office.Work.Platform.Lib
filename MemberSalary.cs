@@ -75,6 +75,7 @@ namespace Office.Work.Platform.Lib
         /// <summary>
         /// 发放单位
         /// </summary>
+        [Required, Column(TypeName = "varchar(30)")]
         public string PayUnitName
         {
             get { return _PayUnitName; }

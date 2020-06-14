@@ -61,5 +61,10 @@ namespace Office.Work.Platform.Lib
         /// 操作人员ID
         /// </summary>
         public string UserId { get; set; }
+
+        /// <summary>
+        /// 未查询到数据时，是否填充空数据（如供发放工资使用，则需要填充；如供打印使用则不需要）
+        /// </summary>
+        public bool FillEmpty { get; set; }
     }
 }
