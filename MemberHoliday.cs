@@ -18,6 +18,7 @@ namespace Office.Work.Platform.Lib
         private DateTime _EndDate = DateTime.Now.AddDays(2);
         private string _HolidayReasion;
         private string _HolidayType;
+        private string _UnitName;
 
         /// <summary>
         /// 主键：不设为自增，不自动处理。
@@ -95,6 +96,16 @@ namespace Office.Work.Platform.Lib
         /// </summary>
         [Column(TypeName = "varchar(500)")]
         public string Remark { get { return _Remark; } set { _Remark = value; OnPropertyChanged(); } }
+
+        /// <summary>
+        /// 考核单位
+        /// </summary>
+        [Required, Column(TypeName = "varchar(50)")]
+        public string UnitName
+        {
+            get { return _UnitName; }
+            set { _UnitName = value; OnPropertyChanged(); }
+        }
 
         /// <summary>
         /// 假期类型

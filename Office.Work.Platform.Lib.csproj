@@ -6,11 +6,15 @@
     <Authors>ZMK</Authors>
     <Product>政工科信息化工作平台</Product>
     <Description>此为政工科信息化工作平台平台公用Model类库</Description>
-    <Version>2.0.0.0</Version>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
-    <Company>ZMK COMPANY</Company>
+    <Version>3.0.0.0</Version>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <FileVersion>3.0.0.0</FileVersion>
+    <Company>NO COMPANY</Company>
     <Platforms>AnyCPU;x64;x86</Platforms>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup> 
 
   <ItemGroup>

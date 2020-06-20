@@ -31,11 +31,19 @@ namespace Office.Work.Platform.Lib
                     }
                     if (property.PropertyType == typeof(int))
                     {
-                        if (!int.TryParse(property.GetValue(this).ToString(), out int intScore))
+                        if (!int.TryParse(property.GetValue(this).ToString(), out _))
                         {
                             return false;
                         }
                     }
+                   else if (property.PropertyType == typeof(float))
+                    {
+                        if (!float.TryParse(property.GetValue(this).ToString(), out _))
+                        {
+                            return false;
+                        }
+                    }
+                    
                     else if (property.PropertyType == typeof(DateTime))
                     {
                         if (!DateTime.TryParse(property.GetValue(this).ToString(), out _))

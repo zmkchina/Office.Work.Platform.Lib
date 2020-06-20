@@ -385,7 +385,7 @@ namespace Office.Work.Platform.Lib
             PrizrOrPunishGrades = "县级,市级,省级,国家级";
             PrizrOrPunishNames = "先进工作者,劳动模范,嘉奖,记功,批评教育,提醒谈话,诫勉谈话,警示谈话,责令检讨,通报批评,政务警告,政务记过,政务记大过,政务降级,政务撤职,政务开除,党内警告,党内严重警告,撤销党内职务,留党察看,开除党籍";
             Relations = "父亲,母亲,岳父,岳母,丈夫,妻子,女儿,儿子";
-            MemberScoreTypes = "基础分值,发表文章,获得表彰,迟到早退,党政纪处理,党政纪处分,其他加分情形,其他扣分情形";
+            MemberScoreTypes = "新闻信息,政务信息,表彰奖励,迟到早退,政务处理,政务处分,党纪处理,党纪处分,其他情形";
             Appraises = "优秀,合格,基本合格,不合格";
             IntervalOne = 20;
             IntervalTwo = 30;

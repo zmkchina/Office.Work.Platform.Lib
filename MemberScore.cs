@@ -14,7 +14,7 @@ namespace Office.Work.Platform.Lib
         private string _UserId;
         private int _MemberIndex;
         private string _ScoreType;
-        private int _Score;
+        private float _Score;
         private string _ScoreUnitName;
         private DateTime _OccurDate;
 
@@ -52,10 +52,10 @@ namespace Office.Work.Platform.Lib
         }
 
         /// <summary>
-        /// 具体分值
+        /// 具体分值，扣分的话为负值
         /// </summary>
         [Required]
-        public int Score
+        public float Score
         {
             get { return _Score; }
             set { _Score = value; OnPropertyChanged(); }

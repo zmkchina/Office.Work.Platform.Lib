@@ -1,28 +1,33 @@
 ﻿namespace Office.Work.Platform.Lib
 {
     /// <summary>
-    /// 职工假期信息统计
+    /// 员工绩效考核信息查询类
     /// </summary>
-    public class MemberHolidayCensus
+    public class MemberHolidayCountSearch
     {
         /// <summary>
-        /// 所属职工的Id号（身份证号）
+        /// 员工 Id
         /// </summary>
         public string MemberId { get; set; }
 
         /// <summary>
-        /// 职工姓名
+        /// 员工姓名
         /// </summary>
         public string MemberName { get; set; }
-        
+
         /// <summary>
         /// 统计年份
         /// </summary>
-        public int Year { get; set; }
+        public string YearNumber { get; set; }
 
         /// <summary>
-        /// 假期总天数
+        /// 单位名称
         /// </summary>
-        public int HolidayCount { get; set; }
+        public string UnitName { get; set; }
+
+        /// <summary>
+        /// 操作人员ID
+        /// </summary>
+        public string UserId { get; set; }
     }
 }
